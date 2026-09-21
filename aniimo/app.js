@@ -3,6 +3,8 @@
 var ANIIMO=["Loufeuteau","Jappardent","Hurlebrasier","Inferlupin","Célestia","Stellaria","Cuicui","Trombec","Clairbec","Tubabec","Iris","Valsiris","Irisalis","Tilotus","Filoutus","Givrotus","Voilotus","Cumulaine","Turbulaine","Lainirique","Fredon","Sorcelonde","Nutrion","Crabourgeon","Crabiflore","Cristocrabe","Farfafeu","Flamirage","Fluoretti","Voletti","Somniwing","Eko","Ekolombo","Bourgeonnet","Rapiéronce","Méliflore","Pomœuf","Danzard","Pomawk","Plumiel","Fragrancier","Flammi","Igniti","Fulmi","Osky","Glaivrier","Molosabre","Voltige","Voltignasse","Écurixe","Écurouste","Louloutre","Bulloutre","Ondeloutre","Terriloutre","Astrid","Astor","Astrophel","Balabée","Coléobée","Boulabée","Touffu","Fulgucrin","Casquimou","Casquipreux","Casquillon","Machou","Casquimord","Cuiragon","Infergon","Ourso","Grizzo","Silexodon","Lavasaure","Magmarex","Géodosaure","Cristorex","Cabaroc","Bastiroc","Bulbi","Voilueur","Luminelle","Falou","Fabulle","Pulsato","Reefish","Coraliz","Cheekie","Wavwal","Bubbeep","Glameep","Popapus","Gachapus","Malangel","Malevsera","Fennelun","Soleon","Petit Esprit de Feu","Lunara","Hélion"];
 var PRIORITIES=["Crabiflore","Igniti","Pomawk","Boulabée","Écurouste","Infergon","Magmarex","Pulsato"];
 var NUMBERS={"Crabiflore":"024","Igniti":"041","Pomawk":"037","Boulabée":"058","Écurouste":"048","Infergon":"067","Magmarex":"072","Pulsato":"082"};
+var DETAILS={"Crabiflore":{"no":"024","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10162.png","elements":["Roche","Herbe"],"role":"RUPT.","habitat":"Voie de béryl","mobility":"Tunnel","pathfinding":"—","trait":"Furtivité","summary":"Un briseur robuste dont la carapace végétalisée lui donne une identité très marquée. Son kit profite particulièrement des fenêtres de rupture.","stats":{"pv":95,"rupt":104,"atq":80,"defm":77,"defp":109,"regen":85},"source":"https://wiki.aniimo.com/fr/item/024/basic-form"},"Pomawk":{"no":"037","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10475.png","elements":["Herbe"],"role":"RUPT.","habitat":"Bois de la tour-aux-roses","mobility":"—","pathfinding":"—","trait":"Accord","summary":"Un Aniimo de rupture basé sur le rythme et l'accumulation de Volume, avec une forte capacité à ouvrir des fenêtres de contrôle.","stats":{"pv":87,"rupt":107,"atq":90,"defm":76,"defp":80,"regen":100},"source":"https://wiki.aniimo.com/fr/item/037/basic-form"},"Igniti":{"no":"041","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10032.png","elements":["Ténèbres"],"role":"DPS","habitat":"Voie de béryl","mobility":"Dissimulation","pathfinding":"Voler Lv.2","trait":"Ferveur du combat","summary":"Un DPS mobile et agressif qui cherche des éliminations rapides et profite fortement de l'enchaînement des combats.","stats":{"pv":90,"rupt":52,"atq":125,"defm":70,"defp":77,"regen":91},"source":"https://wiki.aniimo.com/fr/item/041/basic-form"},"Écurouste":{"no":"048","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10512.png","elements":["Feu"],"role":"RUPT.","habitat":"Forêt des foudres","mobility":"—","pathfinding":"Grimper Lv.2","trait":"Feu déchaîné","summary":"Un spécialiste de la rupture au profil très solide, capable de convertir l'utilisation de compétences en attaques de base renforcées.","stats":{"pv":110,"rupt":108,"atq":82,"defm":80,"defp":80,"regen":88},"source":"https://wiki.aniimo.com/fr/item/048/basic-form"},"Boulabée":{"no":"058","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10454.png","elements":["Roche"],"role":"Soutien","habitat":"Voie de béryl","mobility":"Boule déferlante","pathfinding":"—","trait":"Renforcement rocheux","summary":"Un soutien rocheux qui prépare le terrain avec des amas de roche et des effets de désintégration pour faciliter le travail de l'équipe.","stats":{"pv":91,"rupt":52,"atq":114,"defm":54,"defp":101,"regen":104},"source":"https://wiki.aniimo.com/fr/item/058/basic-form"},"Infergon":{"no":"067","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10025.png","elements":["Feu"],"role":"DPS","habitat":"—","mobility":"Bilatéral","pathfinding":"Voler Lv.2","trait":"Pouvoir du feu","summary":"Un DPS feu aérien qui devient plus dangereux quand la cible accumule les débuffs de Feu.","stats":{"pv":95,"rupt":50,"atq":125,"defm":85,"defp":70,"regen":80},"source":"https://wiki.aniimo.com/fr/item/067/basic-form"},"Magmarex":{"no":"072","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10283.png","elements":["Feu","Roche"],"role":"RUPT.","habitat":"Isthme du zéphyr","mobility":"Fast and Furious","pathfinding":"—","trait":"Charge pyro","summary":"Un briseur massif orienté Feu/Roche, avec beaucoup de PV et une excellente valeur de rupture.","stats":{"pv":110,"rupt":104,"atq":91,"defm":89,"defp":70,"regen":75},"source":"https://wiki.aniimo.com/fr/item/072/basic-form"},"Pulsato":{"no":"082","image":"https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10122.png","elements":["Électrique"],"role":"RÉGÉN.","habitat":"—","mobility":"—","pathfinding":"—","trait":"Surtension électrique","summary":"Un régénérateur électrique centré sur la gestion d'énergie et le maintien du rythme de l'équipe.","stats":{"pv":88,"rupt":90,"atq":92,"defm":75,"defp":75,"regen":118},"source":"https://wiki.aniimo.com/fr/item/082/basic-form"}};
+var APP_URL="https://tfortun-dev.github.io/test/";
 var STORAGE_KEY="aniimo-carnet-idyll-v2";
 var SB_URL="https://eukjpxrqdzpvihzxpjtb.supabase.co";
 var SB_KEY="sb_publishable_P3jFs6AJphD_T65Lq69qgQ_cidOkGjk";
@@ -21,7 +23,7 @@ function q(s){return document.querySelector(s);}
 function qa(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
 function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function norm(v){return String(v==null?"":v).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();}
-function emptyState(){return {version:2,updatedAt:0,caught:[],wanted:PRIORITIES.slice(),entries:[]};}
+function emptyState(){return {version:3,updatedAt:0,caught:[],wanted:PRIORITIES.slice(),entries:[],analysis:{}};}
 function sanitize(data){
   var base=emptyState(),d=data&&typeof data==="object"?data:{};
   base.updatedAt=Number(d.updatedAt)||0;
@@ -29,6 +31,18 @@ function sanitize(data){
   base.wanted=Array.from(new Set((Array.isArray(d.wanted)?d.wanted:PRIORITIES).filter(function(n){return ANIIMO.indexOf(n)>-1;})));
   base.entries=(Array.isArray(d.entries)?d.entries:[]).filter(Boolean).map(function(e){
     return {id:String(e.id||Date.now()+Math.random()),date:String(e.date||""),title:String(e.title||""),area:String(e.area||""),aniimo:ANIIMO.indexOf(e.aniimo)>-1?e.aniimo:"",text:String(e.text||""),created:Number(e.created)||Date.now(),modified:Number(e.modified)||Number(e.created)||Date.now()};
+  });
+  base.analysis={};
+  var srcAnalysis=d.analysis&&typeof d.analysis==="object"?d.analysis:{};
+  ANIIMO.forEach(function(name){
+    var a=srcAnalysis[name];
+    if(!a||typeof a!=="object")return;
+    base.analysis[name]={
+      seen:!!a.seen,analysed:!!a.analysed,trained:!!a.trained,
+      form:String(a.form||""),encounter:String(a.encounter||""),conditions:String(a.conditions||""),
+      strengths:String(a.strengths||""),weaknesses:String(a.weaknesses||""),strategy:String(a.strategy||""),
+      notes:String(a.notes||""),modified:Number(a.modified)||0
+    };
   });
   return base;
 }
@@ -65,11 +79,13 @@ function go(v){
 }
 function renderStats(){
   var c=state.caught.length,p=PRIORITIES.filter(caught).length;
+  var analysed=Object.keys(state.analysis||{}).filter(function(n){return state.analysis[n]&&state.analysis[n].analysed;}).length;
   if(q("#score"))q("#score").textContent=c+"/"+ANIIMO.length;
   if(q("#bar"))q("#bar").style.width=Math.round(c/ANIIMO.length*100)+"%";
   if(q("#prioScore"))q("#prioScore").textContent=p+"/8 priorités obtenues";
   if(q("#sCaught"))q("#sCaught").textContent=c;
   if(q("#sWanted"))q("#sWanted").textContent=state.wanted.length;
+  if(q("#sAnalyzed"))q("#sAnalyzed").textContent=analysed;
   if(q("#sEntries"))q("#sEntries").textContent=state.entries.length;
 }
 function toggleCaught(n){
@@ -80,10 +96,27 @@ function toggleWanted(n){
   state.wanted=wanted(n)?state.wanted.filter(function(x){return x!==n;}):state.wanted.concat(n);
   saveLocal();renderDex();toast(wanted(n)?n+" ajouté aux favoris":n+" retiré des favoris");
 }
+function analysisFor(n){
+  var a=state.analysis&&state.analysis[n];
+  return a||{seen:false,analysed:false,trained:false,form:"",encounter:"",conditions:"",strengths:"",weaknesses:"",strategy:"",notes:"",modified:0};
+}
+function analysisMethod(role){
+  if(role==="DPS")return "Teste le burst sur une courte fenêtre, puis les dégâts soutenus. Note la facilité à rester au contact, la dépendance aux conditions de son trait et sa survie quand le combat se prolonge.";
+  if(role==="RUPT.")return "Mesure surtout la vitesse à laquelle il fait monter la rupture, la facilité à placer ses compétences et la qualité de la fenêtre créée une fois la cible brisée.";
+  if(role==="Soutien")return "Observe ce qu'il apporte aux alliés : buffs, débuffs, contrôle, préparation du terrain et temps nécessaire avant que son soutien devienne réellement utile.";
+  if(role==="RÉGÉN.")return "Suis la génération d'énergie sur une rotation complète : fréquence des compétences, temps morts et capacité à maintenir le rythme de toute l'équipe.";
+  return "Observe son rôle réel en combat, ses meilleures situations, ses contraintes et ce qui change quand tu modifies son équipe ou sa façon de jouer.";
+}
 function renderTargets(){
   var root=q("#targets");if(!root)return;
   root.innerHTML=PRIORITIES.map(function(n){
-    return '<article class="target '+(caught(n)?"done":"")+'"><small>#'+NUMBERS[n]+' · priorité</small><b>'+esc(n)+'</b><button class="smallbtn" type="button" data-catch="'+esc(n)+'">'+(caught(n)?"✓ Capturé":"Marquer capturé")+'</button></article>';
+    var d=DETAILS[n]||{},a=analysisFor(n);
+    return '<article class="target '+(caught(n)?"done":"")+'">'+
+      '<button class="targetvisual" type="button" data-detail="'+esc(n)+'" aria-label="Voir la fiche de '+esc(n)+'"><img src="'+esc(d.image||"")+'" alt="'+esc(n)+'" loading="lazy"></button>'+
+      '<div class="targetbody"><small>#'+NUMBERS[n]+' · '+esc(d.role||"priorité")+'</small><b>'+esc(n)+'</b>'+
+      '<div class="minitags">'+(d.elements||[]).map(function(x){return '<span>'+esc(x)+'</span>';}).join("")+'</div>'+
+      '<div class="targetprogress"><span class="'+(a.seen?"ok":"")+'">Vu</span><span class="'+(a.analysed?"ok":"")+'">Analysé</span><span class="'+(caught(n)?"ok":"")+'">Capturé</span></div>'+
+      '<div class="targetactions"><button class="smallbtn" type="button" data-catch="'+esc(n)+'">'+(caught(n)?"✓ Capturé":"Marquer capturé")+'</button><button class="smallbtn ghost" type="button" data-detail="'+esc(n)+'">Fiche</button></div></div></article>';
   }).join("");
 }
 function renderDex(){
@@ -94,9 +127,57 @@ function renderDex(){
   if(filter==="missing")list=list.filter(function(n){return !caught(n);});
   if(!list.length){root.innerHTML='<div class="empty">Aucun Aniimo ne correspond à ce filtre.</div>';return;}
   root.innerHTML=list.map(function(n){
-    return '<article class="ani '+(caught(n)?"caught ":"")+(wanted(n)?"wanted":"")+'"><input class="check" type="checkbox" aria-label="Capturé '+esc(n)+'" data-dex="'+esc(n)+'" '+(caught(n)?"checked":"")+'><div><b>'+esc(n)+'</b><small>'+(caught(n)?"dans ta collection":"pas encore coché")+'</small></div><button class="star '+(wanted(n)?"on":"")+'" type="button" data-star="'+esc(n)+'" aria-label="Favori '+esc(n)+'">★</button></article>';
+    var d=DETAILS[n]||{},a=analysisFor(n),visual=d.image?'<img class="anithumb" src="'+esc(d.image)+'" alt="" loading="lazy">':'<div class="anithumb placeholder">'+esc(n.charAt(0))+'</div>';
+    return '<article class="ani '+(caught(n)?"caught ":"")+(wanted(n)?"wanted":"")+'">'+visual+
+      '<input class="check" type="checkbox" aria-label="Capturé '+esc(n)+'" data-dex="'+esc(n)+'" '+(caught(n)?"checked":"")+'>'+
+      '<div class="aniname"><b>'+esc(n)+'</b><small>'+(d.role?esc(d.role)+(a.analysed?" · analysé":""):(caught(n)?"dans ta collection":"pas encore coché"))+'</small></div>'+
+      '<button class="infobtn" type="button" data-detail="'+esc(n)+'" aria-label="Voir la fiche de '+esc(n)+'">i</button>'+
+      '<button class="star '+(wanted(n)?"on":"")+'" type="button" data-star="'+esc(n)+'" aria-label="Favori '+esc(n)+'">★</button></article>';
   }).join("");
 }
+
+function setField(id,value){var el=q(id);if(el)el.value=value||"";}
+function openDetail(name){
+  var modal=q("#aniimoModal");if(!modal)return;
+  var d=DETAILS[name]||{},a=analysisFor(name);
+  modal.setAttribute("data-name",name);
+  q("#detailName").textContent=name;
+  q("#detailNo").textContent=d.no?"NO."+d.no:"Carnet personnel";
+  q("#detailRole").textContent=d.role||"À documenter";
+  q("#detailElements").innerHTML=(d.elements||[]).map(function(x){return '<span>'+esc(x)+'</span>';}).join("");
+  var img=q("#detailImage"),ph=q("#detailPlaceholder");
+  if(d.image){img.src=d.image;img.alt=name;img.hidden=false;ph.hidden=true;}else{img.hidden=true;ph.hidden=false;ph.textContent=name.charAt(0);}
+  q("#detailSummary").textContent=d.summary||"Cette fiche est prête à être enrichie avec tes propres observations.";
+  q("#detailHabitat").textContent=d.habitat||"—";
+  q("#detailMobility").textContent=d.mobility||"—";
+  q("#detailPath").textContent=d.pathfinding||"—";
+  q("#detailTrait").textContent=d.trait||"—";
+  q("#detailMethod").textContent=analysisMethod(d.role||"");
+  var s=d.stats||{};
+  q("#detailStats").innerHTML=d.stats?'<span>PV <b>'+s.pv+'</b></span><span>RUPT. <b>'+s.rupt+'</b></span><span>ATQ <b>'+s.atq+'</b></span><span>DÉF M. <b>'+s.defm+'</b></span><span>DÉF P. <b>'+s.defp+'</b></span><span>RÉGÉN. <b>'+s.regen+'</b></span>':'<span>Données officielles à ajouter</span>';
+  var src=q("#detailSource");src.hidden=!d.source;if(d.source)src.href=d.source;
+  q("#aSeen").checked=!!a.seen;q("#aAnalysed").checked=!!a.analysed;q("#aCaught").checked=caught(name);q("#aTrained").checked=!!a.trained;
+  setField("#aForm",a.form);setField("#aEncounter",a.encounter);setField("#aConditions",a.conditions);
+  setField("#aStrengths",a.strengths);setField("#aWeaknesses",a.weaknesses);setField("#aStrategy",a.strategy);setField("#aNotes",a.notes);
+  modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.classList.add("modalopen");
+}
+function closeDetail(){
+  var modal=q("#aniimoModal");if(!modal)return;modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.classList.remove("modalopen");
+}
+function saveAnalysis(){
+  var modal=q("#aniimoModal"),name=modal&&modal.getAttribute("data-name");if(!name)return;
+  state.analysis=state.analysis||{};
+  state.analysis[name]={
+    seen:q("#aSeen").checked,analysed:q("#aAnalysed").checked,trained:q("#aTrained").checked,
+    form:q("#aForm").value.trim(),encounter:q("#aEncounter").value.trim(),conditions:q("#aConditions").value.trim(),
+    strengths:q("#aStrengths").value.trim(),weaknesses:q("#aWeaknesses").value.trim(),strategy:q("#aStrategy").value.trim(),
+    notes:q("#aNotes").value.trim(),modified:Date.now()
+  };
+  if(q("#aCaught").checked&&!caught(name))state.caught.push(name);
+  if(!q("#aCaught").checked&&caught(name))state.caught=state.caught.filter(function(x){return x!==name;});
+  saveLocal();renderTargets();renderDex();renderRecent();toast("Analyse de "+name+" enregistrée");
+}
+
 function renderOptions(){
   var el=q("#linked");if(!el)return;var current=el.value;
   el.innerHTML='<option value="">— aucun —</option>'+ANIIMO.map(function(n){return '<option value="'+esc(n)+'">'+esc(n)+'</option>';}).join("");
@@ -253,7 +334,7 @@ async function registerSupabase(){
   var email=(q("#cloudEmail").value||"").trim(),password=q("#cloudPassword").value||"";
   if(!email||password.length<6){alert("Entre ton email et un mot de passe d’au moins 6 caractères.");return;}
   setStatus("Création du compte…","busy");
-  var res=await fetch(SB_URL+"/auth/v1/signup",{method:"POST",headers:{"apikey":SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:email,password:password})});
+  var res=await fetch(SB_URL+"/auth/v1/signup?redirect_to="+encodeURIComponent(APP_URL),{method:"POST",headers:{"apikey":SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:email,password:password})});
   var d=await res.json();
   if(!res.ok){setStatus("Erreur de création","err");alert(d.msg||d.message||"Création du compte impossible.");return;}
   if(d.access_token){
@@ -323,12 +404,16 @@ function bind(){
     x=ev.target.closest("[data-go]");if(x){go(x.getAttribute("data-go"));return;}
     x=ev.target.closest("[data-catch]");if(x){toggleCaught(x.getAttribute("data-catch"));return;}
     x=ev.target.closest("[data-star]");if(x){toggleWanted(x.getAttribute("data-star"));return;}
+    x=ev.target.closest("[data-detail]");if(x){openDetail(x.getAttribute("data-detail"));return;}
+    x=ev.target.closest("[data-close-modal]");if(x){closeDetail();return;}
     x=ev.target.closest("[data-filter]");if(x){filter=x.getAttribute("data-filter");qa("[data-filter]").forEach(function(b){b.classList.toggle("on",b===x);});renderDex();return;}
     x=ev.target.closest("[data-edit]");if(x){editEntry(x.getAttribute("data-edit"));return;}
     x=ev.target.closest("[data-del]");if(x&&confirm("Supprimer cette entrée ?")){state.entries=state.entries.filter(function(e){return e.id!==x.getAttribute("data-del");});saveLocal();renderEntries();renderRecent();toast("Entrée supprimée");}
   });
   document.addEventListener("change",function(ev){if(ev.target.matches("[data-dex]"))toggleCaught(ev.target.getAttribute("data-dex"));});
   q("#search").addEventListener("input",renderDex);
+  if(q("#saveAnalysis"))q("#saveAnalysis").addEventListener("click",saveAnalysis);
+  document.addEventListener("keydown",function(ev){if(ev.key==="Escape")closeDetail();});
   q("#form").addEventListener("submit",submitJournal);
   q("#cancel").addEventListener("click",resetForm);
   q("#export").addEventListener("click",exportJson);
