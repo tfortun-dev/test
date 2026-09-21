@@ -4,6 +4,9 @@ var ANIIMO=["Loufeuteau","Jappardent","Hurlebrasier","Inferlupin","Célestia","S
 var PRIORITIES=["Crabiflore","Igniti","Pomawk","Boulabée","Écurouste","Infergon","Magmarex","Pulsato"];
 var NUMBERS={"Crabiflore":"024","Igniti":"041","Pomawk":"037","Boulabée":"058","Écurouste":"048","Infergon":"067","Magmarex":"072","Pulsato":"082"};
 var STORAGE_KEY="aniimo-carnet-idyll-v2";
+var SB_URL="https://eukjpxrqdzpvihzxpjtb.supabase.co";
+var SB_KEY="sb_publishable_P3jFs6AJphD_T65Lq69qgQ_cidOkGjk";
+var SB_SESSION_KEY="aniimo-supabase-session-v1";
 var LEGACY_KEY="aniimo-carnet-idyll-v1";
 var SYNC_KEY="aniimo-github-sync-v1";
 var CLOUD_REPO="tfortun-dev/test";
@@ -12,6 +15,7 @@ var API="https://api.github.com";
 var filter="all";
 var state=loadState();
 var cloudBusy=false,cloudTimer=null,pollTimer=null,runtimeToken="",runtimePassphrase="";
+var sbBusy=false,sbTimer=null,sbPollTimer=null,sbSession=loadSbSession();
 
 function q(s){return document.querySelector(s);}
 function qa(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
@@ -46,7 +50,7 @@ function saveLocal(touch,sync){
   if(touch!==false)state.updatedAt=Date.now();
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){console.warn(e);}
   renderStats();
-  if(sync!==false)schedulePush();
+  if(sync!==false){schedulePush();scheduleSupabasePush();}
 }
 function caught(n){return state.caught.indexOf(n)>-1;}
 function wanted(n){return state.wanted.indexOf(n)>-1;}
@@ -145,11 +149,15 @@ function setStatus(text,kind){
   var el=q("#syncStatus");if(!el)return;el.textContent=text;el.className="syncstatus"+(kind?" "+kind:"");
 }
 function renderSyncUi(){
-  var c=syncCfg();if(!runtimeToken&&c.token)runtimeToken=c.token;if(!runtimePassphrase&&c.passphrase)runtimePassphrase=c.passphrase;
-  if(q("#githubToken")&&!q("#githubToken").value)q("#githubToken").value=runtimeToken;
-  if(q("#syncPassphrase")&&!q("#syncPassphrase").value)q("#syncPassphrase").value=runtimePassphrase;
-  if(q("#rememberSync"))q("#rememberSync").checked=c.remember;
-  setStatus(runtimeToken&&runtimePassphrase?"Prêt · synchro automatique active":"À configurer",runtimeToken&&runtimePassphrase?"ok":"");
+  var email=q("#cloudEmail"),account=q("#cloudAccount");
+  if(sbSession&&sbSession.user){
+    if(email&&!email.value)email.value=sbSession.user.email||"";
+    if(account)account.textContent=sbSession.user.email||"Compte connecté";
+    setStatus("Cloud connecté · synchro automatique active","ok");
+  }else{
+    if(account)account.textContent="Aucun compte connecté";
+    setStatus("À connecter une fois par appareil","");
+  }
 }
 function b64(bytes){var s="";for(var i=0;i<bytes.length;i++)s+=String.fromCharCode(bytes[i]);return btoa(s);}
 function unb64(s){var bin=atob(s),out=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out;}
@@ -213,6 +221,101 @@ function disconnectGithub(){
   if(q("#githubToken"))q("#githubToken").value="";if(q("#syncPassphrase"))q("#syncPassphrase").value="";
   setStatus("Déconnecté · données locales conservées","");toast("Synchronisation déconnectée");
 }
+
+function loadSbSession(){
+  try{return JSON.parse(localStorage.getItem(SB_SESSION_KEY)||"null");}catch(e){return null;}
+}
+function saveSbSession(s){
+  sbSession=s||null;
+  if(sbSession)localStorage.setItem(SB_SESSION_KEY,JSON.stringify(sbSession));
+  else localStorage.removeItem(SB_SESSION_KEY);
+  renderSyncUi();
+}
+async function sbFetch(path,opt){
+  opt=opt||{};
+  var headers=Object.assign({"apikey":SB_KEY,"Content-Type":"application/json"},opt.headers||{});
+  if(sbSession&&sbSession.access_token)headers.Authorization="Bearer "+sbSession.access_token;
+  return fetch(SB_URL+path,Object.assign({},opt,{headers:headers}));
+}
+async function refreshSbSession(){
+  if(!sbSession||!sbSession.refresh_token)return false;
+  var res=await fetch(SB_URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{"apikey":SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:sbSession.refresh_token})});
+  if(!res.ok){saveSbSession(null);return false;}
+  var d=await res.json();d.expires_at=Math.floor(Date.now()/1000)+(d.expires_in||3600);saveSbSession(d);return true;
+}
+async function ensureSbSession(){
+  if(!sbSession)return false;
+  if(!sbSession.expires_at)return true;
+  if(sbSession.expires_at-Math.floor(Date.now()/1000)>60)return true;
+  return refreshSbSession();
+}
+async function registerSupabase(){
+  var email=(q("#cloudEmail").value||"").trim(),password=q("#cloudPassword").value||"";
+  if(!email||password.length<6){alert("Entre ton email et un mot de passe d’au moins 6 caractères.");return;}
+  setStatus("Création du compte…","busy");
+  var res=await fetch(SB_URL+"/auth/v1/signup",{method:"POST",headers:{"apikey":SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:email,password:password})});
+  var d=await res.json();
+  if(!res.ok){setStatus("Erreur de création","err");alert(d.msg||d.message||"Création du compte impossible.");return;}
+  if(d.access_token){
+    d.expires_at=Math.floor(Date.now()/1000)+(d.expires_in||3600);saveSbSession(d);await syncSupabase(false,false);startSupabasePolling();toast("Compte connecté");
+  }else{
+    setStatus("Compte créé · confirme l’email puis connecte-toi","ok");
+    alert("Compte créé. Supabase peut demander de confirmer ton adresse email. Après confirmation, reviens ici et clique sur Se connecter.");
+  }
+}
+async function loginSupabase(){
+  var email=(q("#cloudEmail").value||"").trim(),password=q("#cloudPassword").value||"";
+  if(!email||!password){alert("Entre ton email et ton mot de passe.");return;}
+  setStatus("Connexion…","busy");
+  var res=await fetch(SB_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:{"apikey":SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:email,password:password})});
+  var d=await res.json();
+  if(!res.ok){setStatus("Connexion impossible","err");alert(d.error_description||d.msg||d.message||"Connexion impossible.");return;}
+  d.expires_at=Math.floor(Date.now()/1000)+(d.expires_in||3600);saveSbSession(d);await syncSupabase(false,false);startSupabasePolling();toast("Cloud connecté");
+}
+async function logoutSupabase(){
+  try{if(sbSession&&sbSession.access_token)await sbFetch("/auth/v1/logout",{method:"POST"});}catch(e){}
+  saveSbSession(null);clearInterval(sbPollTimer);toast("Cloud déconnecté");
+}
+async function getSupabaseSave(){
+  if(!await ensureSbSession())return null;
+  var uid=sbSession&&sbSession.user&&sbSession.user.id;if(!uid)return null;
+  var res=await sbFetch("/rest/v1/aniimo_saves?user_id=eq."+encodeURIComponent(uid)+"&select=data,updated_at",{method:"GET"});
+  if(res.status===401&&await refreshSbSession())return getSupabaseSave();
+  if(!res.ok)throw new Error("Supabase "+res.status+" · "+(await res.text()).slice(0,180));
+  var rows=await res.json();return rows&&rows[0]?rows[0]:null;
+}
+async function putSupabaseSave(){
+  if(!await ensureSbSession())throw new Error("Session expirée.");
+  var uid=sbSession&&sbSession.user&&sbSession.user.id;if(!uid)throw new Error("Utilisateur introuvable.");
+  var res=await sbFetch("/rest/v1/aniimo_saves?on_conflict=user_id",{method:"POST",headers:{"Prefer":"resolution=merge-duplicates,return=representation"},body:JSON.stringify({user_id:uid,data:state})});
+  if(res.status===401&&await refreshSbSession())return putSupabaseSave();
+  if(!res.ok)throw new Error("Supabase "+res.status+" · "+(await res.text()).slice(0,180));
+  return res.json();
+}
+async function syncSupabase(forcePush,silent){
+  if(sbBusy||!sbSession)return;
+  sbBusy=true;if(!silent)setStatus("Synchronisation cloud…","busy");
+  try{
+    var remote=await getSupabaseSave();
+    if(!remote){await putSupabaseSave();setStatus("Cloud synchronisé · première sauvegarde créée","ok");if(!silent)toast("Sauvegarde cloud créée");return;}
+    var remoteState=sanitize(remote.data||{});
+    if(!forcePush&&remoteState.updatedAt>state.updatedAt){
+      state=remoteState;saveLocal(false,false);renderAll();setStatus("Cloud synchronisé · données récupérées","ok");if(!silent)toast("Données cloud récupérées");
+    }else if(forcePush||state.updatedAt>remoteState.updatedAt){
+      await putSupabaseSave();setStatus("Cloud synchronisé · à jour","ok");if(!silent)toast("Cloud mis à jour");
+    }else setStatus("Cloud synchronisé · déjà à jour","ok");
+  }catch(e){console.error(e);setStatus("Erreur cloud","err");if(!silent)alert("Synchronisation impossible.\n\n"+e.message);}
+  finally{sbBusy=false;}
+}
+function scheduleSupabasePush(){
+  if(!sbSession)return;
+  clearTimeout(sbTimer);sbTimer=setTimeout(function(){syncSupabase(true,true);},900);
+}
+function startSupabasePolling(){
+  clearInterval(sbPollTimer);
+  if(sbSession)sbPollTimer=setInterval(function(){syncSupabase(false,true);},30000);
+}
+
 function renderAll(){renderStats();renderTargets();renderDex();renderEntries();renderRecent();renderOptions();renderSyncUi();}
 function bind(){
   document.addEventListener("click",function(ev){
@@ -231,16 +334,15 @@ function bind(){
   q("#export").addEventListener("click",exportJson);
   q("#import").addEventListener("change",importJson);
   q("#reset").addEventListener("click",function(){if(confirm("Tout effacer sur cet appareil ? La sauvegarde GitHub ne sera pas supprimée automatiquement.")){state=emptyState();state.updatedAt=Date.now();saveLocal();renderAll();resetForm();toast("Carnet local réinitialisé");}});
-  if(q("#connectGithub"))q("#connectGithub").addEventListener("click",connectGithub);
-  if(q("#syncNow"))q("#syncNow").addEventListener("click",function(){syncCloud(false,false);});
-  if(q("#pushGithub"))q("#pushGithub").addEventListener("click",function(){syncCloud(true,false);});
-  if(q("#disconnectGithub"))q("#disconnectGithub").addEventListener("click",disconnectGithub);
-  document.addEventListener("visibilitychange",function(){if(!document.hidden&&runtimeToken&&runtimePassphrase)syncCloud(false,true);});
+  if(q("#cloudRegister"))q("#cloudRegister").addEventListener("click",registerSupabase);
+  if(q("#cloudLogin"))q("#cloudLogin").addEventListener("click",loginSupabase);
+  if(q("#cloudSync"))q("#cloudSync").addEventListener("click",function(){syncSupabase(false,false);});
+  if(q("#cloudLogout"))q("#cloudLogout").addEventListener("click",logoutSupabase);
+  document.addEventListener("visibilitychange",function(){if(!document.hidden&&sbSession)syncSupabase(false,true);});
 }
 function init(){
   bind();renderOptions();resetForm();renderAll();
-  var c=syncCfg();
-  if(c.token&&c.passphrase){runtimeToken=c.token;runtimePassphrase=c.passphrase;q("#githubToken").value=runtimeToken;q("#syncPassphrase").value=runtimePassphrase;syncCloud(false,true);startPolling();}
+  if(sbSession){syncSupabase(false,true);startSupabasePolling();}
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();
