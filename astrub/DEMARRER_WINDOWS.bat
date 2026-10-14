@@ -1,9 +1,9 @@
 @echo off
 setlocal
 chcp 65001 >nul
-title ASTRUB - Les premieres pierres v0.7.1
+title ASTRUB - Les premieres pierres v0.7.2
 cd /d "%~dp0"
-echo ASTRUB - Prototype local v0.7.1
+echo ASTRUB - Prototype local v0.7.2
 echo.
 where node >nul 2>nul
 if errorlevel 1 (

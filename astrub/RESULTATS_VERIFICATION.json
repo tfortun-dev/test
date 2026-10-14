@@ -1,8 +1,8 @@
 {
-  "version": "0.7.1",
+  "version": "0.7.2",
   "unit_tests": {
-    "executed": 20,
-    "passed": 20,
+    "executed": 25,
+    "passed": 25,
     "failed": 0
   },
   "build": "passed",
@@ -18,25 +18,144 @@
       "height": 960,
       "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle, training completion reactivates troop card, victory/reward/troop accounting/3 objectives complete",
       "pageerrors": [],
-      "failed_requests": []
+      "failed_requests": [],
+      "result": "PASS",
+      "version": "0.7.2",
+      "meter_percentages": [
+        0,
+        1,
+        50,
+        100
+      ],
+      "ambience": "walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup",
+      "targeted_layer_lifecycle": {
+        "viewport": "desktop",
+        "hud_percentages": [
+          0,
+          1,
+          50,
+          100
+        ],
+        "hud_precision_px": 0.1,
+        "small_meters": [
+          "collection",
+          "upgrade"
+        ],
+        "ambience": [
+          "exact current footprints before/after move and build",
+          "old sprites destroyed",
+          "old media/visibility/destroy listeners removed",
+          "reset from active raid"
+        ],
+        "pageerrors": [],
+        "result": "PASS"
+      }
     },
     {
       "viewport": "mobile",
       "width": 390,
       "height": 844,
       "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle",
+      "meter_percentages": [
+        0,
+        1,
+        50,
+        100
+      ],
+      "ambience": "walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup",
       "pageerrors": [],
-      "failed_requests": []
+      "failed_requests": [],
+      "result": "PASS",
+      "version": "0.7.2",
+      "targeted_layer_lifecycle": {
+        "viewport": "mobile",
+        "hud_percentages": [
+          0,
+          1,
+          50,
+          100
+        ],
+        "hud_precision_px": 0.1,
+        "small_meters": [
+          "collection",
+          "upgrade"
+        ],
+        "ambience": [
+          "exact current footprints before/after move and build",
+          "old sprites destroyed",
+          "old media/visibility/destroy listeners removed",
+          "reset from active raid"
+        ],
+        "pageerrors": [],
+        "result": "PASS"
+      }
     },
     {
       "viewport": "landscape",
       "width": 844,
       "height": 390,
       "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle",
+      "meter_percentages": [
+        0,
+        1,
+        50,
+        100
+      ],
+      "ambience": "walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup",
       "pageerrors": [],
-      "failed_requests": []
+      "failed_requests": [],
+      "result": "PASS",
+      "version": "0.7.2",
+      "targeted_layer_lifecycle": {
+        "viewport": "landscape",
+        "hud_percentages": [
+          0,
+          1,
+          50,
+          100
+        ],
+        "hud_precision_px": 0.1,
+        "small_meters": [
+          "collection",
+          "upgrade"
+        ],
+        "ambience": [
+          "exact current footprints before/after move and build",
+          "old sprites destroyed",
+          "old media/visibility/destroy listeners removed",
+          "reset from active raid"
+        ],
+        "pageerrors": [],
+        "result": "PASS"
+      }
     }
   ],
+  "resource_meter_checks": {
+    "status": "passed",
+    "tested_percentages": [
+      0,
+      1,
+      50,
+      100
+    ],
+    "formats": [
+      "desktop",
+      "mobile",
+      "landscape"
+    ],
+    "max_width_error_px": 0.0122,
+    "layers": "background, clipped fill, masked illustrated rim, labels/icons, production shortcut"
+  },
+  "ambient_checks": {
+    "status": "passed",
+    "species": [
+      "hen",
+      "rabbit",
+      "villager"
+    ],
+    "max_actors": 4,
+    "checks": "walking poses, real-time movement, shared world depth, non-interactive sprites, building detours and reroutes, unchanged resources/troops/building state, modal/placement/hidden-tab pauses, reduced-motion preference, shutdown cleanup and restart after battle/reset"
+  },
   "slow_boot_modal_input": "passed (desktop, terrain response delayed 1200 ms)",
   "windows_launcher": "provided, not executed natively on Linux"
 }

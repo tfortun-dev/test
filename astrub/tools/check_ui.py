@@ -182,7 +182,7 @@ def assert_stable_buttons(page, selector, focus_selector=None):
 
 
 def assert_resource_fill(page):
-    issues = page.locator('.resource').evaluate_all("""cards => cards.flatMap(card => {
+    probe = """cards => cards.flatMap(card => {
       const amount=Number(card.dataset.amount),cap=Number(card.dataset.cap);
       if(!Number.isFinite(amount)||!Number.isFinite(cap)||cap<=0)return ['Missing/invalid HUD amounts: '+card.className];
       const ratio=Math.max(0,Math.min(1,amount/cap));
@@ -190,14 +190,131 @@ def assert_resource_fill(page):
       const problems=!raw||!Number.isFinite(value)||Math.abs(value-ratio)>.001?['Incorrect resource fill: '+card.className]:[];
       const meter=card.querySelector('.resource-meter'),fill=meter?.firstElementChild;
       if(!meter||!fill)return [...problems,'Missing visible resource meter: '+card.className];
+      const rim=getComputedStyle(card,'::after'),windowStyle=getComputedStyle(meter);
+      if(!rim.borderImageSource.includes('meter-track'))problems.push('Illustrated resource rim missing: '+card.className);
+      if(Number(rim.zIndex)<=Number(windowStyle.zIndex))problems.push('Resource fill paints over its rim: '+card.className);
+      if(rim.borderImageSlice.includes('fill'))problems.push('Opaque resource rim covers its fill: '+card.className);
+      if(!rim.maskComposite.split(',').every(part=>part.trim()==='exclude'))problems.push('Resource opening is not excluded from rim mask: '+card.className);
+      if(windowStyle.overflow!=='hidden'||windowStyle.pointerEvents!=='none'||rim.pointerEvents!=='none')problems.push('Resource fill is not clipped/decorative: '+card.className);
       if(meter&&fill&&meter.getBoundingClientRect().width>0){
         const width=fill.getBoundingClientRect().width;
-        const style=getComputedStyle(meter),available=meter.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
-        if(Math.abs(width-available*ratio)>2)problems.push('Visible resource fill disagrees with amount: '+card.className);
+        const style=getComputedStyle(meter),available=meter.getBoundingClientRect().width-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth);
+        if(Math.abs(width-available*ratio)>.1)problems.push('Visible resource fill disagrees with amount: '+card.className);
       }
       return problems;
-    })""")
+    })"""
+    issues = page.locator('.resource').evaluate_all(probe)
+    # Width transitions may get their first painted frame late on a busy CPU.
+    # Wait for the real fill to settle; layer and data errors fail immediately.
+    deadline = time.monotonic() + 3
+    while issues and all(issue.startswith('Visible resource fill disagrees') for issue in issues) and time.monotonic() < deadline:
+        page.wait_for_timeout(100)
+        issues = page.locator('.resource').evaluate_all(probe)
     assert not issues, '; '.join(issues)
+
+
+def assert_ambient_routes(page):
+    issues=page.evaluate("""async () => {
+      const scene=window.__e2e.main.game.scene.getScene('VillageScene'),ambient=scene.ambience;
+      const url=performance.getEntriesByType('resource').find(e=>new URL(e.name).pathname==='/src/game/renderLayers.js').name;
+      const {unitDepth}=await import(url),errors=[];
+      if(ambient.actors.length>4)errors.push('More than four decorative actors');
+      const expectedBlocked=new Set();
+      for(const building of window.__e2e.state.getState().buildings){
+        const [w,h]=window.__e2e.state.BUILDINGS[building.type].size;
+        for(let i=building.x;i<building.x+w;i++)for(let j=building.y;j<building.y+h;j++)expectedBlocked.add(`${i},${j}`);
+      }
+      if(expectedBlocked.size!==ambient.grid.blocked.size||[...expectedBlocked].some(cell=>!ambient.grid.blocked.has(cell)))errors.push('Ambient obstacles do not match current building footprints');
+      for(const actor of ambient.actors){
+        if(actor.sprite.input)errors.push('Ambient actor intercepts map input');
+        if(actor.sprite.displayList!==scene.layers.world)errors.push('Ambient actor outside shared world layer');
+        if(Math.abs(actor.sprite.depth-unitDepth(actor.sprite.y))>.001)errors.push('Ambient actor sorted separately from buildings');
+        if(ambient.grid.blocked.has(`${Math.round(actor.i)},${Math.round(actor.j)}`))errors.push('Ambient actor inside building footprint');
+        for(let n=0;n<actor.path.length;n++){
+          const at=actor.path[n],b=ambient.grid.bounds;
+          if(at.i<b.minI||at.i>b.maxI||at.j<b.minJ||at.j>b.maxJ||ambient.grid.blocked.has(`${at.i},${at.j}`))errors.push('Ambient path enters building/outside neighbourhood');
+          if(n&&Math.abs(at.i-actor.path[n-1].i)+Math.abs(at.j-actor.path[n-1].j)!==1)errors.push('Ambient actor cuts diagonally through footprint');
+        }
+      }
+      return errors;
+    }""")
+    assert not issues,'; '.join(issues)
+
+
+def assert_small_meter(page,selector):
+    issues=page.locator(selector).evaluate("""track => {
+      const window=track.querySelector('.meter-window'),fill=window?.firstElementChild,errors=[];
+      if(!window||!fill)return ['Small meter has no independent clipped window'];
+      const rim=getComputedStyle(track,'::after'),style=getComputedStyle(window),box=track.getBoundingClientRect(),inner=window.getBoundingClientRect(),paint=fill.getBoundingClientRect();
+      if(Number(rim.zIndex)<=Number(style.zIndex)||rim.borderImageSlice.includes('fill'))errors.push('Small meter paints over/under opaque frame incorrectly');
+      if(!rim.maskComposite.split(',').every(value=>value.trim()==='exclude'))errors.push('Small meter rim opening is opaque');
+      if(style.overflow!=='hidden'||inner.left<box.left||inner.right>box.right||inner.top<box.top||inner.bottom>box.bottom||paint.width>inner.width+1)errors.push('Small meter escapes its rail');
+      return errors;
+    }""")
+    assert not issues,'; '.join(issues)
+
+
+def remember_ambient(page):
+    page.evaluate("() => {const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__stoppedAmbient={controller:a,sprites:a.actors.map(actor=>actor.sprite),reduced:a.reducedMotion};}")
+
+
+def assert_ambient_destroyed(page):
+    assert page.evaluate("() => {const old=window.__stoppedAmbient;return old.controller.destroyed&&old.controller.actors.length===0&&old.sprites.every(sprite=>!sprite.active);}"),'Previous ambience survives scene shutdown'
+    assert page.evaluate("""() => {
+      const old=window.__stoppedAmbient.controller;
+      old.paused=false;
+      Object.defineProperty(document,'hidden',{configurable:true,value:true});
+      document.dispatchEvent(new Event('visibilitychange'));
+      const listenerRemoved=!old.paused&&!old.scene.events.listeners('destroy').includes(old.onSceneDestroy);
+      delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));
+      return listenerRemoved;
+    }"""),'Destroyed ambience still listens to visibility or scene destruction'
+    page.emulate_media(reduced_motion='reduce')
+    page.wait_for_timeout(100)
+    assert page.evaluate('window.__stoppedAmbient.controller.reducedMotion===window.__stoppedAmbient.reduced'),'Destroyed ambience still listens to media changes'
+    page.emulate_media(reduced_motion='no-preference')
+
+
+def new_feature_probes(page,label):
+    original=state(page)['resources']
+    for percent in [0,1,50,100]:
+        page.evaluate("percent => {const s=window.__e2e.state;for(const key of ['gold','wood','stone'])s.getState().resources[key]=s.cap()*percent/100;s.save();}",percent)
+        page.wait_for_timeout(450)
+        assert_resource_fill(page)
+        assert_button_art(page,'[id^="resource-plus-"]')
+        page.locator('.resource-stack').screenshot(path=str(OUT/f'meters-{label}-{percent:03d}.png'),animations='disabled')
+    page.evaluate('resources => {Object.assign(window.__e2e.state.getState().resources,resources);window.__e2e.state.save();}',original)
+    page.wait_for_timeout(450)
+    before=state(page)
+    page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.actors.some(a=>a.age>=700)",timeout=10000)
+    page.evaluate("() => {const ambient=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__ambientMoving={actor:ambient.actors[0],age:ambient.actors[0].age,i:ambient.actors[0].i,j:ambient.actors[0].j,poses:new Set()};window.__ambientSample=setInterval(()=>{if(window.__ambientMoving.actor.sprite.active)window.__ambientMoving.poses.add(window.__ambientMoving.actor.sprite.frame.name);},40);}")
+    page.wait_for_function('() => window.__ambientMoving.actor.age>=window.__ambientMoving.age+1500',timeout=10000)
+    moved=page.evaluate("() => {clearInterval(window.__ambientSample);const p=window.__ambientMoving;return {distance:Math.hypot(p.actor.i-p.i,p.actor.j-p.j),poses:p.poses.size};}")
+    assert moved['distance']>.1 and moved['poses']>=2, f'Ambience does not walk/animate: {moved}'
+    assert_ambient_routes(page)
+    after=state(page)
+    assert after['resources']==before['resources'] and after['troops']==before['troops']
+    assert [(b['id'],b['type'],b['x'],b['y'],b['level']) for b in after['buildings']]==[(b['id'],b['type'],b['x'],b['y'],b['level']) for b in before['buildings']]
+    screenshot(page,f'after-{label}-ambience')
+    page.locator('#menu-settings').click()
+    page.locator('#menu-help').click()
+    page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.paused")
+    page.evaluate("() => {const a=window.__ambientMoving.actor;window.__ambientFrozen=[a.age,a.i,a.j];}")
+    page.wait_for_timeout(1100)
+    assert page.evaluate("JSON.stringify(window.__ambientFrozen)===JSON.stringify([window.__ambientMoving.actor.age,window.__ambientMoving.actor.i,window.__ambientMoving.actor.j])"),'Ambient actor moves behind modal'
+    page.keyboard.press('Escape')
+    page.emulate_media(reduced_motion='reduce')
+    page.wait_for_function("() => {const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;return a.reducedMotion&&a.actors.length===0;}")
+    page.wait_for_timeout(900)
+    assert scene_value(page,'scene.ambience.actors.length')==0
+    page.emulate_media(reduced_motion='no-preference')
+    page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.actors.some(a=>a.age>=700)",timeout=10000)
+    # Simulate the platform visibility event without changing any gameplay fields.
+    page.evaluate("() => {Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__hiddenAmbient=a.actors.map(p=>[p.age,p.i,p.j]);}")
+    page.wait_for_timeout(700)
+    assert page.evaluate("JSON.stringify(window.__hiddenAmbient)===JSON.stringify(window.__e2e.main.game.scene.getScene('VillageScene').ambience.actors.map(p=>[p.age,p.i,p.j]))"),'Ambient actor moves in hidden document'
+    page.evaluate("() => {delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));}")
+    assert_ambient_routes(page)
 
 
 def show_goals(page):
@@ -238,6 +355,7 @@ def run_viewport(browser, label, width, height):
     for el in ['#build-toggle','#raid-btn','.resource-stack','.corner-menu']:
         assert_in_view(page, el)
     assert not page.evaluate('document.documentElement.scrollWidth > innerWidth')
+    new_feature_probes(page,label)
     assert_resource_fill(page)
     assert_button_art(page, '#build-toggle,#raid-btn,.utility-btn,.goals-toggle')
     assert_button_art(page,'[id^="resource-plus-"]')
@@ -301,6 +419,7 @@ def run_viewport(browser, label, width, height):
     if page.locator('#selection-info-toggle').get_attribute('aria-expanded')=='false':
         page.locator('#selection-info-toggle').click()
     expect(page.locator('#collect-panel')).to_be_visible()
+    assert_small_meter(page,'.collect-track')
     assert_in_view(page,'#building-details')
     assert_button_art(page,'#selection-panel button')
     screenshot(page,f'after-{label}-producer')
@@ -375,6 +494,10 @@ def run_viewport(browser, label, width, height):
     page.mouse.move(occupied['x'],occupied['y'])
     expect(page.locator('#placement-confirm')).to_be_disabled()
     expect(page.locator('#placement-status')).to_contain_text('occupée')
+    page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.paused")
+    page.evaluate("() => {const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__placementActors=a.actors.map(actor=>({actor,age:actor.age,i:actor.i,j:actor.j,reroutes:actor.reroutes}));}")
+    page.wait_for_timeout(700)
+    assert page.evaluate('window.__placementActors.every(p=>p.age===p.actor.age&&p.i===p.actor.i&&p.j===p.actor.j)'),'Ambient actor moves during placement'
     before = state(page)
     page.mouse.move(slot['sx'],slot['sy'])
     expect(page.locator('#placement-confirm')).to_be_enabled()
@@ -382,6 +505,8 @@ def run_viewport(browser, label, width, height):
     page.locator('#placement-confirm').click()
     page.wait_for_function("async n => (window.__e2e.state).getState().buildings.length===n", arg=len(before['buildings'])+1)
     after = state(page)
+    assert_ambient_routes(page)
+    assert page.evaluate('window.__placementActors.every(p=>!p.actor.sprite.active||p.actor.reroutes>p.reroutes)'),'Existing ambient routes were not refreshed after construction'
     barracks = next(b for b in after['buildings'] if b['type'] == 'barracks')
     assert barracks['x'] == slot['x'] and barracks['y'] == slot['y']
     for key, cost in [('gold',360),('wood',210),('stone',140)]:
@@ -422,6 +547,7 @@ def run_viewport(browser, label, width, height):
     expect(page.locator('#placement-confirm')).to_be_enabled()
     page.locator('#placement-confirm').click()
     moved = next(b for b in state(page)['buildings'] if b['id'] == barracks['id'])
+    assert_ambient_routes(page)
     assert (moved['x'],moved['y']) == (move_slot['x'],move_slot['y'])
     assert state(page)['resources'] == before_move['resources']
     expect(page.locator('#placement-status')).to_be_hidden()
@@ -437,6 +563,7 @@ def run_viewport(browser, label, width, height):
     page.locator('#upgrade-btn').click()
     expect(page.locator('#upgrade-btn')).to_be_disabled()
     expect(page.locator('#selection-timer')).to_be_visible()
+    assert_small_meter(page,'.timer-track')
     after_upgrade=state(page)
     assert after_upgrade['resources']['gold']==before_upgrade['resources']['gold']-100
     assert after_upgrade['resources']['wood']==before_upgrade['resources']['wood']-50
@@ -481,8 +608,10 @@ def run_viewport(browser, label, width, height):
     expect(page.locator('#raid-btn')).to_be_focused()
     page.locator('#raid-btn').click()
     page.wait_for_function('() => window.__e2e.state.getState().queue.length===0',timeout=15000)
+    remember_ambient(page)
     page.locator('#expedition-start').click()
     active(page, 'BattleScene')
+    assert_ambient_destroyed(page)
     expect(page.locator('#battle-controls')).to_be_visible()
     expect(page.locator('#raid-btn')).to_be_hidden()
     for resource in ['gold','wood','stone']:
@@ -522,6 +651,8 @@ def run_viewport(browser, label, width, height):
         newly_trained=1
     page.locator('#leave-battle').click()
     active(page, 'VillageScene')
+    assert scene_value(page,'scene.ambience.destroyed') is False
+    assert_ambient_routes(page)
     final = state(page)
     assert final['troops']['iop'] == before_battle['troops']['iop'] + newly_trained - deployed_iops
     assert final['troops']['cra'] == before_battle['troops']['cra']
@@ -566,8 +697,10 @@ def run_viewport(browser, label, width, height):
     if sum(state(page)['troops'].values())==0:
         page.evaluate("() => {const s=window.__e2e.state;const result=s.train('iop');if(!result.ok)throw new Error(result.msg);s.getState().queue.find(q=>q.type==='iop').ends=Date.now()-1;s.getState().lastTick=Date.now()-600;s.tick();}")
     page.locator('#raid-btn').click()
+    remember_ambient(page)
     page.locator('#expedition-start').click()
     active(page,'BattleScene')
+    assert_ambient_destroyed(page)
     page.locator('#menu-settings').click()
     page.locator('#menu-reset').click()
     expect(page.locator('#reset-overlay')).to_be_visible()
@@ -584,7 +717,7 @@ def run_viewport(browser, label, width, height):
     assert state(page)['wins']==0 and state(page)['resources']=={'gold':2050,'wood':830,'stone':500}
     assert not errors, f'Page errors: {errors}'
     assert not failed, f'Failed requests: {failed}'
-    result = {'viewport': label, 'width':width,'height':height,'checks':'startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle'+(', training completion reactivates troop card, victory/reward/troop accounting/3 objectives complete' if label=='desktop' else ''),'pageerrors':errors,'failed_requests':failed}
+    result = {'viewport': label, 'width':width,'height':height,'checks':'startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle'+(', training completion reactivates troop card, victory/reward/troop accounting/3 objectives complete' if label=='desktop' else ''),'meter_percentages':[0,1,50,100],'ambience':'walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup','pageerrors':errors,'failed_requests':failed}
     context.close()
     return result
 

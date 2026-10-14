@@ -1,15 +1,15 @@
-# Astrub — Les premières pierres · v0.7.1
+# Astrub — Les premières pierres · v0.7.2
 
-[**Télécharger Astrub v0.7.1 — ZIP complet**](https://github.com/tfortun-dev/test/raw/refs/heads/main/astrub/downloads/Astrub-v0.7.1.zip)
+[**Télécharger Astrub v0.7.2 — ZIP complet**](https://github.com/tfortun-dev/test/raw/refs/heads/main/astrub/downloads/Astrub-v0.7.2.zip)
 
 Le ZIP contient les sources, la version compilée et les aperçus. Pour développer depuis ce dépôt : `cd astrub`, puis `npm ci` et `npm run dev`.
 
 
-Prototype local de gestion de village isométrique : récolter, construire, améliorer, former des Iops et des Crâs, puis attaquer un camp de bandits. La v0.7.1 rapproche les interfaces de la planche illustrée du projet : boutons en relief, couleurs franches, cadres bruns et jauges sombres. Les cartes, bâtiments, sprites et règles du village sont conservés.
+Prototype local de gestion de village isométrique : récolter, construire, améliorer, former des Iops et des Crâs, puis attaquer un camp de bandits. La v0.7.2 remet le remplissage des jauges derrière leur cadre et ajoute une première ambiance : des poules, des lapins et des villageois passent occasionnellement dans le village. Ces passants sont décoratifs ; les règles et la sauvegarde sont conservées.
 
 ## Jouer sous Windows
 
-1. Extraire le ZIP et ouvrir `Astrub-v0.7.1`.
+1. Extraire le ZIP et ouvrir `Astrub-v0.7.2`.
 2. Installer **Node.js LTS** si nécessaire : https://nodejs.org/ (Node 20.19+ ou 22.12+ conseillé).
 3. Double-cliquer sur `DEMARRER_WINDOWS.bat`. Le premier lancement télécharge les dépendances.
 4. Garder le terminal ouvert. Le navigateur s'ouvre sur `http://127.0.0.1:5173/` quand le serveur est prêt.
@@ -35,25 +35,22 @@ npm run preview -- --port 5173 --strictPort
 
 `dist/` est produit par le build. Ce ZIP contient aussi une version compilée dans `dist/`. Pour l'essayer sans installer les dépendances, si Python 3 est disponible : `python -m http.server 5173 --bind 127.0.0.1 --directory dist`, puis ouvrir la même adresse locale. `dist/index.html` doit être servi par HTTP ; un double-clic sur le fichier HTML ne lance pas le jeu.
 
-## Ce qui change dans la v0.7.1
+## Ce qui change dans la v0.7.2
 
-- Boutons avec biseau épais et relief, déclinés en vert, orange, bleu, or, rouge et taupe selon leur rôle.
-- Cadres bruns, panneaux sombres, cartes de parchemin et jauges sombres pour une interface plus proche du village illustré.
-- Même famille visuelle sur la construction, les actions de bâtiment, les objectifs, les réglages, l'aide et les expéditions.
-- Textures et icônes séparées du texte, avec des cadres extensibles qui conservent leurs coins et leurs biseaux. Coûts et compteurs restent en HTML.
-- Bouton **Valider** pour confirmer l'emplacement choisi lors d'une construction ou d'un déplacement, en complément d'Entrée.
-- Boutons **+** des ressources qui ouvrent les producteurs correspondants ; confirmation de nouvelle partie dans une fenêtre assortie au jeu.
-- Réinitialisation protégée des callbacks d'un ancien raid ; effectifs de combat actualisés lorsqu'une formation se termine.
+- Jauges de ressources plus propres : le remplissage reste dans l'ouverture, derrière le rail ; les icônes, valeurs et boutons **+** restent devant.
+- Même ordre de calques pour les réserves des producteurs et les compteurs d'amélioration.
+- Petits passages de poules, lapins et villageois autour de la maison de guilde, avec des trajets qui contournent les bâtiments.
+- Ambiance mise en pause pendant les fenêtres, le placement et quand l'onglet est masqué. Elle est désactivée avec la préférence système de réduction des animations.
 
-Les fonctions de la v0.7.0 restent présentes : capacités de ressources, catégories **Production / Stockage / Armée**, raisons d'indisponibilité, fiche de caserne, guide de trois objectifs, préparation d'expédition et commandes clavier. Le guide n'ajoute pas de récompense ; la partie garde le même format de sauvegarde.
+Les interfaces illustrées et fonctions précédentes restent présentes : capacités de ressources, catégories **Production / Stockage / Armée**, raisons d'indisponibilité, fiche de caserne, guide de trois objectifs, préparation d'expédition et commandes clavier. Les passants ne produisent rien et ne participent pas aux combats ; le guide n'ajoute pas de récompense.
 
-Le détail de cette refonte figure dans [CHANGELOG-v0.7.1.md](CHANGELOG-v0.7.1.md). Pour faire évoluer ses composants, lire [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+Le détail figure dans [CHANGELOG-v0.7.2.md](CHANGELOG-v0.7.2.md). Pour faire évoluer les calques, lire [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
 
 ## Aperçus
 
-[Village](APERCUS/Village.png) · [Construction](APERCUS/Construction.png) · [Actions de bâtiment](APERCUS/Actions.png) · [Expédition sur mobile](APERCUS/Expedition-mobile.png) · [Calques de l'interface](APERCUS/Calques.png)
+[Village animé](APERCUS/Village-anime.gif) · [Village](APERCUS/Village.png) · [Construction](APERCUS/Construction.png) · [Actions de bâtiment](APERCUS/Actions.png) · [Expédition sur mobile](APERCUS/Expedition-mobile.png) · [Calques de l'interface](APERCUS/Calques.png)
 
-![Interface de construction v0.7.1](APERCUS/Construction.png)
+![Premiers passages dans le village — v0.7.2](APERCUS/Village-anime.gif)
 
 ## Commandes
 

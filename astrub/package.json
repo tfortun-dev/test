@@ -1,6 +1,6 @@
 {
   "name": "astrub-village-local",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": true,
   "type": "module",
   "description": "Prototype local de gestion de village isometrique, inspire du gameplay de Clash of Clans et de l'ambiance Dofus 3.0.",

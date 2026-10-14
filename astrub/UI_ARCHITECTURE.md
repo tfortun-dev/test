@@ -1,4 +1,4 @@
-# Architecture de l'interface — Astrub v0.7.1
+# Architecture de l'interface — Astrub v0.7.2
 
 ## Où se trouve chaque responsabilité
 
@@ -11,6 +11,9 @@
 | `src/progress.js` | Guide de découverte dérivé de la progression du village |
 | `src/ui.js` | Raisons d'indisponibilité, conditions de départ et aperçu du butin |
 | `src/game/` | Village et combat Phaser, état de la partie, économie et sauvegarde |
+| `src/game/ambience.js` | Passages décoratifs : apparition, marche, pause et destruction des acteurs |
+| `src/game/ambienceArt.js` | Petits sprites originaux dessinés en Canvas à l'exécution |
+| `src/game/ambiencePaths.js` | Trajets courts qui évitent les emprises des bâtiments |
 | `public/assets/ui-layered/` | Atlas transparent, 24 sprites PNG et paramètres de neuf tranches dans `sprites.json` |
 | `public/assets/` | Images du monde, sprites des unités et visuels historiques conservés |
 | `tools/export_ui_layers.sh` | Rectangles de découpe et réexport facultatif des 24 sprites à partir de l'atlas, avec ImageMagick |
@@ -30,16 +33,19 @@ Le bouton HTML porte l'interaction et sa zone cliquable. Les boutons statiques c
 
 ## Cadres extensibles en neuf tranches
 
-`border-image` découpe chaque texture en quatre coins, quatre bords et un centre. Les coins conservent leur forme, les bords suivent la dimension du contrôle et `fill` dessine le centre. La taille du texte vient du HTML, pas de l'image.
+`border-image` découpe chaque texture en quatre coins, quatre bords et un centre. Les coins conservent leur forme, les bords suivent la dimension du contrôle et `fill` dessine le centre des boutons et panneaux. Les rails de jauge omettent `fill` pour laisser voir le remplissage derrière leur cadre. La taille du texte vient du HTML, pas de l'image.
 
 | Famille | Texture | `border-image-slice` | `border-image-width` |
 |---|---|---|---|
 | Face de bouton | `button-green/orange/blue/red/gold/taupe.png` | `28 fill` | `14px` par défaut |
 | Cadre de panneau | `panel-dark.png` | `36 fill` | `18px` par défaut |
 | Carte de parchemin | `panel-paper.png` | `36 fill` | `15px` |
-| Rail de ressource | `meter-track.png` | `20 32 fill` | `17px 23px` |
+| Rail de ressource | `meter-track.png` | `20 32`, sans `fill` | `17px 23px` par défaut |
+| Rail de réserve / amélioration | `meter-track.png` | `20 32`, sans `fill` | `4px 9px` |
 
-Les petits contrôles ajustent la largeur du cadre sans changer sa texture. Les panneaux et boutons utilisent `stretch` pour les bords. Le rail garde son cadre, tandis que le remplissage et les montants évoluent indépendamment depuis l'état de la partie. Les trois textures de remplissage exportées restent disponibles dans l'atlas ; le remplissage animé courant est dessiné en CSS.
+Les petits contrôles ajustent la largeur du cadre sans changer sa texture. Les panneaux et boutons utilisent `stretch` pour les bords. Les trois textures de remplissage exportées restent disponibles dans l'atlas ; le remplissage animé courant est dessiné en CSS.
+
+Les jauges empilent leur fond sombre, le remplissage dans une zone découpée, puis le rail illustré. Les icônes, montants, capacités et boutons **+** restent au-dessus. Dans le HUD, `.resource-meter` est un frère du texte, et non un enfant de son calque. Les variables `--rail-*` alignent la zone de remplissage sur l'ouverture du cadre ; la réserve et l'amélioration reprennent le même ordre de calques. Un masque CSS (`mask-composite:exclude`) retire aussi les pixels sombres des bandes latérales à l'intérieur de l'ouverture, pour qu'une petite quantité reste visible derrière le cadre. Le PNG du rail reste intact. Ces décorations n'interceptent aucun clic.
 
 Pour modifier une dimension, commencer dans `style.css`. Pour modifier la matière, la variante ou le relief, travailler dans `ui-skin.css`. Éviter d'étirer un bouton complet comme une simple image de fond : cette méthode déforme aussi ses coins et son biseau.
 
@@ -71,6 +77,14 @@ Les fenêtres déplacent le focus à l'ouverture, maintiennent la navigation Tab
 Les raccourcis **+** ouvrent Production et ciblent la carte banque, ferme ou atelier ; ils ne modifient pas les ressources. `#reset-overlay` reprend le focus et les règles de fermeture des autres fenêtres. Seule sa confirmation arrête les anciennes scènes, puis réinitialise l'état. Les cartes de troupes restent présentes dans le DOM quand leurs effectifs se mettent à jour, y compris si une formation finit durant le raid.
 
 Le bouton **Valider** et Entrée confirment le point de placement mémorisé par la scène. La scène revérifie les règles `canBuild` ou `canMove` avant de construire ou déplacer. Le bouton ne crée pas un paiement parallèle et ne transforme pas le déplacement gratuit en dépense.
+
+## Ambiance décorative du village
+
+`VillageScene` crée `VillageAmbience`, puis la met à jour dans sa boucle d'affichage. Poules, lapins et villageois sont dans le calque Phaser `world`, avec une profondeur calculée au niveau des pieds. Leurs sprites ne sont pas interactifs et ne modifient ni l'économie ni la sauvegarde.
+
+L'ambiance limite le nombre de passants à quatre et espace les apparitions d'environ 6 à 9,5 secondes de temps actif. Les trajets locaux contournent les bâtiments et sont recalculés quand leurs emprises changent. L'ouverture d'une fenêtre, le placement ou un onglet masqué suspendent les déplacements ; `prefers-reduced-motion` retire les passants. La fermeture de la scène détruit les acteurs et le suivi de cette préférence.
+
+L'ambiance utilise `game.loop.rawDelta`, avec un maximum de 250 ms par image. Cela évite que le delta lissé de Phaser ralentisse les passants quand le nombre d'images par seconde baisse, tout en limitant les grands déplacements à la reprise. Les horloges de production, de formation et de combat restent celles du jeu existant.
 
 ## Réexporter les images
 

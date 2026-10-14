@@ -5,6 +5,7 @@ import { xy, ij, hash, TW, TH, tilePoly } from './isometric.js';
 import { formatCountdown, remainingMs, upgradeProgress } from './time.js';
 import {createRenderLayers, buildingDepth, decorDepth} from './renderLayers.js';
 import {sizeBuildingSprite} from './spriteCatalog.js';
+import {VillageAmbience} from './ambience.js';
 
 export class VillageScene extends Phaser.Scene {
   constructor(){ super('VillageScene'); }
@@ -24,6 +25,11 @@ export class VillageScene extends Phaser.Scene {
     this.buildingObjects=[];
     this.buildMode=null;this.moveId=null;this.selectedId=null;this.lastPlacement=null;
     this.renderBuildings();
+    this.ambience=new VillageAmbience(this,{
+      buildings:getState().buildings,
+      sizes:Object.fromEntries(Object.entries(BUILDINGS).map(([type,definition])=>[type,definition.size])),
+      mapSize:MAP_SIZE
+    });
     this.ghost=this.add.graphics();
     this.movePreview=this.add.image(0,0,'b-sawmill').setOrigin(.5,.985).setAlpha(.68).setVisible(false);
     this.layers.preview.add([this.ghost,this.movePreview]);
@@ -62,6 +68,7 @@ export class VillageScene extends Phaser.Scene {
     this.game.events.on('astrub:cancelPlacement',this.sceneCancelPlacement);
     this.game.events.on('astrub:confirmPlacement',this.sceneConfirmPlacement);
     this.events.once('shutdown',()=>{
+      this.ambience?.destroy();this.ambience=null;
       this.game.events.off('astrub:cameraCenter',this.sceneCenter);
       this.game.events.off('astrub:zoom',this.sceneZoom);
       this.game.events.off('astrub:build',this.sceneBuild);
@@ -105,6 +112,7 @@ export class VillageScene extends Phaser.Scene {
   }
   renderBuildings(){
     if(!this.sys.isActive()) return;
+    this.ambience?.updateObstacles(getState().buildings);
     for(const obj of this.buildingObjects){
       for(const key of ['image','label','glow','shadow','progress','harvest'])obj[key]?.destroy();
     }
@@ -345,6 +353,7 @@ export class VillageScene extends Phaser.Scene {
     this.renderBuildings();
   }
   update(time,delta){
+    this.ambience?.update(this.game.loop.rawDelta||delta,!this.input.enabled||Boolean(this.buildMode)||this.moveId!==null);
     if(Phaser.Input.Keyboard.JustDown(this.keys.home))this.centerCamera();
     if(time-this.lastTimerRefresh>=90){
       this.updateBuildingTimers();
