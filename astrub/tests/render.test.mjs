@@ -31,11 +31,13 @@ test('les six sprites partagent un point d’ancrage au sol cohérent',()=>{
     assert.equal(dims.originY,.985);
   }
 });
-test('les animations disposent de quatre directions, 16 images par direction',()=>{
+test('les animations disposent de quatre angles isométriques, 12 images par direction',()=>{
   assert.deepEqual(UNIT_SHEET.directions,['s','w','n','e']);
-  assert.equal(UNIT_SHEET.framesPerDirection*UNIT_SHEET.directions.length,64);
+  assert.equal(UNIT_SHEET.framesPerDirection*UNIT_SHEET.directions.length,48);
   assert.equal(directionFromVector(20,3),'e');
-  assert.equal(directionFromVector(-20,3),'w');
+  assert.equal(directionFromVector(-20,3),'s');
+  assert.equal(directionFromVector(-20,-3),'w');
+  assert.equal(directionFromVector(20,-3),'n');
   assert.equal(directionFromVector(0,-9),'n');
   assert.equal(directionFromVector(0,9),'s');
   assert.equal(directionFromVector(0,0,'w'),'w');

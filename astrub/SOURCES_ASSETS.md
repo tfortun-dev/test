@@ -1,4 +1,4 @@
-# Crédits et provenance des visuels — Astrub v0.7.2
+# Crédits et provenance des visuels — Astrub v0.8.0
 
 ## Interface illustrée
 
@@ -14,14 +14,26 @@
 - `public/assets/prairie-astrub.png` : copie de l'original.
 - `public/assets/prairie-astrub-etendue.webp` : prolongement de la prairie pour couvrir la carte.
 
-## 3D convertie en images PNG transparentes
+## Sprites peints du monde — v0.8.0
+
+- Direction de référence : images et sprites des bâtiments fournis dans le prototype utilisateur, avec leurs volumes, toitures, matières et palette.
+- Les nouvelles planches sont éditées avec `image_gen`, puis exportées en PNG transparents et atlas normalisés. Le jeu n'effectue aucun rendu 3D en temps réel.
+- Sources éditées : `art/source/v0.8.0/`. Références archivées : `art/reference/v0.7.2/`. Recettes d'export : `art/recipes/v0.8.0/`.
+- `public/assets/sprites/` : villageois, poule, lapin, Iop et Crâ ; `manifest.json` décrit leurs cellules, orientations et ancrages.
+- `public/assets/buildings/animated/` : atlas des six bâtiments, quatre poses par type ; les PNG fixes `b-{type}.png` servent aux cartes et au placement.
+- Les huit illustrations de décor sont exportées depuis les planches peintes de cette version, avec la recette `decor.json`.
+- Sprites originaux produits pour ce prototype : aucune image de personnage ou d'animation officielle d'Ankama n'est utilisée pour ces exports.
+- [ART_PIPELINE.md](ART_PIPELINE.md) décrit l'édition, la normalisation des poses, les manifestes et les limites des boucles courtes.
+
+Le dépôt et le pack facultatif `Astrub-art-v0.8.0.zip` conservent les planches et références. Le ZIP du jeu inclut les atlas finaux et le code, sans `art/source/` ni `art/reference/` ; aucun réexport n'est nécessaire pour jouer.
+
+## Références historiques des bâtiments
 
 ### Modèles fournis par l'utilisateur (Meshy / export `.glb`)
 
-Les sprites principaux de cette version ont été **pré-rendus hors du jeu** depuis les fichiers `.glb` transmis par l'utilisateur.
-Caméra orthographique, fond transparent, recadrage propre, conservation d'un point de contact au sol cohérent.
+Les images de référence des versions précédentes avaient été pré-rendues hors du jeu depuis les fichiers `.glb` transmis par l'utilisateur. Elles servent de provenance et de références visuelles à la refonte peinte.
 
-| Image du prototype | Fichier source utilisateur |
+| Famille de référence | Fichier source utilisateur |
 |---|---|
 | `b-townhall.png` | `Meshy_AI_Golden_Crest_Hall_1013151916_texture.glb` |
 | `b-sawmill.png` | `Meshy_AI_Whimsical_Village_Mar_1013150630_texture.glb` |
@@ -35,7 +47,7 @@ Caméra orthographique, fond transparent, recadrage propre, conservation d'un po
 
 **KayKit Medieval Hexagon 1.0 Free**, Kay Lousberg — CC0 1.0.
 - https://kaylousberg.itch.io/kaykit-medieval-hexagon
-- Toujours utilisé pour certains éléments de secours / anciennes variantes et comme base du pipeline de rendu.
+- Conservé pour certains éléments de secours et anciennes variantes, ainsi que dans l'ancien pipeline de conversion 3D.
 
 **Kenney Fantasy Town Kit 2.0**, Kenney — CC0 1.0.
 - https://kenney.nl/assets/fantasy-town-kit
@@ -44,16 +56,9 @@ Caméra orthographique, fond transparent, recadrage propre, conservation d'un po
 **Pack Quaternius**, Quaternius — CC0 1.0.
 - Décors secondaires issus des versions antérieures du prototype.
 
-## Unités
+## Visuels historiques conservés
 
-- `iop-atlas.png` / `cra-atlas.png` : placeholders 2D procéduraux produits pour ce prototype.
-- Reproductibles depuis `tools/make_unit_sheets.py` (Pillow).
-- 4 orientations (S, O, N, E) × (4 repos + 6 marche + 6 attaque) = 64 images par unité.
-
-## Passants décoratifs — v0.7.2
-
-- Poule crème à crête rouge, lapin aux longues oreilles et villageois à chapeau portant un panier : dessins originaux réalisés par le code dans `src/game/ambienceArt.js`.
-- Sprites Canvas créés à l'exécution, avec quatre directions et quatre poses de marche par type. Aucun nouveau fichier image ni source graphique externe n'est utilisé pour ces passants.
-- Les déplacements et trajets sont définis dans `ambience.js` et `ambiencePaths.js`. Ces acteurs sont décoratifs et ne changent pas les ressources ni la sauvegarde.
+- `art/reference/v0.7.2/units/iop-atlas.png` et `cra-atlas.png` : anciens placeholders procéduraux archivés comme références, associés à `tools/make_unit_sheets.py`. Ils sont retirés des assets du jeu ; les personnages peints de la v0.8.0 utilisent les atlas de `public/assets/sprites/`.
+- Les passants de la v0.7.2 étaient dessinés en Canvas à l'exécution. La v0.8.0 charge leurs PNG peints ; `ambienceArt.js` ne crée plus que les alias de frames.
 
 Les graphiques Dofus officiels ne font pas partie de cette archive. Le prototype de gameplay est local et n'exige aucune connexion à un compte.

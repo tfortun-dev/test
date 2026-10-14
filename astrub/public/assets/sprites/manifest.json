@@ -1,0 +1,7674 @@
+{
+  "version": 1,
+  "characters": {
+    "villager": {
+      "directions": [
+        "s",
+        "w",
+        "n",
+        "e"
+      ],
+      "displayWidth": 46,
+      "fps": 6.25,
+      "portraitPath": "/assets/sprites/portraits/villager.png",
+      "frameWidth": 192,
+      "frameHeight": 256,
+      "frameCount": 16,
+      "columns": 4,
+      "rows": 4,
+      "originX": 0.5,
+      "originY": 0.921875,
+      "pivot": [
+        96.0,
+        236.0
+      ],
+      "commonScale": 0.39411465,
+      "bodyBounds": [
+        45,
+        139,
+        100,
+        98
+      ],
+      "frameBounds": [
+        [
+          36,
+          140,
+          139,
+          98
+        ],
+        [
+          32,
+          140,
+          150,
+          98
+        ],
+        [
+          32,
+          141,
+          146,
+          97
+        ],
+        [
+          51,
+          142,
+          109,
+          97
+        ],
+        [
+          17,
+          138,
+          129,
+          101
+        ],
+        [
+          8,
+          139,
+          139,
+          101
+        ],
+        [
+          34,
+          139,
+          116,
+          101
+        ],
+        [
+          16,
+          139,
+          132,
+          100
+        ],
+        [
+          47,
+          138,
+          123,
+          99
+        ],
+        [
+          36,
+          139,
+          135,
+          99
+        ],
+        [
+          53,
+          140,
+          125,
+          99
+        ],
+        [
+          53,
+          140,
+          114,
+          99
+        ],
+        [
+          23,
+          139,
+          127,
+          98
+        ],
+        [
+          30,
+          139,
+          117,
+          99
+        ],
+        [
+          8,
+          139,
+          149,
+          98
+        ],
+        [
+          27,
+          139,
+          124,
+          98
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ]
+      ],
+      "frameHashes": [
+        "42594548dabb292cf4fff0fed1fefaecf48aa3797fe3927b812dad9947158099",
+        "50fcbfd75bd131ab0d06163e9c96de623b2e3519108dd35c4681151e3512be62",
+        "b7fbf89c5a9b3f781fd6c333eff68ec161f818a5f81a7188221de6384973421b",
+        "1830ea1d8b35744164f593c7e135c8a888ca51b4f77a03a4750858d804f918d4",
+        "33a3ae14c04f86cef7f1d1de282c863e06b3a228d774f40b936095567ed12d9a",
+        "4927adc09146e57e72abbe3a2ed5bf2a9910463e78905506a04c943ff29e5435",
+        "2c8895d61c9925ee65f49d78ffd6128d356545ca1d36b8c984a378e46fa25fa1",
+        "e3e890273dfeb67af4ffc8143e9db8d982c169de79a81eda597640e4160278cc",
+        "381cacbcf841e1b5a8d29d1d4ce46ad70ace14d827f8d66ec78e648579a3f35e",
+        "cfe2bb1e4dcee2db8138ee5ce5f4113cd708d35951c20ef51259f5d597cfc094",
+        "4477fd15e3c8a7912d8c48fbf51f7dc438622e514b150fe105f1235d42d3a28d",
+        "4425d0bf3bdbb16e31e6f4c31d95a61d34736c6e69cd5632e90d890601969f32",
+        "d89a78e34a6049847f9fa2b919ffcff427cd9e4d9bd7348a1caa4a6cfbd7950a",
+        "cf51eeff7e6ad9243fbc16a9c81eea65bedcdab47195cf79e61324c6dec9aeee",
+        "a5db5ff7982abb69f224b154238b4ab1b640f61deddfb627156a42016dcba235",
+        "f64090a6242e4fbc393050f2fa57091a1e7d53236d97de2c9500a1b004716efe"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "villager-r0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            384,
+            258
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            9,
+            363,
+            249
+          ],
+          "sourcePivot": [
+            151.5,
+            254.0
+          ],
+          "bounds": [
+            36,
+            140,
+            139,
+            98
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "42594548dabb292cf4fff0fed1fefaecf48aa3797fe3927b812dad9947158099"
+        },
+        {
+          "index": 1,
+          "source": "villager-r0",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            384,
+            0,
+            384,
+            258
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            7,
+            383,
+            251
+          ],
+          "sourcePivot": [
+            165.5,
+            254.0
+          ],
+          "bounds": [
+            32,
+            140,
+            150,
+            98
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "50fcbfd75bd131ab0d06163e9c96de623b2e3519108dd35c4681151e3512be62"
+        },
+        {
+          "index": 2,
+          "source": "villager-r0",
+          "cell": [
+            2,
+            0
+          ],
+          "sourceRect": [
+            768,
+            0,
+            384,
+            258
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            9,
+            383,
+            249
+          ],
+          "sourcePivot": [
+            167.5,
+            252.0
+          ],
+          "bounds": [
+            32,
+            141,
+            146,
+            97
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "b7fbf89c5a9b3f781fd6c333eff68ec161f818a5f81a7188221de6384973421b"
+        },
+        {
+          "index": 3,
+          "source": "villager-r0",
+          "cell": [
+            3,
+            0
+          ],
+          "sourceRect": [
+            1152,
+            0,
+            384,
+            258
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            22,
+            10,
+            361,
+            248
+          ],
+          "sourcePivot": [
+            175.5,
+            251.0
+          ],
+          "bounds": [
+            51,
+            142,
+            109,
+            97
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1830ea1d8b35744164f593c7e135c8a888ca51b4f77a03a4750858d804f918d4"
+        },
+        {
+          "index": 4,
+          "source": "villager-r1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            257,
+            384,
+            255
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            25,
+            0,
+            355,
+            255
+          ],
+          "sourcePivot": [
+            238.5,
+            248.0
+          ],
+          "bounds": [
+            17,
+            138,
+            129,
+            101
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "33a3ae14c04f86cef7f1d1de282c863e06b3a228d774f40b936095567ed12d9a"
+        },
+        {
+          "index": 5,
+          "source": "villager-r1",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            384,
+            257,
+            384,
+            255
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            255
+          ],
+          "sourcePivot": [
+            233.5,
+            246.0
+          ],
+          "bounds": [
+            8,
+            139,
+            139,
+            101
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "4927adc09146e57e72abbe3a2ed5bf2a9910463e78905506a04c943ff29e5435"
+        },
+        {
+          "index": 6,
+          "source": "villager-r1",
+          "cell": [
+            2,
+            0
+          ],
+          "sourceRect": [
+            768,
+            257,
+            384,
+            255
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            255
+          ],
+          "sourcePivot": [
+            229.5,
+            246.0
+          ],
+          "bounds": [
+            34,
+            139,
+            116,
+            101
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2c8895d61c9925ee65f49d78ffd6128d356545ca1d36b8c984a378e46fa25fa1"
+        },
+        {
+          "index": 7,
+          "source": "villager-r1",
+          "cell": [
+            3,
+            0
+          ],
+          "sourceRect": [
+            1152,
+            257,
+            384,
+            255
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            369,
+            255
+          ],
+          "sourcePivot": [
+            225.5,
+            247.0
+          ],
+          "bounds": [
+            16,
+            139,
+            132,
+            100
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "e3e890273dfeb67af4ffc8143e9db8d982c169de79a81eda597640e4160278cc"
+        },
+        {
+          "index": 8,
+          "source": "villager-r2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            510,
+            384,
+            251
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            25,
+            0,
+            357,
+            251
+          ],
+          "sourcePivot": [
+            180.5,
+            248.0
+          ],
+          "bounds": [
+            47,
+            138,
+            123,
+            99
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "381cacbcf841e1b5a8d29d1d4ce46ad70ace14d827f8d66ec78e648579a3f35e"
+        },
+        {
+          "index": 9,
+          "source": "villager-r2",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            384,
+            510,
+            384,
+            251
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            251
+          ],
+          "sourcePivot": [
+            174.5,
+            246.0
+          ],
+          "bounds": [
+            36,
+            139,
+            135,
+            99
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "cfe2bb1e4dcee2db8138ee5ce5f4113cd708d35951c20ef51259f5d597cfc094"
+        },
+        {
+          "index": 10,
+          "source": "villager-r2",
+          "cell": [
+            2,
+            0
+          ],
+          "sourceRect": [
+            768,
+            510,
+            384,
+            251
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            251
+          ],
+          "sourcePivot": [
+            173.5,
+            244.0
+          ],
+          "bounds": [
+            53,
+            140,
+            125,
+            99
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "4477fd15e3c8a7912d8c48fbf51f7dc438622e514b150fe105f1235d42d3a28d"
+        },
+        {
+          "index": 11,
+          "source": "villager-r2",
+          "cell": [
+            3,
+            0
+          ],
+          "sourceRect": [
+            1152,
+            510,
+            384,
+            251
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            375,
+            251
+          ],
+          "sourcePivot": [
+            164.5,
+            244.0
+          ],
+          "bounds": [
+            53,
+            140,
+            114,
+            99
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "4425d0bf3bdbb16e31e6f4c31d95a61d34736c6e69cd5632e90d890601969f32"
+        },
+        {
+          "index": 12,
+          "source": "villager-r3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            759,
+            384,
+            265
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            265
+          ],
+          "sourcePivot": [
+            235.5,
+            245.0
+          ],
+          "bounds": [
+            23,
+            139,
+            127,
+            98
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "d89a78e34a6049847f9fa2b919ffcff427cd9e4d9bd7348a1caa4a6cfbd7950a"
+        },
+        {
+          "index": 13,
+          "source": "villager-r3",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            384,
+            759,
+            384,
+            265
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            251
+          ],
+          "sourcePivot": [
+            231.5,
+            246.0
+          ],
+          "bounds": [
+            30,
+            139,
+            117,
+            99
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "cf51eeff7e6ad9243fbc16a9c81eea65bedcdab47195cf79e61324c6dec9aeee"
+        },
+        {
+          "index": 14,
+          "source": "villager-r3",
+          "cell": [
+            2,
+            0
+          ],
+          "sourceRect": [
+            768,
+            759,
+            384,
+            265
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            265
+          ],
+          "sourcePivot": [
+            224.5,
+            245.0
+          ],
+          "bounds": [
+            8,
+            139,
+            149,
+            98
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "a5db5ff7982abb69f224b154238b4ab1b640f61deddfb627156a42016dcba235"
+        },
+        {
+          "index": 15,
+          "source": "villager-r3",
+          "cell": [
+            3,
+            0
+          ],
+          "sourceRect": [
+            1152,
+            759,
+            384,
+            265
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            374,
+            265
+          ],
+          "sourcePivot": [
+            217.5,
+            245.0
+          ],
+          "bounds": [
+            27,
+            139,
+            124,
+            98
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f64090a6242e4fbc393050f2fa57091a1e7d53236d97de2c9500a1b004716efe"
+        }
+      ],
+      "path": "/assets/sprites/villager-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 16,
+        "maxPivotError": 0.0
+      },
+      "portraitFrame": 0,
+      "portraitCrop": [
+        67,
+        138,
+        71,
+        101
+      ]
+    },
+    "hen": {
+      "directions": [
+        "s",
+        "w",
+        "n",
+        "e"
+      ],
+      "displayWidth": 34,
+      "fps": 6.25,
+      "portraitPath": "/assets/sprites/portraits/hen.png",
+      "frameWidth": 192,
+      "frameHeight": 256,
+      "frameCount": 16,
+      "columns": 4,
+      "rows": 4,
+      "originX": 0.5,
+      "originY": 0.921875,
+      "pivot": [
+        96.0,
+        236.0
+      ],
+      "commonScale": 0.385921,
+      "bodyBounds": [
+        39,
+        151,
+        113,
+        86
+      ],
+      "frameBounds": [
+        [
+          75,
+          156,
+          91,
+          83
+        ],
+        [
+          24,
+          152,
+          130,
+          87
+        ],
+        [
+          56,
+          157,
+          107,
+          86
+        ],
+        [
+          40,
+          158,
+          99,
+          82
+        ],
+        [
+          36,
+          148,
+          110,
+          91
+        ],
+        [
+          55,
+          150,
+          122,
+          87
+        ],
+        [
+          45,
+          152,
+          116,
+          86
+        ],
+        [
+          28,
+          152,
+          104,
+          84
+        ],
+        [
+          48,
+          152,
+          126,
+          87
+        ],
+        [
+          64,
+          151,
+          100,
+          88
+        ],
+        [
+          10,
+          155,
+          135,
+          86
+        ],
+        [
+          43,
+          152,
+          116,
+          87
+        ],
+        [
+          9,
+          155,
+          149,
+          94
+        ],
+        [
+          48,
+          157,
+          130,
+          82
+        ],
+        [
+          29,
+          157,
+          87,
+          81
+        ],
+        [
+          21,
+          157,
+          121,
+          86
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ]
+      ],
+      "frameHashes": [
+        "9998e122064e3fa71f9dd4ef058d6d6c10b8f267aba788b9c4a22914d5332e23",
+        "bdd105168513f6e648a19058244793bcfc30f6bddf463cf526cb36918f844492",
+        "bfc637cac9dd829478e6b307923d93407f7de37404d8ea901311bbfe3af78c04",
+        "c3923693ecbd32a22eedc0785c9052e5eabcf79c11646ad01ff5b40e3113b7f3",
+        "22e04c726defeabf508ae14045dccd6c6f3809522b5442f601516ff15d7614d5",
+        "0bc8171f5c4503cd2cb173be87df469fde6bcf92d5c9786d5aabe32522eb090a",
+        "3dec5fd269a249fc0cdf0f9551963772840da3e7000c0f049f93f4ca20644fda",
+        "7c50dda48b3f62d80778d434f35f6b59c7b0b20bbae8573e4f47ae7b358b6853",
+        "341396508a6bf70b0239bc691eecc29490576ae4a5c423efb1dc35eb0d57a32d",
+        "1befac3c8bc207353eed35c44274bd7e40ed51fb73c96696c8cc447b3dfeb54c",
+        "c2ba3afb0210643d7a20f0a5cf84f5bd442bd597ce6701ea713a4c61f1932ea8",
+        "1915a102345e2594503749ca358b415e6c0591e95e131583c12dfedabeedfb55",
+        "36607bebfd21e2cb259d979f6cdd6fe020ea8ea2f3c7c3eabff48b8e68827438",
+        "e327386ee47403f108e10e897b6ed1000556223766c03545ed84a036c3d2915d",
+        "c4a45a44426af9eaee5bc28fb3f5635c1842bb6a7d92c5e15016e262d89818fe",
+        "f25390115439cf0ac202acddb8bf3aca0f048c652961240a045766887e7d1a82"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "hen",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            49,
+            24,
+            335,
+            230
+          ],
+          "sourcePivot": [
+            191.5,
+            232.0
+          ],
+          "bounds": [
+            75,
+            156,
+            91,
+            83
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "9998e122064e3fa71f9dd4ef058d6d6c10b8f267aba788b9c4a22914d5332e23"
+        },
+        {
+          "index": 1,
+          "source": "hen",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            384,
+            0,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            17,
+            383,
+            239
+          ],
+          "sourcePivot": [
+            224.5,
+            236.0
+          ],
+          "bounds": [
+            24,
+            152,
+            130,
+            87
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "bdd105168513f6e648a19058244793bcfc30f6bddf463cf526cb36918f844492"
+        },
+        {
+          "index": 2,
+          "source": "hen",
+          "cell": [
+            2,
+            0
+          ],
+          "sourceRect": [
+            768,
+            0,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            5,
+            21,
+            365,
+            235
+          ],
+          "sourcePivot": [
+            147.5,
+            236.0
+          ],
+          "bounds": [
+            56,
+            157,
+            107,
+            86
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "bfc637cac9dd829478e6b307923d93407f7de37404d8ea901311bbfe3af78c04"
+        },
+        {
+          "index": 3,
+          "source": "hen",
+          "cell": [
+            3,
+            0
+          ],
+          "sourceRect": [
+            1152,
+            0,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            9,
+            21,
+            345,
+            233
+          ],
+          "sourcePivot": [
+            199.5,
+            233.0
+          ],
+          "bounds": [
+            40,
+            158,
+            99,
+            82
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "c3923693ecbd32a22eedc0785c9052e5eabcf79c11646ad01ff5b40e3113b7f3"
+        },
+        {
+          "index": 4,
+          "source": "hen",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            256,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            3,
+            353,
+            245
+          ],
+          "sourcePivot": [
+            210.5,
+            236.0
+          ],
+          "bounds": [
+            36,
+            148,
+            110,
+            91
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "22e04c726defeabf508ae14045dccd6c6f3809522b5442f601516ff15d7614d5"
+        },
+        {
+          "index": 5,
+          "source": "hen",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            384,
+            256,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            2,
+            0,
+            381,
+            256
+          ],
+          "sourcePivot": [
+            165.5,
+            238.0
+          ],
+          "bounds": [
+            55,
+            150,
+            122,
+            87
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "0bc8171f5c4503cd2cb173be87df469fde6bcf92d5c9786d5aabe32522eb090a"
+        },
+        {
+          "index": 6,
+          "source": "hen",
+          "cell": [
+            2,
+            1
+          ],
+          "sourceRect": [
+            768,
+            256,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            2,
+            5,
+            381,
+            247
+          ],
+          "sourcePivot": [
+            159.5,
+            236.0
+          ],
+          "bounds": [
+            45,
+            152,
+            116,
+            86
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "3dec5fd269a249fc0cdf0f9551963772840da3e7000c0f049f93f4ca20644fda"
+        },
+        {
+          "index": 7,
+          "source": "hen",
+          "cell": [
+            3,
+            1
+          ],
+          "sourceRect": [
+            1152,
+            256,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            30,
+            21,
+            353,
+            221
+          ],
+          "sourcePivot": [
+            210.5,
+            239.0
+          ],
+          "bounds": [
+            28,
+            152,
+            104,
+            84
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "7c50dda48b3f62d80778d434f35f6b59c7b0b20bbae8573e4f47ae7b358b6853"
+        },
+        {
+          "index": 8,
+          "source": "hen",
+          "cell": [
+            0,
+            2
+          ],
+          "sourceRect": [
+            0,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            39,
+            0,
+            341,
+            250
+          ],
+          "sourcePivot": [
+            170.5,
+            234.0
+          ],
+          "bounds": [
+            48,
+            152,
+            126,
+            87
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "341396508a6bf70b0239bc691eecc29490576ae4a5c423efb1dc35eb0d57a32d"
+        },
+        {
+          "index": 9,
+          "source": "hen",
+          "cell": [
+            1,
+            2
+          ],
+          "sourceRect": [
+            384,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            7,
+            1,
+            377,
+            253
+          ],
+          "sourcePivot": [
+            178.5,
+            235.0
+          ],
+          "bounds": [
+            64,
+            151,
+            100,
+            88
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1befac3c8bc207353eed35c44274bd7e40ed51fb73c96696c8cc447b3dfeb54c"
+        },
+        {
+          "index": 10,
+          "source": "hen",
+          "cell": [
+            2,
+            2
+          ],
+          "sourceRect": [
+            768,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            242
+          ],
+          "sourcePivot": [
+            230.5,
+            228.0
+          ],
+          "bounds": [
+            10,
+            155,
+            135,
+            86
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "c2ba3afb0210643d7a20f0a5cf84f5bd442bd597ce6701ea713a4c61f1932ea8"
+        },
+        {
+          "index": 11,
+          "source": "hen",
+          "cell": [
+            3,
+            2
+          ],
+          "sourceRect": [
+            1152,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            11,
+            362,
+            243
+          ],
+          "sourcePivot": [
+            177.5,
+            231.0
+          ],
+          "bounds": [
+            43,
+            152,
+            116,
+            87
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1915a102345e2594503749ca358b415e6c0591e95e131583c12dfedabeedfb55"
+        },
+        {
+          "index": 12,
+          "source": "hen",
+          "cell": [
+            0,
+            3
+          ],
+          "sourceRect": [
+            0,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            4,
+            384,
+            252
+          ],
+          "sourcePivot": [
+            224.5,
+            223.0
+          ],
+          "bounds": [
+            9,
+            155,
+            149,
+            94
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "36607bebfd21e2cb259d979f6cdd6fe020ea8ea2f3c7c3eabff48b8e68827438"
+        },
+        {
+          "index": 13,
+          "source": "hen",
+          "cell": [
+            1,
+            3
+          ],
+          "sourceRect": [
+            384,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            1,
+            383,
+            255
+          ],
+          "sourcePivot": [
+            166.5,
+            219.0
+          ],
+          "bounds": [
+            48,
+            157,
+            130,
+            82
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "e327386ee47403f108e10e897b6ed1000556223766c03545ed84a036c3d2915d"
+        },
+        {
+          "index": 14,
+          "source": "hen",
+          "cell": [
+            2,
+            3
+          ],
+          "sourceRect": [
+            768,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            9,
+            383,
+            229
+          ],
+          "sourcePivot": [
+            241.5,
+            220.0
+          ],
+          "bounds": [
+            29,
+            157,
+            87,
+            81
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "c4a45a44426af9eaee5bc28fb3f5635c1842bb6a7d92c5e15016e262d89818fe"
+        },
+        {
+          "index": 15,
+          "source": "hen",
+          "cell": [
+            3,
+            3
+          ],
+          "sourceRect": [
+            1152,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            1,
+            357,
+            255
+          ],
+          "sourcePivot": [
+            222.5,
+            220.0
+          ],
+          "bounds": [
+            21,
+            157,
+            121,
+            86
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f25390115439cf0ac202acddb8bf3aca0f048c652961240a045766887e7d1a82"
+        }
+      ],
+      "path": "/assets/sprites/hen-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 16,
+        "maxPivotError": 0.0
+      },
+      "portraitFrame": 0,
+      "portraitCrop": [
+        74,
+        154,
+        72,
+        86
+      ]
+    },
+    "rabbit": {
+      "directions": [
+        "s",
+        "w",
+        "n",
+        "e"
+      ],
+      "displayWidth": 31,
+      "fps": 6.25,
+      "portraitPath": "/assets/sprites/portraits/rabbit.png",
+      "frameWidth": 192,
+      "frameHeight": 256,
+      "frameCount": 16,
+      "columns": 4,
+      "rows": 4,
+      "originX": 0.5,
+      "originY": 0.921875,
+      "pivot": [
+        96.0,
+        236.0
+      ],
+      "commonScale": 0.35345833,
+      "bodyBounds": [
+        38,
+        155,
+        112,
+        82
+      ],
+      "frameBounds": [
+        [
+          41,
+          157,
+          121,
+          83
+        ],
+        [
+          17,
+          154,
+          136,
+          85
+        ],
+        [
+          40,
+          164,
+          132,
+          84
+        ],
+        [
+          41,
+          157,
+          117,
+          81
+        ],
+        [
+          33,
+          150,
+          119,
+          91
+        ],
+        [
+          15,
+          149,
+          128,
+          91
+        ],
+        [
+          13,
+          156,
+          123,
+          91
+        ],
+        [
+          40,
+          150,
+          119,
+          91
+        ],
+        [
+          37,
+          155,
+          116,
+          90
+        ],
+        [
+          35,
+          151,
+          128,
+          90
+        ],
+        [
+          51,
+          159,
+          133,
+          88
+        ],
+        [
+          41,
+          154,
+          88,
+          90
+        ],
+        [
+          17,
+          156,
+          136,
+          91
+        ],
+        [
+          40,
+          156,
+          136,
+          86
+        ],
+        [
+          15,
+          162,
+          124,
+          88
+        ],
+        [
+          30,
+          162,
+          111,
+          75
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ]
+      ],
+      "frameHashes": [
+        "f47fcd688a06c1010a7c836cd8b58d55438374e36dbe9462f74f709a4e04b6b2",
+        "0a9303a91a916e021774d2da3d1fb940a3eeb5197fa9ff74a6f128a8cb5af4dd",
+        "7acef9686685a21f1c39da1f3435d669aa59411e295e2a39d65626f964556742",
+        "2667f857512847d844b5d537d03dc966855e76143d0ef5a532720df9d99df36c",
+        "db20be265bc773b2302c1bb244c8d50a1b7e5ca2fd64eedd0abaa468f01c1526",
+        "1de26b48adbf771025be3c8eccfe2f612e6d0cb8b3a25a13a27128a479456944",
+        "3031cd283088c4d5368f286e9daf25753844a0216197853b383a6161496a1ad2",
+        "8d7644b45d90c33c0ef3adcdab8ff66209092389dbd547eb06bdb54386b500b9",
+        "60ae514bc059980a6edc26f7e78284dfaf4f2764156c8de865ab3f1d2d749e82",
+        "16478535f371d1fc33e496ce64a33a2086e6ce7064bc4d9b20c1f0f30a7dc316",
+        "55c0aa9d7b4c009fd7bc0d5d168d85d26fee207e73f5ea2d87ee80e2d7e8f5ba",
+        "50119fc71f28e685510af99d1e1bc3adcecf082ba3a36c734a83d4d935610d92",
+        "362f23208c3f84dd358a5b2874f2a926ff7b305820d2bcc749693c92b42d0116",
+        "283dd78da996f63fe6518dada1652f98114c6fd9e7e495717b70d73d56ce42fe",
+        "353bf29908458ec9c22fa116b3d69b4caffe34c2fc2f9d0314e6aa829af1a8d2",
+        "e90a6825b44a27adb4a1253135c36b2368724b48e28aca337823ec0e008760b3"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "rabbit",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            9,
+            351,
+            247
+          ],
+          "sourcePivot": [
+            155.5,
+            246.0
+          ],
+          "bounds": [
+            41,
+            157,
+            121,
+            83
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f47fcd688a06c1010a7c836cd8b58d55438374e36dbe9462f74f709a4e04b6b2"
+        },
+        {
+          "index": 1,
+          "source": "rabbit",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            384,
+            0,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            16,
+            384,
+            240
+          ],
+          "sourcePivot": [
+            222.5,
+            247.0
+          ],
+          "bounds": [
+            17,
+            154,
+            136,
+            85
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "0a9303a91a916e021774d2da3d1fb940a3eeb5197fa9ff74a6f128a8cb5af4dd"
+        },
+        {
+          "index": 2,
+          "source": "rabbit",
+          "cell": [
+            2,
+            0
+          ],
+          "sourceRect": [
+            768,
+            0,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            0,
+            16,
+            384,
+            240
+          ],
+          "sourcePivot": [
+            161.5,
+            223.0
+          ],
+          "bounds": [
+            40,
+            164,
+            132,
+            84
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "7acef9686685a21f1c39da1f3435d669aa59411e295e2a39d65626f964556742"
+        },
+        {
+          "index": 3,
+          "source": "rabbit",
+          "cell": [
+            3,
+            0
+          ],
+          "sourceRect": [
+            1152,
+            0,
+            384,
+            256
+          ],
+          "flipX": true,
+          "sourceBounds": [
+            28,
+            19,
+            356,
+            237
+          ],
+          "sourcePivot": [
+            208.5,
+            249.0
+          ],
+          "bounds": [
+            41,
+            157,
+            117,
+            81
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2667f857512847d844b5d537d03dc966855e76143d0ef5a532720df9d99df36c"
+        },
+        {
+          "index": 4,
+          "source": "rabbit",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            256,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            29,
+            0,
+            355,
+            256
+          ],
+          "sourcePivot": [
+            220.5,
+            243.0
+          ],
+          "bounds": [
+            33,
+            150,
+            119,
+            91
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "db20be265bc773b2302c1bb244c8d50a1b7e5ca2fd64eedd0abaa468f01c1526"
+        },
+        {
+          "index": 5,
+          "source": "rabbit",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            384,
+            256,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "sourcePivot": [
+            251.5,
+            246.0
+          ],
+          "bounds": [
+            15,
+            149,
+            128,
+            91
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1de26b48adbf771025be3c8eccfe2f612e6d0cb8b3a25a13a27128a479456944"
+        },
+        {
+          "index": 6,
+          "source": "rabbit",
+          "cell": [
+            2,
+            1
+          ],
+          "sourceRect": [
+            768,
+            256,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "sourcePivot": [
+            233.5,
+            226.0
+          ],
+          "bounds": [
+            13,
+            156,
+            123,
+            91
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "3031cd283088c4d5368f286e9daf25753844a0216197853b383a6161496a1ad2"
+        },
+        {
+          "index": 7,
+          "source": "rabbit",
+          "cell": [
+            3,
+            1
+          ],
+          "sourceRect": [
+            1152,
+            256,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            361,
+            256
+          ],
+          "sourcePivot": [
+            182.5,
+            243.0
+          ],
+          "bounds": [
+            40,
+            150,
+            119,
+            91
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "8d7644b45d90c33c0ef3adcdab8ff66209092389dbd547eb06bdb54386b500b9"
+        },
+        {
+          "index": 8,
+          "source": "rabbit",
+          "cell": [
+            0,
+            2
+          ],
+          "sourceRect": [
+            0,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            41,
+            0,
+            343,
+            256
+          ],
+          "sourcePivot": [
+            215.5,
+            231.0
+          ],
+          "bounds": [
+            37,
+            155,
+            116,
+            90
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "60ae514bc059980a6edc26f7e78284dfaf4f2764156c8de865ab3f1d2d749e82"
+        },
+        {
+          "index": 9,
+          "source": "rabbit",
+          "cell": [
+            1,
+            2
+          ],
+          "sourceRect": [
+            384,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            383,
+            256
+          ],
+          "sourcePivot": [
+            189.5,
+            240.0
+          ],
+          "bounds": [
+            35,
+            151,
+            128,
+            90
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "16478535f371d1fc33e496ce64a33a2086e6ce7064bc4d9b20c1f0f30a7dc316"
+        },
+        {
+          "index": 10,
+          "source": "rabbit",
+          "cell": [
+            2,
+            2
+          ],
+          "sourceRect": [
+            768,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "sourcePivot": [
+            126.5,
+            219.0
+          ],
+          "bounds": [
+            51,
+            159,
+            133,
+            88
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "55c0aa9d7b4c009fd7bc0d5d168d85d26fee207e73f5ea2d87ee80e2d7e8f5ba"
+        },
+        {
+          "index": 11,
+          "source": "rabbit",
+          "cell": [
+            3,
+            2
+          ],
+          "sourceRect": [
+            1152,
+            512,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            355,
+            256
+          ],
+          "sourcePivot": [
+            177.5,
+            232.0
+          ],
+          "bounds": [
+            41,
+            154,
+            88,
+            90
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "50119fc71f28e685510af99d1e1bc3adcecf082ba3a36c734a83d4d935610d92"
+        },
+        {
+          "index": 12,
+          "source": "rabbit",
+          "cell": [
+            0,
+            3
+          ],
+          "sourceRect": [
+            0,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "sourcePivot": [
+            222.5,
+            226.0
+          ],
+          "bounds": [
+            17,
+            156,
+            136,
+            91
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "362f23208c3f84dd358a5b2874f2a926ff7b305820d2bcc749693c92b42d0116"
+        },
+        {
+          "index": 13,
+          "source": "rabbit",
+          "cell": [
+            1,
+            3
+          ],
+          "sourceRect": [
+            384,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "sourcePivot": [
+            158.5,
+            225.0
+          ],
+          "bounds": [
+            40,
+            156,
+            136,
+            86
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "283dd78da996f63fe6518dada1652f98114c6fd9e7e495717b70d73d56ce42fe"
+        },
+        {
+          "index": 14,
+          "source": "rabbit",
+          "cell": [
+            2,
+            3
+          ],
+          "sourceRect": [
+            768,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "sourcePivot": [
+            235.5,
+            208.0
+          ],
+          "bounds": [
+            15,
+            162,
+            124,
+            88
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "353bf29908458ec9c22fa116b3d69b4caffe34c2fc2f9d0314e6aa829af1a8d2"
+        },
+        {
+          "index": 15,
+          "source": "rabbit",
+          "cell": [
+            3,
+            3
+          ],
+          "sourceRect": [
+            1152,
+            768,
+            384,
+            256
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            330,
+            256
+          ],
+          "sourcePivot": [
+            187.5,
+            224.0
+          ],
+          "bounds": [
+            30,
+            162,
+            111,
+            75
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "e90a6825b44a27adb4a1253135c36b2368724b48e28aca337823ec0e008760b3"
+        }
+      ],
+      "path": "/assets/sprites/rabbit-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 16,
+        "maxPivotError": 0.0
+      },
+      "portraitFrame": 0,
+      "portraitCrop": [
+        61,
+        158,
+        70,
+        81
+      ]
+    },
+    "iop": {
+      "directions": [
+        "s",
+        "w",
+        "n",
+        "e"
+      ],
+      "displayWidth": 64,
+      "portraitPath": "/assets/sprites/portraits/iop.png",
+      "actions": {
+        "idle": [
+          0,
+          3
+        ],
+        "walk": [
+          4,
+          7
+        ],
+        "attack": [
+          8,
+          11
+        ]
+      },
+      "frameWidth": 192,
+      "frameHeight": 256,
+      "frameCount": 48,
+      "columns": 12,
+      "rows": 4,
+      "originX": 0.5,
+      "originY": 0.921875,
+      "pivot": [
+        96.0,
+        236.0
+      ],
+      "commonScale": 0.4771928,
+      "bodyBounds": [
+        6,
+        119,
+        182,
+        118
+      ],
+      "frameBounds": [
+        [
+          42,
+          125,
+          117,
+          112
+        ],
+        [
+          42,
+          125,
+          117,
+          112
+        ],
+        [
+          42,
+          125,
+          117,
+          112
+        ],
+        [
+          42,
+          125,
+          117,
+          112
+        ],
+        [
+          42,
+          125,
+          117,
+          112
+        ],
+        [
+          47,
+          125,
+          110,
+          112
+        ],
+        [
+          38,
+          125,
+          124,
+          112
+        ],
+        [
+          49,
+          124,
+          116,
+          113
+        ],
+        [
+          47,
+          128,
+          111,
+          109
+        ],
+        [
+          37,
+          118,
+          90,
+          119
+        ],
+        [
+          29,
+          134,
+          137,
+          103
+        ],
+        [
+          50,
+          137,
+          106,
+          100
+        ],
+        [
+          7,
+          123,
+          112,
+          114
+        ],
+        [
+          7,
+          123,
+          112,
+          114
+        ],
+        [
+          7,
+          123,
+          112,
+          114
+        ],
+        [
+          7,
+          123,
+          112,
+          114
+        ],
+        [
+          7,
+          123,
+          112,
+          114
+        ],
+        [
+          23,
+          122,
+          107,
+          115
+        ],
+        [
+          12,
+          123,
+          113,
+          114
+        ],
+        [
+          5,
+          123,
+          118,
+          114
+        ],
+        [
+          45,
+          131,
+          120,
+          106
+        ],
+        [
+          73,
+          121,
+          102,
+          116
+        ],
+        [
+          37,
+          132,
+          139,
+          105
+        ],
+        [
+          44,
+          131,
+          128,
+          106
+        ],
+        [
+          67,
+          122,
+          119,
+          115
+        ],
+        [
+          67,
+          122,
+          119,
+          115
+        ],
+        [
+          67,
+          122,
+          119,
+          115
+        ],
+        [
+          67,
+          122,
+          119,
+          115
+        ],
+        [
+          67,
+          122,
+          119,
+          115
+        ],
+        [
+          65,
+          123,
+          119,
+          114
+        ],
+        [
+          68,
+          123,
+          121,
+          114
+        ],
+        [
+          67,
+          122,
+          121,
+          115
+        ],
+        [
+          67,
+          129,
+          117,
+          108
+        ],
+        [
+          59,
+          121,
+          101,
+          115
+        ],
+        [
+          22,
+          134,
+          145,
+          103
+        ],
+        [
+          64,
+          131,
+          117,
+          106
+        ],
+        [
+          33,
+          121,
+          126,
+          116
+        ],
+        [
+          33,
+          121,
+          126,
+          116
+        ],
+        [
+          33,
+          121,
+          126,
+          116
+        ],
+        [
+          33,
+          121,
+          126,
+          116
+        ],
+        [
+          33,
+          121,
+          126,
+          116
+        ],
+        [
+          32,
+          121,
+          125,
+          116
+        ],
+        [
+          19,
+          120,
+          131,
+          117
+        ],
+        [
+          24,
+          121,
+          129,
+          116
+        ],
+        [
+          34,
+          131,
+          113,
+          106
+        ],
+        [
+          23,
+          121,
+          94,
+          116
+        ],
+        [
+          26,
+          132,
+          135,
+          105
+        ],
+        [
+          32,
+          131,
+          111,
+          106
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ]
+      ],
+      "frameHashes": [
+        "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e",
+        "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e",
+        "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e",
+        "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e",
+        "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e",
+        "0ac19f4acf85e9507fbda4b27bd116928e6b44abac7e2164a961b2808b559ece",
+        "e3c114dfc0b32aca3e319a43d3326ce963fbd6ed01f6ca0fe48508fc0d1f7a3b",
+        "0a341bc106548d9d563dc17778e1b32adaff0590287607460816bbbc668665aa",
+        "1fbb853a31c3d2bce3867c4e65a9b9a3f548e6e24ef0dd4a83eb32384e7341b3",
+        "2bacb81505a88ec2b0b3cb0b497abdf7c84f02b4f3f930a0027d90cf5652cfda",
+        "d5b7409f061924817b85e1e3060d55d8fdd3aa3b7f9e26ba10668bd7a9bd0553",
+        "30c5fde906a8d6f4e5eb640e522eda5f95183b7604e5e04660bb60f5a45ffd55",
+        "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404",
+        "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404",
+        "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404",
+        "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404",
+        "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404",
+        "735d6f2ed2fec2bb6c62f8ce87298564b0ab0a990598bc38cd9e3ef22863c127",
+        "eaf300c558dfa1d03b9eb4885f19fcae8cf121aed1c614cd5aa72610897adf3d",
+        "8f3eda0b6331e85804c1ac1d855e1885c419f16309dd865852110e6271fab31b",
+        "35510fdb6eef01a6ddef365f865668ea393c1da70ecd4799047cab490fd34ac5",
+        "1a4db3a2bd09b309198f6c188a2a454e4f380f639db6a3441b2240150d5b1e7f",
+        "13832a865e6b71fe69f62f6246c6bfef84da9798563008c2b3a3f39e364c8abe",
+        "a2435bd8df3000155a5bafc382dd186298e65c3fdcfb9eae2b6aad04d2220105",
+        "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe",
+        "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe",
+        "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe",
+        "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe",
+        "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe",
+        "8198e9e5ce0bf036c50cfe5ca9c357073cccec54652a3b5df9f42d3333a298d0",
+        "7dd5f72ebfcf3e6bfb087350d730069365501034cb6991599ab84d19cdbcf6ce",
+        "ab392e2f7b6a70402f7a894820a157532912ae4635a1f4906c486b722a3d8915",
+        "cb9093a21a383884d74c3ad5552fdc8fcc1de45da365fa5ac8c4aa7981847588",
+        "67e007c62e189d7af891a43b09d788f604b14e1c895aa3039489438f6b355bc9",
+        "8dac12710c1750990b6ace4af2efcbdb750903f82bed3c5a726771197a084040",
+        "0c4e9e5cd508c99d3fbe34e3f2bb7f264ab30c23debc41932510e4e528aeeb54",
+        "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4",
+        "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4",
+        "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4",
+        "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4",
+        "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4",
+        "3358868e16ee0b2f5f370cac17ea16d280b8e267f9df63f109a3147026cb9f35",
+        "2fb96ff0ed33d80daa99602c6c20d1862909185488c7f7a4a3619b8ea649a298",
+        "3d57ab173817d00cf00f162c055d17e2b84495f3a25c592b22f3404b3017e891",
+        "c8f29510fe505b489f8bb9c014f98631a7f202d24fb42d1614349d1c9305267e",
+        "c8d5331c04e39b493aa6ae78d9b79efe50b2a547c6913d759d4f37bfa9348088",
+        "bba665d48732e3bf0cad4b7a5c00d1a8a6df2bda24754aff71914b0784d3f91f",
+        "5f750781b42f59043d5bf1d34bb2d83360430dbe84bcc3811fb203bca92ff06c"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "iop-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            89,
+            21,
+            245,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            245,
+            236
+          ],
+          "sourcePivot": [
+            113.5,
+            233.0
+          ],
+          "bounds": [
+            42,
+            125,
+            117,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e"
+        },
+        {
+          "index": 1,
+          "source": "iop-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            89,
+            21,
+            245,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            245,
+            236
+          ],
+          "sourcePivot": [
+            113.5,
+            233.0
+          ],
+          "bounds": [
+            42,
+            125,
+            117,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e"
+        },
+        {
+          "index": 2,
+          "source": "iop-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            89,
+            21,
+            245,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            245,
+            236
+          ],
+          "sourcePivot": [
+            113.5,
+            233.0
+          ],
+          "bounds": [
+            42,
+            125,
+            117,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e"
+        },
+        {
+          "index": 3,
+          "source": "iop-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            89,
+            21,
+            245,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            245,
+            236
+          ],
+          "sourcePivot": [
+            113.5,
+            233.0
+          ],
+          "bounds": [
+            42,
+            125,
+            117,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e"
+        },
+        {
+          "index": 4,
+          "source": "iop-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            89,
+            21,
+            245,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            245,
+            236
+          ],
+          "sourcePivot": [
+            113.5,
+            233.0
+          ],
+          "bounds": [
+            42,
+            125,
+            117,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2c38047b06596792a9722d71e5726494a16579303c0c730f1e27af02089a238e"
+        },
+        {
+          "index": 5,
+          "source": "iop-walk-0-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            457,
+            21,
+            233,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            233,
+            236
+          ],
+          "sourcePivot": [
+            103.5,
+            233.0
+          ],
+          "bounds": [
+            47,
+            125,
+            110,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "0ac19f4acf85e9507fbda4b27bd116928e6b44abac7e2164a961b2808b559ece"
+        },
+        {
+          "index": 6,
+          "source": "iop-walk-0-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            813,
+            21,
+            262,
+            236
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            262,
+            236
+          ],
+          "sourcePivot": [
+            123.5,
+            233.0
+          ],
+          "bounds": [
+            38,
+            125,
+            124,
+            112
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "e3c114dfc0b32aca3e319a43d3326ce963fbd6ed01f6ca0fe48508fc0d1f7a3b"
+        },
+        {
+          "index": 7,
+          "source": "iop-walk-0-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1196,
+            20,
+            246,
+            237
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            246,
+            237
+          ],
+          "sourcePivot": [
+            99.5,
+            234.0
+          ],
+          "bounds": [
+            49,
+            124,
+            116,
+            113
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "0a341bc106548d9d563dc17778e1b32adaff0590287607460816bbbc668665aa"
+        },
+        {
+          "index": 8,
+          "source": "iop-attack-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            110,
+            31,
+            235,
+            228
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            235,
+            228
+          ],
+          "sourcePivot": [
+            104.5,
+            226.0
+          ],
+          "bounds": [
+            47,
+            128,
+            111,
+            109
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1fbb853a31c3d2bce3867c4e65a9b9a3f548e6e24ef0dd4a83eb32384e7341b3"
+        },
+        {
+          "index": 9,
+          "source": "iop-attack-0-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            500,
+            9,
+            190,
+            250
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            190,
+            250
+          ],
+          "sourcePivot": [
+            124.5,
+            247.0
+          ],
+          "bounds": [
+            37,
+            118,
+            90,
+            119
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bacb81505a88ec2b0b3cb0b497abdf7c84f02b4f3f930a0027d90cf5652cfda"
+        },
+        {
+          "index": 10,
+          "source": "iop-attack-0-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            800,
+            43,
+            288,
+            216
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            288,
+            216
+          ],
+          "sourcePivot": [
+            140.5,
+            214.0
+          ],
+          "bounds": [
+            29,
+            134,
+            137,
+            103
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "d5b7409f061924817b85e1e3060d55d8fdd3aa3b7f9e26ba10668bd7a9bd0553"
+        },
+        {
+          "index": 11,
+          "source": "iop-attack-0-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1200,
+            48,
+            222,
+            210
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            222,
+            210
+          ],
+          "sourcePivot": [
+            95.5,
+            208.0
+          ],
+          "bounds": [
+            50,
+            137,
+            106,
+            100
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "30c5fde906a8d6f4e5eb640e522eda5f95183b7604e5e04660bb60f5a45ffd55"
+        },
+        {
+          "index": 12,
+          "source": "iop-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            268,
+            234,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            234,
+            240
+          ],
+          "sourcePivot": [
+            185.5,
+            237.0
+          ],
+          "bounds": [
+            7,
+            123,
+            112,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404"
+        },
+        {
+          "index": 13,
+          "source": "iop-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            268,
+            234,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            234,
+            240
+          ],
+          "sourcePivot": [
+            185.5,
+            237.0
+          ],
+          "bounds": [
+            7,
+            123,
+            112,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404"
+        },
+        {
+          "index": 14,
+          "source": "iop-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            268,
+            234,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            234,
+            240
+          ],
+          "sourcePivot": [
+            185.5,
+            237.0
+          ],
+          "bounds": [
+            7,
+            123,
+            112,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404"
+        },
+        {
+          "index": 15,
+          "source": "iop-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            268,
+            234,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            234,
+            240
+          ],
+          "sourcePivot": [
+            185.5,
+            237.0
+          ],
+          "bounds": [
+            7,
+            123,
+            112,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404"
+        },
+        {
+          "index": 16,
+          "source": "iop-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            268,
+            234,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            234,
+            240
+          ],
+          "sourcePivot": [
+            185.5,
+            237.0
+          ],
+          "bounds": [
+            7,
+            123,
+            112,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bf53a36e34b5bad1d895056477594fe4a00622aa1cbcaf6eaa700ffb6454404"
+        },
+        {
+          "index": 17,
+          "source": "iop-walk-1-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            464,
+            268,
+            223,
+            241
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            223,
+            241
+          ],
+          "sourcePivot": [
+            152.5,
+            238.0
+          ],
+          "bounds": [
+            23,
+            122,
+            107,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "735d6f2ed2fec2bb6c62f8ce87298564b0ab0a990598bc38cd9e3ef22863c127"
+        },
+        {
+          "index": 18,
+          "source": "iop-walk-1-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            837,
+            268,
+            237,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            237,
+            240
+          ],
+          "sourcePivot": [
+            175.5,
+            237.0
+          ],
+          "bounds": [
+            12,
+            123,
+            113,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eaf300c558dfa1d03b9eb4885f19fcae8cf121aed1c614cd5aa72610897adf3d"
+        },
+        {
+          "index": 19,
+          "source": "iop-walk-1-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1208,
+            268,
+            247,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            247,
+            240
+          ],
+          "sourcePivot": [
+            190.5,
+            237.0
+          ],
+          "bounds": [
+            5,
+            123,
+            118,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "8f3eda0b6331e85804c1ac1d855e1885c419f16309dd865852110e6271fab31b"
+        },
+        {
+          "index": 20,
+          "source": "iop-attack-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            84,
+            280,
+            252,
+            222
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            252,
+            222
+          ],
+          "sourcePivot": [
+            107.5,
+            220.0
+          ],
+          "bounds": [
+            45,
+            131,
+            120,
+            106
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "35510fdb6eef01a6ddef365f865668ea393c1da70ecd4799047cab490fd34ac5"
+        },
+        {
+          "index": 21,
+          "source": "iop-attack-1-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            493,
+            259,
+            213,
+            243
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            213,
+            243
+          ],
+          "sourcePivot": [
+            47.5,
+            241.0
+          ],
+          "bounds": [
+            73,
+            121,
+            102,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1a4db3a2bd09b309198f6c188a2a454e4f380f639db6a3441b2240150d5b1e7f"
+        },
+        {
+          "index": 22,
+          "source": "iop-attack-1-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            795,
+            283,
+            293,
+            219
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            293,
+            219
+          ],
+          "sourcePivot": [
+            124.5,
+            217.0
+          ],
+          "bounds": [
+            37,
+            132,
+            139,
+            105
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "13832a865e6b71fe69f62f6246c6bfef84da9798563008c2b3a3f39e364c8abe"
+        },
+        {
+          "index": 23,
+          "source": "iop-attack-1-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1192,
+            282,
+            267,
+            221
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            267,
+            221
+          ],
+          "sourcePivot": [
+            108.5,
+            219.0
+          ],
+          "bounds": [
+            44,
+            131,
+            128,
+            106
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "a2435bd8df3000155a5bafc382dd186298e65c3fdcfb9eae2b6aad04d2220105"
+        },
+        {
+          "index": 24,
+          "source": "iop-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            105,
+            520,
+            249,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            249,
+            240
+          ],
+          "sourcePivot": [
+            60.5,
+            238.0
+          ],
+          "bounds": [
+            67,
+            122,
+            119,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe"
+        },
+        {
+          "index": 25,
+          "source": "iop-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            105,
+            520,
+            249,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            249,
+            240
+          ],
+          "sourcePivot": [
+            60.5,
+            238.0
+          ],
+          "bounds": [
+            67,
+            122,
+            119,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe"
+        },
+        {
+          "index": 26,
+          "source": "iop-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            105,
+            520,
+            249,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            249,
+            240
+          ],
+          "sourcePivot": [
+            60.5,
+            238.0
+          ],
+          "bounds": [
+            67,
+            122,
+            119,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe"
+        },
+        {
+          "index": 27,
+          "source": "iop-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            105,
+            520,
+            249,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            249,
+            240
+          ],
+          "sourcePivot": [
+            60.5,
+            238.0
+          ],
+          "bounds": [
+            67,
+            122,
+            119,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe"
+        },
+        {
+          "index": 28,
+          "source": "iop-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            105,
+            520,
+            249,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            249,
+            240
+          ],
+          "sourcePivot": [
+            60.5,
+            238.0
+          ],
+          "bounds": [
+            67,
+            122,
+            119,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "18608656e83a1fd4d2b014a254ea65e9f608e6636bca5174a98b956547bf12fe"
+        },
+        {
+          "index": 29,
+          "source": "iop-walk-2-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            466,
+            521,
+            250,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            250,
+            240
+          ],
+          "sourcePivot": [
+            65.5,
+            237.0
+          ],
+          "bounds": [
+            65,
+            123,
+            119,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "8198e9e5ce0bf036c50cfe5ca9c357073cccec54652a3b5df9f42d3333a298d0"
+        },
+        {
+          "index": 30,
+          "source": "iop-walk-2-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            834,
+            521,
+            254,
+            240
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            254,
+            240
+          ],
+          "sourcePivot": [
+            59.5,
+            237.0
+          ],
+          "bounds": [
+            68,
+            123,
+            121,
+            114
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "7dd5f72ebfcf3e6bfb087350d730069365501034cb6991599ab84d19cdbcf6ce"
+        },
+        {
+          "index": 31,
+          "source": "iop-walk-2-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1206,
+            521,
+            253,
+            242
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            253,
+            242
+          ],
+          "sourcePivot": [
+            60.5,
+            239.0
+          ],
+          "bounds": [
+            67,
+            122,
+            121,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ab392e2f7b6a70402f7a894820a157532912ae4635a1f4906c486b722a3d8915"
+        },
+        {
+          "index": 32,
+          "source": "iop-attack-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            123,
+            520,
+            245,
+            227
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            245,
+            227
+          ],
+          "sourcePivot": [
+            61.5,
+            225.0
+          ],
+          "bounds": [
+            67,
+            129,
+            117,
+            108
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "cb9093a21a383884d74c3ad5552fdc8fcc1de45da365fa5ac8c4aa7981847588"
+        },
+        {
+          "index": 33,
+          "source": "iop-attack-2-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            479,
+            503,
+            211,
+            243
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            211,
+            243
+          ],
+          "sourcePivot": [
+            76.5,
+            242.0
+          ],
+          "bounds": [
+            59,
+            121,
+            101,
+            115
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "67e007c62e189d7af891a43b09d788f604b14e1c895aa3039489438f6b355bc9"
+        },
+        {
+          "index": 34,
+          "source": "iop-attack-2-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            823,
+            530,
+            305,
+            217
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            305,
+            217
+          ],
+          "sourcePivot": [
+            155.5,
+            214.0
+          ],
+          "bounds": [
+            22,
+            134,
+            145,
+            103
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "8dac12710c1750990b6ace4af2efcbdb750903f82bed3c5a726771197a084040"
+        },
+        {
+          "index": 35,
+          "source": "iop-attack-2-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1210,
+            524,
+            248,
+            221
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            248,
+            221
+          ],
+          "sourcePivot": [
+            67.5,
+            219.0
+          ],
+          "bounds": [
+            64,
+            131,
+            117,
+            106
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "0c4e9e5cd508c99d3fbe34e3f2bb7f264ab30c23debc41932510e4e528aeeb54"
+        },
+        {
+          "index": 36,
+          "source": "iop-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            101,
+            760,
+            264,
+            242
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            264,
+            242
+          ],
+          "sourcePivot": [
+            131.5,
+            240.0
+          ],
+          "bounds": [
+            33,
+            121,
+            126,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4"
+        },
+        {
+          "index": 37,
+          "source": "iop-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            101,
+            760,
+            264,
+            242
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            264,
+            242
+          ],
+          "sourcePivot": [
+            131.5,
+            240.0
+          ],
+          "bounds": [
+            33,
+            121,
+            126,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4"
+        },
+        {
+          "index": 38,
+          "source": "iop-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            101,
+            760,
+            264,
+            242
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            264,
+            242
+          ],
+          "sourcePivot": [
+            131.5,
+            240.0
+          ],
+          "bounds": [
+            33,
+            121,
+            126,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4"
+        },
+        {
+          "index": 39,
+          "source": "iop-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            101,
+            760,
+            264,
+            242
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            264,
+            242
+          ],
+          "sourcePivot": [
+            131.5,
+            240.0
+          ],
+          "bounds": [
+            33,
+            121,
+            126,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4"
+        },
+        {
+          "index": 40,
+          "source": "iop-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            101,
+            760,
+            264,
+            242
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            264,
+            242
+          ],
+          "sourcePivot": [
+            131.5,
+            240.0
+          ],
+          "bounds": [
+            33,
+            121,
+            126,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ba05a4288735051755decd848b2a3dda5b47a4eff389f7c64a159799265729a4"
+        },
+        {
+          "index": 41,
+          "source": "iop-walk-3-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            457,
+            761,
+            263,
+            243
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            263,
+            243
+          ],
+          "sourcePivot": [
+            133.5,
+            240.0
+          ],
+          "bounds": [
+            32,
+            121,
+            125,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "3358868e16ee0b2f5f370cac17ea16d280b8e267f9df63f109a3147026cb9f35"
+        },
+        {
+          "index": 42,
+          "source": "iop-walk-3-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            835,
+            759,
+            274,
+            245
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            274,
+            245
+          ],
+          "sourcePivot": [
+            161.5,
+            243.0
+          ],
+          "bounds": [
+            19,
+            120,
+            131,
+            117
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2fb96ff0ed33d80daa99602c6c20d1862909185488c7f7a4a3619b8ea649a298"
+        },
+        {
+          "index": 43,
+          "source": "iop-walk-3-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1221,
+            762,
+            269,
+            244
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            269,
+            244
+          ],
+          "sourcePivot": [
+            150.5,
+            241.0
+          ],
+          "bounds": [
+            24,
+            121,
+            129,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "3d57ab173817d00cf00f162c055d17e2b84495f3a25c592b22f3404b3017e891"
+        },
+        {
+          "index": 44,
+          "source": "iop-attack-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            126,
+            767,
+            238,
+            223
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            238,
+            223
+          ],
+          "sourcePivot": [
+            130.5,
+            220.0
+          ],
+          "bounds": [
+            34,
+            131,
+            113,
+            106
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "c8f29510fe505b489f8bb9c014f98631a7f202d24fb42d1614349d1c9305267e"
+        },
+        {
+          "index": 45,
+          "source": "iop-attack-3-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            484,
+            745,
+            197,
+            244
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            197,
+            244
+          ],
+          "sourcePivot": [
+            152.5,
+            242.0
+          ],
+          "bounds": [
+            23,
+            121,
+            94,
+            116
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "c8d5331c04e39b493aa6ae78d9b79efe50b2a547c6913d759d4f37bfa9348088"
+        },
+        {
+          "index": 46,
+          "source": "iop-attack-3-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            831,
+            769,
+            283,
+            221
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            283,
+            221
+          ],
+          "sourcePivot": [
+            147.5,
+            218.0
+          ],
+          "bounds": [
+            26,
+            132,
+            135,
+            105
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "bba665d48732e3bf0cad4b7a5c00d1a8a6df2bda24754aff71914b0784d3f91f"
+        },
+        {
+          "index": 47,
+          "source": "iop-attack-3-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1214,
+            766,
+            233,
+            224
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            233,
+            224
+          ],
+          "sourcePivot": [
+            133.5,
+            221.0
+          ],
+          "bounds": [
+            32,
+            131,
+            111,
+            106
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "5f750781b42f59043d5bf1d34bb2d83360430dbe84bcc3811fb203bca92ff06c"
+        }
+      ],
+      "path": "/assets/sprites/iop-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 1,
+        "distinctFrames": 32,
+        "maxPivotError": 0.0
+      },
+      "portraitFrame": 0,
+      "portraitCrop": [
+        40,
+        123,
+        121,
+        116
+      ]
+    },
+    "cra": {
+      "directions": [
+        "s",
+        "w",
+        "n",
+        "e"
+      ],
+      "displayWidth": 64,
+      "portraitPath": "/assets/sprites/portraits/cra.png",
+      "actions": {
+        "idle": [
+          0,
+          3
+        ],
+        "walk": [
+          4,
+          7
+        ],
+        "attack": [
+          8,
+          11
+        ]
+      },
+      "frameWidth": 192,
+      "frameHeight": 256,
+      "frameCount": 48,
+      "columns": 12,
+      "rows": 4,
+      "originX": 0.5,
+      "originY": 0.921875,
+      "pivot": [
+        96.0,
+        236.0
+      ],
+      "commonScale": 0.51420499,
+      "bodyBounds": [
+        4,
+        106,
+        174,
+        131
+      ],
+      "frameBounds": [
+        [
+          58,
+          114,
+          107,
+          124
+        ],
+        [
+          58,
+          114,
+          107,
+          124
+        ],
+        [
+          58,
+          114,
+          107,
+          124
+        ],
+        [
+          58,
+          114,
+          107,
+          124
+        ],
+        [
+          58,
+          114,
+          107,
+          124
+        ],
+        [
+          58,
+          113,
+          103,
+          124
+        ],
+        [
+          59,
+          113,
+          99,
+          124
+        ],
+        [
+          59,
+          113,
+          101,
+          124
+        ],
+        [
+          55,
+          115,
+          111,
+          123
+        ],
+        [
+          53,
+          115,
+          111,
+          123
+        ],
+        [
+          32,
+          115,
+          128,
+          123
+        ],
+        [
+          57,
+          115,
+          112,
+          123
+        ],
+        [
+          26,
+          109,
+          106,
+          129
+        ],
+        [
+          26,
+          109,
+          106,
+          129
+        ],
+        [
+          26,
+          109,
+          106,
+          129
+        ],
+        [
+          26,
+          109,
+          106,
+          129
+        ],
+        [
+          26,
+          109,
+          106,
+          129
+        ],
+        [
+          24,
+          110,
+          105,
+          128
+        ],
+        [
+          26,
+          111,
+          106,
+          127
+        ],
+        [
+          26,
+          109,
+          106,
+          128
+        ],
+        [
+          67,
+          113,
+          105,
+          125
+        ],
+        [
+          38,
+          115,
+          126,
+          123
+        ],
+        [
+          32,
+          113,
+          136,
+          125
+        ],
+        [
+          56,
+          109,
+          119,
+          129
+        ],
+        [
+          65,
+          108,
+          113,
+          129
+        ],
+        [
+          65,
+          108,
+          113,
+          129
+        ],
+        [
+          65,
+          108,
+          113,
+          129
+        ],
+        [
+          65,
+          108,
+          113,
+          129
+        ],
+        [
+          65,
+          108,
+          113,
+          129
+        ],
+        [
+          59,
+          107,
+          115,
+          130
+        ],
+        [
+          63,
+          107,
+          114,
+          130
+        ],
+        [
+          60,
+          107,
+          108,
+          131
+        ],
+        [
+          28,
+          115,
+          107,
+          123
+        ],
+        [
+          21,
+          115,
+          134,
+          123
+        ],
+        [
+          24,
+          116,
+          133,
+          122
+        ],
+        [
+          3,
+          116,
+          129,
+          121
+        ],
+        [
+          19,
+          106,
+          115,
+          131
+        ],
+        [
+          19,
+          106,
+          115,
+          131
+        ],
+        [
+          19,
+          106,
+          115,
+          131
+        ],
+        [
+          19,
+          106,
+          115,
+          131
+        ],
+        [
+          19,
+          106,
+          115,
+          131
+        ],
+        [
+          26,
+          108,
+          112,
+          129
+        ],
+        [
+          20,
+          110,
+          114,
+          127
+        ],
+        [
+          30,
+          107,
+          105,
+          130
+        ],
+        [
+          23,
+          110,
+          119,
+          127
+        ],
+        [
+          17,
+          113,
+          138,
+          125
+        ],
+        [
+          21,
+          113,
+          142,
+          125
+        ],
+        [
+          13,
+          111,
+          126,
+          127
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ],
+        [
+          96.0,
+          236.0
+        ]
+      ],
+      "frameHashes": [
+        "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d",
+        "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d",
+        "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d",
+        "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d",
+        "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d",
+        "039267e3736343b685445b29937a94b8f1ab0cd96d0833db0a9fb7e321724d41",
+        "58762c801c4f5453eab452cbe459d1348a1d4ecbc0862f4d0ec6f6e7108c62cf",
+        "398efe960d0a571aab88ebcbf075c2529b407cd53b4bb38045a822b5667d89f1",
+        "f674c5a5331fee32dacf9b09984c10bac0ad01223d417b590c41c28b89f2ee44",
+        "af14cb667f39a891c0509bcb3043175f1ac0bb7410c7ea141e8e4609f4a1ec5c",
+        "2077fe4edac5383e6549bdcf4e379263a7d76ba757be4c41263e61e734f23aff",
+        "b35c1acf8a83314fa1f0b229847de74c4ca6956ec89180d894573963a9ea6174",
+        "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137",
+        "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137",
+        "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137",
+        "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137",
+        "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137",
+        "74eb49064295b8a22686a888a463d103dfba01fcaf76f7e7cd3643f950333648",
+        "a9cfc353ab2adeba648e082c37a81cec4bfcc594a14b778a43c81bad063834b8",
+        "2579417a726e303c47047838ca14767a1466a3cff87c9e512799c03998b178ff",
+        "2bcf1f6845ab6bb38b0e23249248098bc9238db45764ad0f406455a04606d1a9",
+        "399d49f0e4198ab02d5ff1e465f3c78867c9f78b3f2a0fffeaf1967f5663eafb",
+        "257c477074b10b1d3cfcc6e3bdd427000558b3e363af83b30562a5262ff1960e",
+        "5cdd6c2a5a555b127f7638d330b6ae42a90ee873486ab355ae358d3fda2bd2ae",
+        "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4",
+        "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4",
+        "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4",
+        "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4",
+        "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4",
+        "ce9a0d05d584e29d5c3b9c169379aa3e3aa8c9b3f6b7e1a5d3bcdcbb92e5ae68",
+        "5c45e098527c21569540958b9215e6ff4e0d8119b0e00b2d3edb2442107f730f",
+        "ed6dfb22e56508b811abec1bbdabd4a96a7bcaa7655e6ea74058d0a266e9d485",
+        "5118d984f4b3082747ffd2f722dd2e684226fa683996ed123a3ebe45e72a8dc0",
+        "9e0d33f5123f2f9c3518c99e98338bd4569086c4ad30ad10cdaba74fc320a0c6",
+        "e30d2cf8b340236fccd2b7208ec4e21a59a22c74944fc024d62e3fb9a38f4e0e",
+        "b9188c14ae0e25ae0f36bbacb488fdc62d718d68f0c041b659c1f9bddb044caf",
+        "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a",
+        "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a",
+        "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a",
+        "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a",
+        "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a",
+        "be1541ab042e7bab610d9cae442e9f57cb73a44a6d34d050e84edcc356e79506",
+        "1a93a2099c1c875d54f83db5bed07fa4368a5bf6c22a06df8c4560de3df97086",
+        "170778960117eb3eb8213dd1baf3402ab884a4d1ae52f350935946920c75ecf1",
+        "eb2e6a73765646ac8094fe28d079361ed1f7c6b2acf68d75e85721d16c61090d",
+        "9d20c06b17009a15b459262cdfddf24cf6a0641ea83b99242d40ac307d28f940",
+        "8e545920adbc8159bd58061e03fecabe15ff88959d6a6ddaf34af3441183caec",
+        "93a675c80fc5de8e331995c976bcfb7674dc1b7ffddfab108577504f8e036227"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "cra-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            107,
+            17,
+            207,
+            241
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            207,
+            241
+          ],
+          "sourcePivot": [
+            73.5,
+            238.0
+          ],
+          "bounds": [
+            58,
+            114,
+            107,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d"
+        },
+        {
+          "index": 1,
+          "source": "cra-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            107,
+            17,
+            207,
+            241
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            207,
+            241
+          ],
+          "sourcePivot": [
+            73.5,
+            238.0
+          ],
+          "bounds": [
+            58,
+            114,
+            107,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d"
+        },
+        {
+          "index": 2,
+          "source": "cra-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            107,
+            17,
+            207,
+            241
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            207,
+            241
+          ],
+          "sourcePivot": [
+            73.5,
+            238.0
+          ],
+          "bounds": [
+            58,
+            114,
+            107,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d"
+        },
+        {
+          "index": 3,
+          "source": "cra-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            107,
+            17,
+            207,
+            241
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            207,
+            241
+          ],
+          "sourcePivot": [
+            73.5,
+            238.0
+          ],
+          "bounds": [
+            58,
+            114,
+            107,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d"
+        },
+        {
+          "index": 4,
+          "source": "cra-walk-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            107,
+            17,
+            207,
+            241
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            207,
+            241
+          ],
+          "sourcePivot": [
+            73.5,
+            238.0
+          ],
+          "bounds": [
+            58,
+            114,
+            107,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eb407794a5a26668d342f4b9beb491df0f2db5eddba09167f7066df7615ba96d"
+        },
+        {
+          "index": 5,
+          "source": "cra-walk-0-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            481,
+            17,
+            199,
+            242
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            199,
+            242
+          ],
+          "sourcePivot": [
+            73.5,
+            240.0
+          ],
+          "bounds": [
+            58,
+            113,
+            103,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "039267e3736343b685445b29937a94b8f1ab0cd96d0833db0a9fb7e321724d41"
+        },
+        {
+          "index": 6,
+          "source": "cra-walk-0-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            865,
+            20,
+            193,
+            241
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            193,
+            241
+          ],
+          "sourcePivot": [
+            71.5,
+            239.0
+          ],
+          "bounds": [
+            59,
+            113,
+            99,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "58762c801c4f5453eab452cbe459d1348a1d4ecbc0862f4d0ec6f6e7108c62cf"
+        },
+        {
+          "index": 7,
+          "source": "cra-walk-0-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1250,
+            19,
+            196,
+            240
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            196,
+            240
+          ],
+          "sourcePivot": [
+            72.5,
+            239.0
+          ],
+          "bounds": [
+            59,
+            113,
+            101,
+            124
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "398efe960d0a571aab88ebcbf075c2529b407cd53b4bb38045a822b5667d89f1"
+        },
+        {
+          "index": 8,
+          "source": "cra-attack-0-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            70,
+            15,
+            216,
+            240
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            216,
+            240
+          ],
+          "sourcePivot": [
+            79.5,
+            237.0
+          ],
+          "bounds": [
+            55,
+            115,
+            111,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f674c5a5331fee32dacf9b09984c10bac0ad01223d417b590c41c28b89f2ee44"
+        },
+        {
+          "index": 9,
+          "source": "cra-attack-0-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            459,
+            17,
+            216,
+            239
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            216,
+            239
+          ],
+          "sourcePivot": [
+            83.5,
+            236.0
+          ],
+          "bounds": [
+            53,
+            115,
+            111,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "af14cb667f39a891c0509bcb3043175f1ac0bb7410c7ea141e8e4609f4a1ec5c"
+        },
+        {
+          "index": 10,
+          "source": "cra-attack-0-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            788,
+            19,
+            250,
+            238
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            250,
+            238
+          ],
+          "sourcePivot": [
+            126.5,
+            235.0
+          ],
+          "bounds": [
+            32,
+            115,
+            128,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2077fe4edac5383e6549bdcf4e379263a7d76ba757be4c41263e61e734f23aff"
+        },
+        {
+          "index": 11,
+          "source": "cra-attack-0-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1244,
+            17,
+            219,
+            239
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            219,
+            239
+          ],
+          "sourcePivot": [
+            76.5,
+            236.0
+          ],
+          "bounds": [
+            57,
+            115,
+            112,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "b35c1acf8a83314fa1f0b229847de74c4ca6956ec89180d894573963a9ea6174"
+        },
+        {
+          "index": 12,
+          "source": "cra-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            111,
+            256,
+            206,
+            250
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            206,
+            250
+          ],
+          "sourcePivot": [
+            136.5,
+            247.0
+          ],
+          "bounds": [
+            26,
+            109,
+            106,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137"
+        },
+        {
+          "index": 13,
+          "source": "cra-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            111,
+            256,
+            206,
+            250
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            206,
+            250
+          ],
+          "sourcePivot": [
+            136.5,
+            247.0
+          ],
+          "bounds": [
+            26,
+            109,
+            106,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137"
+        },
+        {
+          "index": 14,
+          "source": "cra-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            111,
+            256,
+            206,
+            250
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            206,
+            250
+          ],
+          "sourcePivot": [
+            136.5,
+            247.0
+          ],
+          "bounds": [
+            26,
+            109,
+            106,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137"
+        },
+        {
+          "index": 15,
+          "source": "cra-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            111,
+            256,
+            206,
+            250
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            206,
+            250
+          ],
+          "sourcePivot": [
+            136.5,
+            247.0
+          ],
+          "bounds": [
+            26,
+            109,
+            106,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137"
+        },
+        {
+          "index": 16,
+          "source": "cra-walk-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            111,
+            256,
+            206,
+            250
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            206,
+            250
+          ],
+          "sourcePivot": [
+            136.5,
+            247.0
+          ],
+          "bounds": [
+            26,
+            109,
+            106,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "f374581198ce20993aef9363d4f1acb0981cfde360ecb6683792163c2d12b137"
+        },
+        {
+          "index": 17,
+          "source": "cra-walk-1-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            489,
+            258,
+            203,
+            248
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            203,
+            248
+          ],
+          "sourcePivot": [
+            139.5,
+            245.0
+          ],
+          "bounds": [
+            24,
+            110,
+            105,
+            128
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "74eb49064295b8a22686a888a463d103dfba01fcaf76f7e7cd3643f950333648"
+        },
+        {
+          "index": 18,
+          "source": "cra-walk-1-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            875,
+            261,
+            205,
+            246
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            205,
+            246
+          ],
+          "sourcePivot": [
+            135.5,
+            243.0
+          ],
+          "bounds": [
+            26,
+            111,
+            106,
+            127
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "a9cfc353ab2adeba648e082c37a81cec4bfcc594a14b778a43c81bad063834b8"
+        },
+        {
+          "index": 19,
+          "source": "cra-walk-1-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1257,
+            258,
+            206,
+            249
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            206,
+            249
+          ],
+          "sourcePivot": [
+            136.5,
+            247.0
+          ],
+          "bounds": [
+            26,
+            109,
+            106,
+            128
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2579417a726e303c47047838ca14767a1466a3cff87c9e512799c03998b178ff"
+        },
+        {
+          "index": 20,
+          "source": "cra-attack-1-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            90,
+            267,
+            205,
+            243
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            205,
+            243
+          ],
+          "sourcePivot": [
+            56.5,
+            240.0
+          ],
+          "bounds": [
+            67,
+            113,
+            105,
+            125
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "2bcf1f6845ab6bb38b0e23249248098bc9238db45764ad0f406455a04606d1a9"
+        },
+        {
+          "index": 21,
+          "source": "cra-attack-1-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            435,
+            271,
+            246,
+            239
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            246,
+            239
+          ],
+          "sourcePivot": [
+            113.5,
+            236.0
+          ],
+          "bounds": [
+            38,
+            115,
+            126,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "399d49f0e4198ab02d5ff1e465f3c78867c9f78b3f2a0fffeaf1967f5663eafb"
+        },
+        {
+          "index": 22,
+          "source": "cra-attack-1-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            789,
+            268,
+            264,
+            242
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            264,
+            242
+          ],
+          "sourcePivot": [
+            123.5,
+            239.0
+          ],
+          "bounds": [
+            32,
+            113,
+            136,
+            125
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "257c477074b10b1d3cfcc6e3bdd427000558b3e363af83b30562a5262ff1960e"
+        },
+        {
+          "index": 23,
+          "source": "cra-attack-1-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1232,
+            260,
+            233,
+            250
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            233,
+            250
+          ],
+          "sourcePivot": [
+            78.5,
+            247.0
+          ],
+          "bounds": [
+            56,
+            109,
+            119,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "5cdd6c2a5a555b127f7638d330b6ae42a90ee873486ab355ae358d3fda2bd2ae"
+        },
+        {
+          "index": 24,
+          "source": "cra-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            106,
+            510,
+            220,
+            251
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            220,
+            251
+          ],
+          "sourcePivot": [
+            60.5,
+            249.0
+          ],
+          "bounds": [
+            65,
+            108,
+            113,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4"
+        },
+        {
+          "index": 25,
+          "source": "cra-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            106,
+            510,
+            220,
+            251
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            220,
+            251
+          ],
+          "sourcePivot": [
+            60.5,
+            249.0
+          ],
+          "bounds": [
+            65,
+            108,
+            113,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4"
+        },
+        {
+          "index": 26,
+          "source": "cra-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            106,
+            510,
+            220,
+            251
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            220,
+            251
+          ],
+          "sourcePivot": [
+            60.5,
+            249.0
+          ],
+          "bounds": [
+            65,
+            108,
+            113,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4"
+        },
+        {
+          "index": 27,
+          "source": "cra-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            106,
+            510,
+            220,
+            251
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            220,
+            251
+          ],
+          "sourcePivot": [
+            60.5,
+            249.0
+          ],
+          "bounds": [
+            65,
+            108,
+            113,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4"
+        },
+        {
+          "index": 28,
+          "source": "cra-walk-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            106,
+            510,
+            220,
+            251
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            220,
+            251
+          ],
+          "sourcePivot": [
+            60.5,
+            249.0
+          ],
+          "bounds": [
+            65,
+            108,
+            113,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "61704ddff01e4f319f2762dd8f3df6e7c56fc86934b92fa055fe036554258af4"
+        },
+        {
+          "index": 29,
+          "source": "cra-walk-2-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            489,
+            511,
+            224,
+            252
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            224,
+            252
+          ],
+          "sourcePivot": [
+            71.5,
+            250.0
+          ],
+          "bounds": [
+            59,
+            107,
+            115,
+            130
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ce9a0d05d584e29d5c3b9c169379aa3e3aa8c9b3f6b7e1a5d3bcdcbb92e5ae68"
+        },
+        {
+          "index": 30,
+          "source": "cra-walk-2-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            871,
+            510,
+            221,
+            253
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            221,
+            253
+          ],
+          "sourcePivot": [
+            63.5,
+            251.0
+          ],
+          "bounds": [
+            63,
+            107,
+            114,
+            130
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "5c45e098527c21569540958b9215e6ff4e0d8119b0e00b2d3edb2442107f730f"
+        },
+        {
+          "index": 31,
+          "source": "cra-walk-2-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            589,
+            529,
+            183,
+            223
+          ],
+          "flipX": false,
+          "sourceScale": 1.1428571428571428,
+          "sourceBounds": [
+            0,
+            0,
+            183,
+            223
+          ],
+          "sourcePivot": [
+            60.5,
+            220.0
+          ],
+          "bounds": [
+            60,
+            107,
+            108,
+            131
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "ed6dfb22e56508b811abec1bbdabd4a96a7bcaa7655e6ea74058d0a266e9d485"
+        },
+        {
+          "index": 32,
+          "source": "cra-attack-2-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            69,
+            517,
+            208,
+            238
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            208,
+            238
+          ],
+          "sourcePivot": [
+            132.5,
+            235.0
+          ],
+          "bounds": [
+            28,
+            115,
+            107,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "5118d984f4b3082747ffd2f722dd2e684226fa683996ed123a3ebe45e72a8dc0"
+        },
+        {
+          "index": 33,
+          "source": "cra-attack-2-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            446,
+            516,
+            262,
+            239
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            262,
+            239
+          ],
+          "sourcePivot": [
+            146.5,
+            236.0
+          ],
+          "bounds": [
+            21,
+            115,
+            134,
+            123
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "9e0d33f5123f2f9c3518c99e98338bd4569086c4ad30ad10cdaba74fc320a0c6"
+        },
+        {
+          "index": 34,
+          "source": "cra-attack-2-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            811,
+            518,
+            261,
+            237
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            261,
+            237
+          ],
+          "sourcePivot": [
+            140.5,
+            234.0
+          ],
+          "bounds": [
+            24,
+            116,
+            133,
+            122
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "e30d2cf8b340236fccd2b7208ec4e21a59a22c74944fc024d62e3fb9a38f4e0e"
+        },
+        {
+          "index": 35,
+          "source": "cra-attack-2-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1213,
+            519,
+            251,
+            236
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            251,
+            236
+          ],
+          "sourcePivot": [
+            180.5,
+            234.0
+          ],
+          "bounds": [
+            3,
+            116,
+            129,
+            121
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "b9188c14ae0e25ae0f36bbacb488fdc62d718d68f0c041b659c1f9bddb044caf"
+        },
+        {
+          "index": 36,
+          "source": "cra-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            760,
+            225,
+            253
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            225,
+            253
+          ],
+          "sourcePivot": [
+            150.5,
+            252.0
+          ],
+          "bounds": [
+            19,
+            106,
+            115,
+            131
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a"
+        },
+        {
+          "index": 37,
+          "source": "cra-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            760,
+            225,
+            253
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            225,
+            253
+          ],
+          "sourcePivot": [
+            150.5,
+            252.0
+          ],
+          "bounds": [
+            19,
+            106,
+            115,
+            131
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a"
+        },
+        {
+          "index": 38,
+          "source": "cra-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            760,
+            225,
+            253
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            225,
+            253
+          ],
+          "sourcePivot": [
+            150.5,
+            252.0
+          ],
+          "bounds": [
+            19,
+            106,
+            115,
+            131
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a"
+        },
+        {
+          "index": 39,
+          "source": "cra-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            760,
+            225,
+            253
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            225,
+            253
+          ],
+          "sourcePivot": [
+            150.5,
+            252.0
+          ],
+          "bounds": [
+            19,
+            106,
+            115,
+            131
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a"
+        },
+        {
+          "index": 40,
+          "source": "cra-walk-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            760,
+            225,
+            253
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            225,
+            253
+          ],
+          "sourcePivot": [
+            150.5,
+            252.0
+          ],
+          "bounds": [
+            19,
+            106,
+            115,
+            131
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "21583e67b2a4663e8d6f0fa4efc3804f1bf79210b06010d3e7290c47ecf4d75a"
+        },
+        {
+          "index": 41,
+          "source": "cra-walk-3-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            493,
+            762,
+            217,
+            251
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            217,
+            251
+          ],
+          "sourcePivot": [
+            135.5,
+            249.0
+          ],
+          "bounds": [
+            26,
+            108,
+            112,
+            129
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "be1541ab042e7bab610d9cae442e9f57cb73a44a6d34d050e84edcc356e79506"
+        },
+        {
+          "index": 42,
+          "source": "cra-walk-3-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            865,
+            762,
+            221,
+            247
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            221,
+            247
+          ],
+          "sourcePivot": [
+            147.5,
+            246.0
+          ],
+          "bounds": [
+            20,
+            110,
+            114,
+            127
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "1a93a2099c1c875d54f83db5bed07fa4368a5bf6c22a06df8c4560de3df97086"
+        },
+        {
+          "index": 43,
+          "source": "cra-walk-3-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            575,
+            773,
+            179,
+            221
+          ],
+          "flipX": false,
+          "sourceScale": 1.1435185185185186,
+          "sourceBounds": [
+            0,
+            0,
+            179,
+            221
+          ],
+          "sourcePivot": [
+            112.5,
+            219.0
+          ],
+          "bounds": [
+            30,
+            107,
+            105,
+            130
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "170778960117eb3eb8213dd1baf3402ab884a4d1ae52f350935946920c75ecf1"
+        },
+        {
+          "index": 44,
+          "source": "cra-attack-3-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            69,
+            761,
+            231,
+            247
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            231,
+            247
+          ],
+          "sourcePivot": [
+            141.5,
+            245.0
+          ],
+          "bounds": [
+            23,
+            110,
+            119,
+            127
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "eb2e6a73765646ac8094fe28d079361ed1f7c6b2acf68d75e85721d16c61090d"
+        },
+        {
+          "index": 45,
+          "source": "cra-attack-3-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            442,
+            764,
+            272,
+            243
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            272,
+            243
+          ],
+          "sourcePivot": [
+            154.5,
+            240.0
+          ],
+          "bounds": [
+            17,
+            113,
+            138,
+            125
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "9d20c06b17009a15b459262cdfddf24cf6a0641ea83b99242d40ac307d28f940"
+        },
+        {
+          "index": 46,
+          "source": "cra-attack-3-2",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            818,
+            764,
+            275,
+            243
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            275,
+            243
+          ],
+          "sourcePivot": [
+            145.5,
+            240.0
+          ],
+          "bounds": [
+            21,
+            113,
+            142,
+            125
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "8e545920adbc8159bd58061e03fecabe15ff88959d6a6ddaf34af3441183caec"
+        },
+        {
+          "index": 47,
+          "source": "cra-attack-3-3",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1224,
+            762,
+            244,
+            246
+          ],
+          "flipX": false,
+          "sourceScale": 1.0,
+          "sourceBounds": [
+            0,
+            0,
+            244,
+            246
+          ],
+          "sourcePivot": [
+            160.5,
+            243.0
+          ],
+          "bounds": [
+            13,
+            111,
+            126,
+            127
+          ],
+          "pivot": [
+            96.0,
+            236.0
+          ],
+          "sha256": "93a675c80fc5de8e331995c976bcfb7674dc1b7ffddfab108577504f8e036227"
+        }
+      ],
+      "path": "/assets/sprites/cra-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 1,
+        "distinctFrames": 32,
+        "maxPivotError": 0.0
+      },
+      "portraitFrame": 0,
+      "portraitCrop": [
+        56,
+        111,
+        110,
+        128
+      ]
+    }
+  },
+  "export": {
+    "tool": "pack_generated_sprites.py",
+    "recipe": "characters.json",
+    "sources": {
+      "villager-r0": {
+        "file": "../../source/v0.8.0/villager-source.png",
+        "sha256": "4eafc6c917ef6897e170ac9587d3242188ada41769bc17a41c069f3a0d998484",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "villager-r1": {
+        "file": "../../source/v0.8.0/villager-source.png",
+        "sha256": "4eafc6c917ef6897e170ac9587d3242188ada41769bc17a41c069f3a0d998484",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "villager-r2": {
+        "file": "../../source/v0.8.0/villager-source.png",
+        "sha256": "4eafc6c917ef6897e170ac9587d3242188ada41769bc17a41c069f3a0d998484",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "villager-r3": {
+        "file": "../../source/v0.8.0/villager-source.png",
+        "sha256": "4eafc6c917ef6897e170ac9587d3242188ada41769bc17a41c069f3a0d998484",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "hen": {
+        "file": "../../source/v0.8.0/hen-source.png",
+        "sha256": "fe45a261bf13ee9f303f3555772b5c4ab8edac5601285c11a26f12df4cb7f1d2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "rabbit": {
+        "file": "../../source/v0.8.0/rabbit-source.png",
+        "sha256": "b7bfada3c33b12d95138419112536ad7d667ef32be95d7e17f9ac1aab6041f04",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-0-0": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-0-1": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-0-2": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-0-3": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-0-0": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-0-1": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-0-2": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-0-3": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-1-0": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-1-1": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-1-2": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-1-3": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-1-0": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-1-1": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-1-2": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-1-3": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-2-0": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-2-1": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-2-2": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-2-3": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-2-0": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-2-1": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-2-2": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-2-3": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-3-0": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-3-1": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-3-2": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-walk-3-3": {
+        "file": "../../source/v0.8.0/iop-walk-source.png",
+        "sha256": "132e196c9dbf0d30bf0c2588f1017a4d7955e895d4c9165fa64c36f495d9c268",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-3-0": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-3-1": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-3-2": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "iop-attack-3-3": {
+        "file": "../../source/v0.8.0/iop-attack-source.png",
+        "sha256": "c53d36c2d10df484507cab2f9e604bf85606a54346917d9f19bcf730496e0f92",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-0-0": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-0-1": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-0-2": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-0-3": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-0-0": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-0-1": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-0-2": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-0-3": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-1-0": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-1-1": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-1-2": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-1-3": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-1-0": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-1-1": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-1-2": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-1-3": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-2-0": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-2-1": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-2-2": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-2-3": {
+        "file": "../../source/v0.8.0/cra-source.png",
+        "sha256": "e67045956c9f7ebdab5b54a919b61d47f5ae0f88550c41aa5b7bf4a643650d0d",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-2-0": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-2-1": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-2-2": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-2-3": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-3-0": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-3-1": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-3-2": {
+        "file": "../../source/v0.8.0/cra-walk-source.png",
+        "sha256": "b4d19a4f5f0fe70fe8a64f8b7929b98b696ff18838ac3ba2dba028aa69a93838",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-walk-3-3": {
+        "file": "../../source/v0.8.0/cra-source.png",
+        "sha256": "e67045956c9f7ebdab5b54a919b61d47f5ae0f88550c41aa5b7bf4a643650d0d",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-3-0": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-3-1": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-3-2": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "cra-attack-3-3": {
+        "file": "../../source/v0.8.0/cra-attack-source.png",
+        "sha256": "12290e13a00dd31293d82b3eac53bfd37c40cc55d24db532e80752d0c0c40fa8",
+        "size": [
+          1536,
+          1024
+        ]
+      }
+    },
+    "warnings": []
+  }
+}

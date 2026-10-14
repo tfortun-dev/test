@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "sources": {
+    "villager-walk": {
+      "path": "../art/source/villager-walk.png",
+      "columns": 4,
+      "rows": 4
+    }
+  },
+  "outputRoot": "../public/assets/sprites",
+  "manifest": { "path": "characters.json", "root": "characters", "version": 1 },
+  "sprites": [
+    {
+      "name": "villager",
+      "source": "villager-walk",
+      "frameSize": [192, 256],
+      "columns": 4,
+      "pivot": [96, 236],
+      "anchor": { "mode": "ground", "threshold": 96, "bandFraction": 0.1, "x": "ground-median" },
+      "edgeGuard": 2,
+      "margin": 3,
+      "output": { "atlas": "villager-atlas.png", "portrait": "villager.png", "portraitFrame": 0, "publicPath": "/assets/sprites/villager-atlas.png" },
+      "metadata": { "directions": ["s", "w", "n", "e"], "displayWidth": 46, "fps": 6 }
+    }
+  ]
+}

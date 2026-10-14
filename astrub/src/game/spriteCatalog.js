@@ -9,11 +9,14 @@ export const BUILDING_VISUALS = Object.freeze({
 });
 
 /** Footprint remains independent from graphic width. Only renderer is affected. */
-export function spriteDimensions(type, imageWidth, imageHeight) {
+export function spriteDimensions(type, imageWidth, imageHeight,visual=null) {
   const cfg=BUILDING_VISUALS[type];
   if(!cfg || !imageWidth || !imageHeight) return null;
-  const ratio=Math.min(cfg.width/imageWidth,cfg.maxHeight/imageHeight);
-  return {scale:ratio, width:imageWidth*ratio, height:imageHeight*ratio, originY:cfg.originY};
+  const body=visual?.bodyBounds??{x:0,y:0,width:imageWidth,height:imageHeight};
+  const ratio=Math.min(cfg.width/body.width,cfg.maxHeight/body.height);
+  return {scale:ratio,width:imageWidth*ratio,height:imageHeight*ratio,
+    bodyWidth:body.width*ratio,bodyHeight:body.height*ratio,
+    originX:visual?visual.pivot.x/imageWidth:.5,originY:visual?visual.pivot.y/imageHeight:cfg.originY};
 }
 
 export function spriteShadow(type, spriteWidth, footprintHeight=1){
@@ -27,7 +30,14 @@ export function spriteShadow(type, spriteWidth, footprintHeight=1){
 }
 
 export function sizeBuildingSprite(sprite,type){
-  const d=spriteDimensions(type,sprite.width,sprite.height);
+  // Image.width is a single frame; texture source width is the complete atlas.
+  const d=spriteDimensions(type,sprite.width,sprite.height,sprite.texture?.astrubBuildingVisual);
   if(!d)return sprite;
-  return sprite.setOrigin(.5,d.originY).setScale(d.scale);
+  return sprite.setOrigin(d.originX,d.originY).setScale(d.scale);
+}
+
+/** Keep the HUD above painted masonry rather than above transparent atlas padding. */
+export function buildingSpriteTop(sprite){
+  const visual=sprite.texture?.astrubBuildingVisual;
+  return visual?sprite.y+(visual.bodyBounds.y-visual.pivot.y)*sprite.scaleY:sprite.y-sprite.displayHeight*sprite.originY;
 }

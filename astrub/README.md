@@ -1,15 +1,17 @@
-# Astrub — Les premières pierres · v0.7.2
+# Astrub — Les premières pierres · v0.8.0
 
-[**Télécharger Astrub v0.7.2 — ZIP complet**](https://github.com/tfortun-dev/test/raw/refs/heads/main/astrub/downloads/Astrub-v0.7.2.zip)
+[**Télécharger Astrub v0.8.0 — ZIP complet**](https://github.com/tfortun-dev/test/raw/refs/heads/main/astrub/downloads/Astrub-v0.8.0.zip)
 
-Le ZIP contient les sources, la version compilée et les aperçus. Pour développer depuis ce dépôt : `cd astrub`, puis `npm ci` et `npm run dev`.
+Le ZIP contient le code source, les atlas prêts à l'emploi, la version compilée et les aperçus. Aucun export graphique n'est requis pour jouer. Pour développer depuis ce dépôt : `cd astrub`, puis `npm ci` et `npm run dev`.
+
+[Télécharger le pack ART v0.8.0 — sources et outils graphiques](https://github.com/tfortun-dev/test/raw/refs/heads/main/astrub/downloads/Astrub-art-v0.8.0.zip) : pack facultatif pour rééditer les planches et réexporter les sprites. Le dépôt conserve aussi ces sources ; elles sont séparées du ZIP du jeu pour limiter son poids.
 
 
-Prototype local de gestion de village isométrique : récolter, construire, améliorer, former des Iops et des Crâs, puis attaquer un camp de bandits. La v0.7.2 remet le remplissage des jauges derrière leur cadre et ajoute une première ambiance : des poules, des lapins et des villageois passent occasionnellement dans le village. Ces passants sont décoratifs ; les règles et la sauvegarde sont conservées.
+Prototype local de gestion de village isométrique : récolter, construire, améliorer, former des Iops et des Crâs, puis attaquer un camp de bandits. La v0.8.0 remplace les dessins de personnages par des sprites peints et anime les bâtiments avec des suites de poses. La palette et les références viennent des bâtiments fournis pour le projet. Les règles et la sauvegarde sont conservées.
 
 ## Jouer sous Windows
 
-1. Extraire le ZIP et ouvrir `Astrub-v0.7.2`.
+1. Extraire le ZIP et ouvrir `Astrub-v0.8.0`.
 2. Installer **Node.js LTS** si nécessaire : https://nodejs.org/ (Node 20.19+ ou 22.12+ conseillé).
 3. Double-cliquer sur `DEMARRER_WINDOWS.bat`. Le premier lancement télécharge les dépendances.
 4. Garder le terminal ouvert. Le navigateur s'ouvre sur `http://127.0.0.1:5173/` quand le serveur est prêt.
@@ -35,22 +37,28 @@ npm run preview -- --port 5173 --strictPort
 
 `dist/` est produit par le build. Ce ZIP contient aussi une version compilée dans `dist/`. Pour l'essayer sans installer les dépendances, si Python 3 est disponible : `python -m http.server 5173 --bind 127.0.0.1 --directory dist`, puis ouvrir la même adresse locale. `dist/index.html` doit être servi par HTTP ; un double-clic sur le fichier HTML ne lance pas le jeu.
 
-## Ce qui change dans la v0.7.2
+Pour préparer une livraison après vérification du jeu : `python3 tools/package_release.py`. Le script contrôle la version et les résultats du rapport, puis génère les deux ZIP dans `downloads/`. Chaque archive utilise le dossier `Astrub-v0.8.0`.
 
-- Jauges de ressources plus propres : le remplissage reste dans l'ouverture, derrière le rail ; les icônes, valeurs et boutons **+** restent devant.
-- Même ordre de calques pour les réserves des producteurs et les compteurs d'amélioration.
-- Petits passages de poules, lapins et villageois autour de la maison de guilde, avec des trajets qui contournent les bâtiments.
-- Ambiance mise en pause pendant les fenêtres, le placement et quand l'onglet est masqué. Elle est désactivée avec la préférence système de réduction des animations.
+## Ce qui change dans la v0.8.0
 
-Les interfaces illustrées et fonctions précédentes restent présentes : capacités de ressources, catégories **Production / Stockage / Armée**, raisons d'indisponibilité, fiche de caserne, guide de trois objectifs, préparation d'expédition et commandes clavier. Les passants ne produisent rien et ne participent pas aux combats ; le guide n'ajoute pas de récompense.
+- Sprites peints pour les villageois, poules, lapins, Iops et Crâs. Les passants gardent leurs petits trajets décoratifs autour des bâtiments.
+- Marche en quatre poses et quatre orientations ; les troupes disposent aussi d'une courte séquence d'attaque. Le repos peut conserver une même image.
+- Six bâtiments animés en quatre poses, avec une boucle lente ; leur ancrage, leur taille et leur zone de sélection restent fixes.
+- Huit illustrations de décor peintes dans la même direction artistique.
+- Portraits, cartes de construction et placement utilisent une pose fixe issue des mêmes exports.
+- Images éditées avec `image_gen`, puis découpées et normalisées en atlas PNG. Le jeu affiche ces images 2D ; il ne calcule pas de scène 3D en temps réel.
 
-Le détail figure dans [CHANGELOG-v0.7.2.md](CHANGELOG-v0.7.2.md). Pour faire évoluer les calques, lire [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md).
+Les interfaces, jauges et fonctions précédentes restent présentes : capacités, catégories **Production / Stockage / Armée**, fiche de caserne, trois objectifs, préparation d'expédition et commandes clavier. Les passants restent décoratifs. Les bâtiments gardent la même façade à tous les niveaux ; cette version n'ajoute pas de construction visuelle par palier.
+
+Le détail figure dans [CHANGELOG-v0.8.0.md](CHANGELOG-v0.8.0.md). [ART_PIPELINE.md](ART_PIPELINE.md) décrit les exports ; [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) décrit l'intégration et les calques.
 
 ## Aperçus
 
 [Village animé](APERCUS/Village-anime.gif) · [Village](APERCUS/Village.png) · [Construction](APERCUS/Construction.png) · [Actions de bâtiment](APERCUS/Actions.png) · [Expédition sur mobile](APERCUS/Expedition-mobile.png) · [Calques de l'interface](APERCUS/Calques.png)
 
-![Premiers passages dans le village — v0.7.2](APERCUS/Village-anime.gif)
+[Planches des troupes](APERCUS/Sprites-troupes.png) · [Passants](APERCUS/Sprites-passants.png) · [Bâtiments](APERCUS/Sprites-batiments.png) · [Décors](APERCUS/Sprites-decors.png)
+
+![Passages dans le village](APERCUS/Village-anime.gif)
 
 ## Commandes
 

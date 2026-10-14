@@ -254,6 +254,137 @@ def assert_small_meter(page,selector):
     assert not issues,'; '.join(issues)
 
 
+def assert_painted_atlases(page,label):
+    """Audit loaded PNG pixels, rather than trusting the exporter's hashes."""
+    report=page.evaluate("""async full => {
+      const scene=window.__e2e.main.game.scene.getScene('VillageScene'),errors=[],atlases=[];
+      const characters=scene.cache.json.get('astrub-character-manifest')?.characters;
+      const buildingManifest=scene.cache.json.get('astrub-building-animation-manifest');
+      const buildings=buildingManifest?.buildings??buildingManifest?.sprites??buildingManifest;
+      if(!characters||!buildings)return {errors:['Painted sprite manifests not loaded'],atlases};
+      const definitions=[...['villager','hen','rabbit','iop','cra'].map(type=>({type,character:true,key:['iop','cra'].includes(type)?`unit-anim-${type}`:`astrub-ambient-${type}`,definition:characters[type]})),...['townhall','sawmill','mine','warehouse','barracks','tower'].map(type=>({type,character:false,key:`b-animated-${type}`,definition:buildings[type]}))];
+      for(const {type,key,character,definition} of definitions){
+        if(!definition||!scene.textures.exists(key)){errors.push(`Missing painted atlas: ${type}`);continue;}
+        const texture=scene.textures.get(key),source=texture.getSourceImage();
+        const meta=character?texture.astrubCharacter:texture.astrubBuildingVisual;
+        const expectedPath=character?(definition.path||`/assets/sprites/${type}-atlas.png`):`/assets/buildings/animated/${type}-atlas.png`;
+        const resource=performance.getEntriesByType('resource').filter(entry=>new URL(entry.name).pathname===expectedPath).at(-1);
+        // Phaser's XHR loader assigns blob URLs to its ready HTMLImageElements.
+        if(!(source instanceof HTMLImageElement)||!source.complete||!source.naturalWidth||!resource||resource.responseStatus<200||resource.responseStatus>=400||resource.decodedBodySize<=0)errors.push(`Atlas is not a ready PNG image: ${type}`);
+        if(!meta){errors.push(`Atlas metadata not installed: ${type}`);continue;}
+        const columns=meta.columns,rows=character?4:Math.ceil(meta.frameCount/columns),count=character?columns*4:meta.frameCount;
+        if(character&&(meta.frameWidth!==192||meta.frameHeight!==256||columns!==(['iop','cra'].includes(type)?12:4)))errors.push(`Unexpected character cell layout: ${type}`);
+        if(!character&&count!==4)errors.push(`Building does not have four painted frames: ${type}`);
+        if(source.width!==meta.frameWidth*columns||source.height!==meta.frameHeight*rows)errors.push(`Atlas dimensions do not match its cells: ${type}`);
+        const pivot=definition.pivot??definition.feetPivot;
+        const px=Array.isArray(pivot)?pivot[0]:pivot?.x,py=Array.isArray(pivot)?pivot[1]:pivot?.y;
+        if(!Number.isFinite(px)||!Number.isFinite(py))errors.push(`Missing ground pivot: ${type}`);
+        if(character&&(Math.abs(meta.originX*meta.frameWidth-px)>.1||Math.abs(meta.originY*meta.frameHeight-py)>.1))errors.push(`Character origin disagrees with its foot pivot: ${type}`);
+        if(definition.framePivots&&(definition.framePivots.length!==count||definition.framePivots.some(at=>Math.abs(at[0]-px)>.1||Math.abs(at[1]-py)>.1)))errors.push(`Ground pivot changes between painted poses: ${type}`);
+        const item={type,key,frames:count,frameWidth:meta.frameWidth,frameHeight:meta.frameHeight,pivot:[px,py],source:expectedPath,status:resource?.responseStatus,visibleAlphaThreshold:32,poses:[]};
+        for(let index=0;index<count;index++)if(!texture.has(index))errors.push(`Painted frame missing: ${type}:${index}`);
+        if(!full){atlases.push(item);continue;}
+        const canvas=document.createElement('canvas');canvas.width=meta.frameWidth;canvas.height=meta.frameHeight;
+        const context=canvas.getContext('2d',{willReadFrequently:true}),groups=new Map();
+        for(let index=0;index<count;index++){
+          const frame=texture.get(index);context.clearRect(0,0,canvas.width,canvas.height);
+          context.drawImage(source,frame.cutX,frame.cutY,frame.cutWidth,frame.cutHeight,0,0,canvas.width,canvas.height);
+          const pixels=context.getImageData(0,0,canvas.width,canvas.height).data;
+          let opaque=0,minX=canvas.width,minY=canvas.height,maxX=-1,maxY=-1;
+          for(let offset=0;offset<pixels.length;offset+=4){
+            if(pixels[offset+3]<32){pixels.fill(0,offset,offset+4);continue;}
+            const point=offset/4,x=point%canvas.width,y=Math.floor(point/canvas.width);opaque++;
+            minX=Math.min(minX,x);maxX=Math.max(maxX,x);minY=Math.min(minY,y);maxY=Math.max(maxY,y);
+          }
+          if(opaque<20||opaque>canvas.width*canvas.height*.96)errors.push(`Empty or opaque painted cell: ${type}:${index}`);
+          if(minX<2||minY<2||maxX>=canvas.width-2||maxY>=canvas.height-2)errors.push(`Painted pose touches cell boundary: ${type}:${index}`);
+          const action=character&&columns===12?index%columns<4?'idle':index%columns<8?'walk':'attack':character?'walk':'ambient';
+          const direction=character?meta.directions[Math.floor(index/columns)]:null,groupKey=`${direction}:${action}`;
+          const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',pixels))].map(byte=>byte.toString(16).padStart(2,'0')).join('');
+          let group=groups.get(groupKey),changed=0;
+          if(!group){group={hashes:new Set(),first:new Uint8ClampedArray(pixels),opaque};groups.set(groupKey,group);}
+          else for(let offset=0;offset<pixels.length;offset+=4)if(pixels[offset]!==group.first[offset]||pixels[offset+1]!==group.first[offset+1]||pixels[offset+2]!==group.first[offset+2]||pixels[offset+3]!==group.first[offset+3])changed++;
+          group.hashes.add(hash);
+          if(action!=='idle'&&index%(character?4:count)!==0&&changed<(character?Math.max(20,group.opaque*.003):20))errors.push(`Painted poses barely differ: ${type}:${index}`);
+          item.poses.push({index,direction,action,hash,bounds:[minX,minY,maxX-minX+1,maxY-minY+1],opaque,changedFromFirst:changed});
+        }
+        for(const [group,value] of groups)if(!group.endsWith(':idle')&&value.hashes.size!==4)errors.push(`Four distinct painted poses required: ${type}:${group}`);
+        if(character){const firsts=item.poses.filter(pose=>pose.index%columns===(columns===12?4:0));if(new Set(firsts.map(pose=>pose.hash)).size!==4)errors.push(`Character directions repeat the same artwork: ${type}`);}
+        atlases.push(item);
+      }
+      const decor=[];
+      for(const key of ['tree-0','tree-1','decor-cart','decor-crate','decor-fountain','decor-ore','decor-rock']){
+        const source=scene.textures.exists(key)?scene.textures.get(key).getSourceImage():null;
+        const path=`/assets/decor/${key}.png`,resource=performance.getEntriesByType('resource').filter(entry=>new URL(entry.name).pathname===path).at(-1);
+        if(!(source instanceof HTMLImageElement)||!source.complete||!source.naturalWidth||!resource||resource.responseStatus<200||resource.responseStatus>=400||resource.decodedBodySize<=0)errors.push(`Painted decor not ready: ${key}`);
+        decor.push({key,path,width:source?.width,height:source?.height,status:resource?.responseStatus});
+      }
+      return {errors,atlases,decor};
+    }""",label==VIEWPORTS[0][0])
+    (OUT/f'painted-atlases-{label}.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+    assert not report['errors'],'; '.join(report['errors'])
+
+
+def building_animation_state(page):
+    return scene_value(page,"[...scene.buildingAnimator.entries.values()].map(({id,image,elapsed,frame})=>({id,frame,elapsed,x:image.x,y:image.y,origin:[image.originX,image.originY],scale:[image.scaleX,image.scaleY],size:[image.width,image.height],depth:image.depth}))")
+
+
+def assert_building_animation(page,label):
+    page.evaluate("""() => {
+      const scene=window.__e2e.main.game.scene.getScene('VillageScene');
+      const staticCount=()=>scene.layers.world.list.filter(node=>!node.name.startsWith('astrub:ambient:')).length;
+      window.__buildingSample={scene,count:staticCount(),entries:[...scene.buildingAnimator.entries.values()].map(entry=>({entry,image:entry.image,geometry:[entry.image.x,entry.image.y,entry.image.originX,entry.image.originY,entry.image.scaleX,entry.image.scaleY,entry.image.width,entry.image.height,entry.image.depth],frames:new Set([entry.frame])})),errors:[]};
+      window.__buildingSampler=setInterval(()=>{
+        const sample=window.__buildingSample;
+        if(staticCount()!==sample.count)sample.errors.push('Animation creates/removes world nodes');
+        for(const item of sample.entries){
+          const current=scene.buildingAnimator.entries.get(item.entry.id),image=current?.image;
+          if(image!==item.image){sample.errors.push('Building image replaced while animating');continue;}
+          if(JSON.stringify(item.geometry)!==JSON.stringify([image.x,image.y,image.originX,image.originY,image.scaleX,image.scaleY,image.width,image.height,image.depth]))sample.errors.push('Building moves/resizes while its frame changes');
+          item.frames.add(current.frame);
+        }
+      },80);
+    }""")
+    page.wait_for_timeout(1600)
+    report=page.evaluate("""() => {
+      clearInterval(window.__buildingSampler);
+      const sample=window.__buildingSample,scene=sample.scene;
+      for(let n=0;n<3;n++)scene.renderBuildings();
+      for(const item of sample.entries){
+        if(scene.buildingAnimator.entries.get(item.entry.id)?.image!==item.image)sample.errors.push('Selection/refresh replaces painted building');
+        if(item.frames.size<2)sample.errors.push('Painted building never changes frame');
+        const visual=item.image.texture.astrubBuildingVisual;
+        if(Math.abs(item.image.originX*item.image.width-visual.pivot.x)>.1||Math.abs(item.image.originY*item.image.height-visual.pivot.y)>.1)sample.errors.push('Building origin disagrees with ground pivot');
+      }
+      const diagnostic=scene.buildingAnimationDiagnostics;
+      if(!diagnostic||diagnostic.valid.length!==6||diagnostic.missing.length||diagnostic.invalid.length)sample.errors.push('Some painted buildings are missing or invalid');
+      return {errors:[...new Set(sample.errors)],buildings:sample.entries.map(item=>({type:item.entry.type,id:item.entry.id,frames:[...item.frames]})),diagnostic};
+    }""")
+    assert not report['errors'],'; '.join(report['errors'])
+    (OUT/f'building-animation-{label}.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+
+
+def assert_transparent_building_margin(page,building_id):
+    point=page.evaluate("""id => {
+      const scene=window.__e2e.main.game.scene.getScene('VillageScene'),image=scene.buildingObjects.find(item=>item.buildingId===id)?.image;
+      if(!image)return null;
+      const camera=scene.cameras.main,count=image.texture.astrubBuildingVisual.frameCount;
+      for(const fy of [.15,.3,.5,.7,.85])for(const fx of [.05,.95,.15,.85]){
+        const x=Math.floor(fx*image.width),y=Math.floor(fy*image.height);
+        if(Array.from({length:count},(_,frame)=>scene.textures.getPixelAlpha(x,y,image.texture.key,frame)).some(alpha=>alpha>=18))continue;
+        const point=camera.matrix.transformPoint(image.x+(fx-image.originX)*image.displayWidth-camera.scrollX,image.y+(fy-image.originY)*image.displayHeight-camera.scrollY);
+        const world=camera.getWorldPoint(point.x,point.y),tile=window.__e2e.iso.ij(world.x,world.y);
+        // Clicking the occupied floor is intentionally valid even without masonry.
+        if(window.__e2e.state.buildingAt(tile.i,tile.j)?.id===id)continue;
+        if(document.elementFromPoint(point.x,point.y)?.tagName==='CANVAS')return {x:point.x,y:point.y};
+      }
+      return null;
+    }""",building_id)
+    assert point,'No reachable transparent atlas margin to test'
+    page.mouse.click(point['x'],point['y'])
+    assert scene_value(page,'scene.selectedId')!=building_id,'Transparent atlas padding intercepts map clicks'
+
+
 def remember_ambient(page):
     page.evaluate("() => {const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__stoppedAmbient={controller:a,sprites:a.actors.map(actor=>actor.sprite),reduced:a.reducedMotion};}")
 
@@ -276,6 +407,7 @@ def assert_ambient_destroyed(page):
 
 
 def new_feature_probes(page,label):
+    assert_painted_atlases(page,label)
     original=state(page)['resources']
     for percent in [0,1,50,100]:
         page.evaluate("percent => {const s=window.__e2e.state;for(const key of ['gold','wood','stone'])s.getState().resources[key]=s.cap()*percent/100;s.save();}",percent)
@@ -285,6 +417,7 @@ def new_feature_probes(page,label):
         page.locator('.resource-stack').screenshot(path=str(OUT/f'meters-{label}-{percent:03d}.png'),animations='disabled')
     page.evaluate('resources => {Object.assign(window.__e2e.state.getState().resources,resources);window.__e2e.state.save();}',original)
     page.wait_for_timeout(450)
+    assert_building_animation(page,label)
     before=state(page)
     page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.actors.some(a=>a.age>=700)",timeout=10000)
     page.evaluate("() => {const ambient=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__ambientMoving={actor:ambient.actors[0],age:ambient.actors[0].age,i:ambient.actors[0].i,j:ambient.actors[0].j,poses:new Set()};window.__ambientSample=setInterval(()=>{if(window.__ambientMoving.actor.sprite.active)window.__ambientMoving.poses.add(window.__ambientMoving.actor.sprite.frame.name);},40);}")
@@ -299,20 +432,25 @@ def new_feature_probes(page,label):
     page.locator('#menu-settings').click()
     page.locator('#menu-help').click()
     page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.paused")
+    frozen_buildings=building_animation_state(page)
     page.evaluate("() => {const a=window.__ambientMoving.actor;window.__ambientFrozen=[a.age,a.i,a.j];}")
     page.wait_for_timeout(1100)
     assert page.evaluate("JSON.stringify(window.__ambientFrozen)===JSON.stringify([window.__ambientMoving.actor.age,window.__ambientMoving.actor.i,window.__ambientMoving.actor.j])"),'Ambient actor moves behind modal'
+    assert building_animation_state(page)==frozen_buildings,'Building animation continues behind modal'
     page.keyboard.press('Escape')
     page.emulate_media(reduced_motion='reduce')
     page.wait_for_function("() => {const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;return a.reducedMotion&&a.actors.length===0;}")
     page.wait_for_timeout(900)
     assert scene_value(page,'scene.ambience.actors.length')==0
+    assert all(building['frame']==0 for building in building_animation_state(page)),'Reduced motion does not reset buildings to a still'
     page.emulate_media(reduced_motion='no-preference')
     page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.actors.some(a=>a.age>=700)",timeout=10000)
     # Simulate the platform visibility event without changing any gameplay fields.
     page.evaluate("() => {Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__hiddenAmbient=a.actors.map(p=>[p.age,p.i,p.j]);}")
+    hidden_buildings=building_animation_state(page)
     page.wait_for_timeout(700)
     assert page.evaluate("JSON.stringify(window.__hiddenAmbient)===JSON.stringify(window.__e2e.main.game.scene.getScene('VillageScene').ambience.actors.map(p=>[p.age,p.i,p.j]))"),'Ambient actor moves in hidden document'
+    assert building_animation_state(page)==hidden_buildings,'Building animation continues in hidden document'
     page.evaluate("() => {delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));}")
     assert_ambient_routes(page)
 
@@ -416,6 +554,8 @@ def run_viewport(browser, label, width, height):
     # A producer exposes a real reserve, a collection button, and a full-store reason.
     producer=next(b for b in state(page)['buildings'] if b['type']=='mine')
     click_building(page,producer['id'])
+    assert_transparent_building_margin(page,producer['id'])
+    click_building(page,producer['id'])
     if page.locator('#selection-info-toggle').get_attribute('aria-expanded')=='false':
         page.locator('#selection-info-toggle').click()
     expect(page.locator('#collect-panel')).to_be_visible()
@@ -495,8 +635,10 @@ def run_viewport(browser, label, width, height):
     expect(page.locator('#placement-confirm')).to_be_disabled()
     expect(page.locator('#placement-status')).to_contain_text('occupée')
     page.wait_for_function("() => window.__e2e.main.game.scene.getScene('VillageScene').ambience.paused")
+    placement_buildings=building_animation_state(page)
     page.evaluate("() => {const a=window.__e2e.main.game.scene.getScene('VillageScene').ambience;window.__placementActors=a.actors.map(actor=>({actor,age:actor.age,i:actor.i,j:actor.j,reroutes:actor.reroutes}));}")
     page.wait_for_timeout(700)
+    assert building_animation_state(page)==placement_buildings,'Building animation continues during placement'
     assert page.evaluate('window.__placementActors.every(p=>p.age===p.actor.age&&p.i===p.actor.i&&p.j===p.actor.j)'),'Ambient actor moves during placement'
     before = state(page)
     page.mouse.move(slot['sx'],slot['sy'])
@@ -722,15 +864,229 @@ def run_viewport(browser, label, width, height):
     return result
 
 
+# Track the exact runtime callback objects rather than all app listeners. The
+# wrapper forwards native behavior unchanged and lives only in this new context.
+CHARACTER_LISTENER_LEDGER = """() => {
+  const add=EventTarget.prototype.addEventListener, remove=EventTarget.prototype.removeEventListener;
+  window.__spriteListenerRows=[];
+  const tracked=(target,type)=>type==='visibilitychange'&&target===document ||
+    type==='change'&&target instanceof MediaQueryList&&target.media.includes('prefers-reduced-motion');
+  EventTarget.prototype.addEventListener=function(type,callback,options){
+    if(tracked(this,type)&&!window.__spriteListenerRows.some(r=>r.active&&r.target===this&&r.type===type&&r.callback===callback))
+      window.__spriteListenerRows.push({target:this,type,callback,active:true});
+    return add.call(this,type,callback,options);
+  };
+  EventTarget.prototype.removeEventListener=function(type,callback,options){
+    if(tracked(this,type))for(const row of window.__spriteListenerRows)
+      if(row.target===this&&row.type===type&&row.callback===callback)row.active=false;
+    return remove.call(this,type,callback,options);
+  };
+}"""
+
+BATTLE_CHARACTER_SAMPLER = """async () => {
+  const loaded=performance.getEntriesByType('resource').filter(e=>new URL(e.name).pathname==='/src/game/renderLayers.js').at(-1)?.name;
+  const {unitDepth}=await import(loaded||'/src/game/renderLayers.js');
+  const scene=window.__e2e.main.game.scene.getScene('BattleScene');
+  for(const type of ['iop','cra'])for(const [row,direction] of ['s','w','n','e'].entries())for(const [action,offset] of [['idle',0],['walk',4],['attack',8]]){
+    const animation=scene.anims.get(`astrub:${type}:${action}:${direction}`);
+    if(!animation||animation.frames.length!==4||animation.frames.some((frame,index)=>Number(frame.textureFrame)!==row*12+offset+index))throw new Error(`Wrong painted animation sequence: ${type}:${action}:${direction}`);
+  }
+  const probe=window.__battleSpriteProbe={scene,observed:{},errors:[],samples:0};
+  const fail=message=>{if(!probe.errors.includes(message))probe.errors.push(message);};
+  probe.take=()=>{
+    probe.samples++;
+    for(const unit of scene.units){
+      const sprite=unit.image, sheet=sprite.texture.astrubCharacter;
+      const row=probe.observed[unit.type] ||= {idle:new Set(),walk:new Set(),attack:new Set(),directions:new Set()};
+      if(!sprite.active)continue;
+      if(!sheet || sheet.frameWidth!==192 || sheet.frameHeight!==256 || sheet.columns!==12)
+        {fail(unit.type+': wrong painted-sheet metadata');continue;}
+      if(sprite.displayList!==scene.layers.world || sprite.input || sprite.depth!==unitDepth(sprite.y))
+        fail(unit.type+': interaction/layer/depth mismatch');
+      if(sprite.originX!==sheet.originX || sprite.originY!==sheet.originY ||
+         Math.abs(sprite.scaleX-Math.min(sheet.displayWidth/sheet.bodyBounds.width,sheet.maxHeight?sheet.maxHeight/sheet.bodyBounds.height:Infinity))>1e-8 || sprite.scaleX!==sprite.scaleY ||
+         sprite.frame.realWidth!==192 || sprite.frame.realHeight!==256 ||
+         sprite.frame.cutWidth!==192 || sprite.frame.cutHeight!==256)
+        fail(unit.type+': origin, scale or frame dimensions changed');
+      if(Math.abs(sprite.x-unit.x)>1e-6 || Math.abs(sprite.y-unit.y)>1e-6)
+        fail(unit.type+': visual feet detached from gameplay position');
+      const frame=Number(sprite.frame.name),pose=frame%12,facing=sheet.directions[Math.floor(frame/12)];
+      if(!Number.isInteger(frame)||frame<0||frame>=48||facing!==unit.facing)
+        fail(unit.type+': invalid frame/facing');
+      if(scene.characterMotionReduced){
+        if(pose!==0||sprite.anims.isPlaying)fail(unit.type+': reduced motion is not a stationary idle pose');
+        row.idle.add(pose);continue;
+      }
+      if(!scene.input.enabled||document.hidden)continue;
+      const action=sprite.anims.currentAnim?.key.split(':')[2];
+      if(!sprite.anims.isPlaying||!row[action])continue;
+      const first={idle:0,walk:4,attack:8}[action];
+      if(pose<first||pose>first+3)fail(unit.type+': animation key and painted pose disagree');
+      row[action].add(pose);row.directions.add(facing);
+    }
+  };
+  probe.interval=setInterval(probe.take,20);probe.take();
+  probe.snapshot=()=>({units:scene.units.map(u=>({type:u.type,x:u.x,y:u.y,frame:u.image.frame.name})),hp:scene.targets.map(t=>t.hp)});
+  probe.remember=()=>{
+    probe.stopped={scene,sprites:scene.units.map(u=>u.image),reduced:scene.characterMotionReduced,
+      rows:window.__spriteListenerRows.filter(r=>r.callback===scene.onCharacterMotionChange||r.callback===scene.onCharacterVisibilityChange)};
+    if(probe.stopped.rows.length!==2||probe.stopped.rows.some(r=>!r.active))
+      throw new Error('Expected exactly two active character preference/visibility callbacks');
+    clearInterval(probe.interval);
+  };
+}"""
+
+
+def run_battle_sprite_probe(browser, url, label='desktop', width=1440, height=960, helpers=None):
+    helpers = helpers or globals()
+    install, active, state = [helpers[name] for name in ('install_observer', 'active', 'state')]
+    OUT.mkdir(parents=True, exist_ok=True)
+    context = browser.new_context(viewport={'width': width, 'height': height}, device_scale_factor=1)
+    context.add_init_script('(' + CHARACTER_LISTENER_LEDGER + ')()')
+    page = context.new_page()
+    errors, failed = [], []
+    page.on('pageerror', lambda error: errors.append(str(error)))
+    page.on('requestfailed', lambda request: failed.append(request.url))
+    page.on('response', lambda response: failed.append(f'{response.status} {response.url}') if response.status >= 400 else None)
+
+    def battle(expression):
+        return page.evaluate("() => {const scene=window.__e2e.main.game.scene.getScene('BattleScene');return " + expression + ";}")
+
+    def deploy_pair():
+        # HP fixture leaves the normal attack/cooldown/damage code running.
+        page.evaluate("() => {const scene=window.__e2e.main.game.scene.getScene('BattleScene');for(const target of scene.targets){target.hp=target.maxHp=1000000;scene.drawHP(target);}}")
+        point = page.evaluate("""() => {
+          const scene=window.__e2e.main.game.scene.getScene('BattleScene'),world=window.__e2e.iso.xy(3,3),cam=scene.cameras.main;
+          const p=cam.matrix.transformPoint(world.x-cam.scrollX,world.y-cam.scrollY);
+          return {x:p.x,y:p.y,worldX:world.x,worldY:world.y,tag:document.elementFromPoint(p.x,p.y)?.tagName};
+        }""")
+        assert point['tag'] == 'CANVAS', f'Deployment zone obscured: {point}'
+        for troop in ('iop', 'cra'):
+            page.locator(f'#troop-palette [data-troop="{troop}"]').click()
+            page.mouse.click(point['x'], point['y'])
+        page.wait_for_function("() => {const s=window.__e2e.main.game.scene.getScene('BattleScene');return s.used.iop===1&&s.used.cra===1&&s.units.length===2;}")
+        return point
+
+    def assert_cleaned():
+        assert page.evaluate("() => {const p=window.__battleSpriteProbe.stopped;return p.rows.every(r=>!r.active)&&p.sprites.every(s=>!s.active);}"), 'Stopped scene retains character callbacks or sprites'
+        page.emulate_media(reduced_motion='reduce')
+        page.wait_for_timeout(100)
+        assert page.evaluate("() => {const p=window.__battleSpriteProbe.stopped;return p.scene.characterMotionReduced===p.reduced;}"), 'Stopped scene reacts to motion preference'
+        page.emulate_media(reduced_motion='no-preference')
+
+    try:
+        page.goto(url, wait_until='networkidle')
+        install(page)
+        active(page, 'VillageScene')
+        helpers['assert_painted_atlases'](page,label)
+        expect(page.locator('#astrub-startup')).to_be_hidden()
+        expect(page.locator('#help-overlay')).to_be_visible()
+        page.locator('#help-play').click()
+        # Use the same state validation/cost path as a normal construction.
+        page.evaluate("""() => {
+          const s=window.__e2e.state;Object.assign(s.getState().resources,{gold:s.cap(),wood:s.cap(),stone:s.cap()});
+          let placed=false;for(let y=1;y<35&&!placed;y++)for(let x=1;x<35&&!placed;x++)
+            if(s.canBuild('barracks',x,y)){const result=s.place('barracks',x,y);if(!result.ok)throw new Error(result.msg);placed=true;}
+          if(!placed)throw new Error('No barracks fixture location');
+          Object.assign(s.getState().troops,{iop:1,cra:1});s.getState().queue=[];s.save();
+        }""")
+        wins = state(page)['wins']
+        page.locator('#raid-btn').click()
+        page.locator('#expedition-start').click()
+        active(page, 'BattleScene')
+        page.evaluate(BATTLE_CHARACTER_SAMPLER)
+        deployment=deploy_pair()
+        page.wait_for_function("() => ['iop','cra'].every(t=>window.__battleSpriteProbe.observed[t]?.walk.size>=2)", timeout=15000)
+        page.screenshot(path=str(OUT/f'battle-walk-{label}.png'))
+
+        # A fresh reduced-motion deployment avoids relying on older units still walking.
+        page.emulate_media(reduced_motion='reduce')
+        page.wait_for_function("() => window.__battleSpriteProbe.scene.characterMotionReduced")
+        reduced_before = page.evaluate('window.__battleSpriteProbe.snapshot()')
+        page.evaluate("() => {const s=window.__e2e.state;s.getState().troops.iop=2;s.save();}")
+        page.locator('#troop-palette [data-troop="iop"]').click()
+        page.mouse.click(deployment['x'],deployment['y'])
+        page.wait_for_function("() => window.__battleSpriteProbe.scene.units.length===3")
+        page.wait_for_function("point => {const u=window.__battleSpriteProbe.scene.units.at(-1);return Math.abs(u.x-point.worldX)+Math.abs(u.y-point.worldY)>.5;}", arg=deployment, timeout=4000)
+        page.wait_for_function('hp => window.__battleSpriteProbe.scene.targets.some((t,i)=>t.hp<hp[i])', arg=reduced_before['hp'], timeout=15000)
+        assert battle("scene.units.every(u=>Number(u.image.frame.name)%12===0&&!u.image.anims.isPlaying)"), 'Reduced motion animates a sprite'
+        page.emulate_media(reduced_motion='no-preference')
+        page.wait_for_function("() => ['iop','cra'].every(t=>{const a=window.__battleSpriteProbe.observed[t];return a.attack.size>=2&&a.idle.size>=1;})", timeout=15000)
+        page.screenshot(path=str(OUT / f'battle-painted-{label}.png'))
+
+        page.locator('#menu-settings').click()
+        page.locator('#menu-help').click()
+        expect(page.locator('#help-overlay')).to_be_visible()
+        page.wait_for_function("() => {const s=window.__battleSpriteProbe.scene;return !s.input.enabled&&s.units.every(u=>u.image.anims.isPaused);}")
+        frozen = page.evaluate('window.__battleSpriteProbe.snapshot()')
+        page.wait_for_timeout(650)
+        assert page.evaluate('window.__battleSpriteProbe.snapshot()') == frozen, 'Modal allows animation, movement or damage'
+        page.keyboard.press('Escape')
+        expect(page.locator('#help-overlay')).to_be_hidden()
+
+        # Synthetic visibility event exercises the app listener. It does not
+        # claim that Chromium/OS background throttling has been measured.
+        page.evaluate("() => {Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));}")
+        frozen = page.evaluate('window.__battleSpriteProbe.snapshot()')
+        page.wait_for_timeout(650)
+        assert page.evaluate('window.__battleSpriteProbe.snapshot()') == frozen, 'Hidden page allows animation, movement or damage'
+        page.evaluate("() => {delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));}")
+        page.wait_for_function('hp => window.__battleSpriteProbe.scene.targets.some((t,i)=>t.hp<hp[i])', arg=frozen['hp'], timeout=2500)
+        metrics = page.evaluate("() => {const p=window.__battleSpriteProbe;return {samples:p.samples,errors:p.errors,observed:Object.fromEntries(Object.entries(p.observed).map(([type,row])=>[type,Object.fromEntries(Object.entries(row).map(([action,frames])=>[action,[...frames].sort()]))]))};}")
+        assert not metrics['errors'], metrics['errors']
+        assert state(page)['wins'] == wins and not battle('scene.over'), 'Long observation accidentally completed a battle'
+        page.evaluate('window.__battleSpriteProbe.remember()')
+        page.locator('#leave-battle').click()
+        active(page, 'VillageScene')
+        assert_cleaned()
+
+        # Restarting the same Phaser scene must install a fresh pair of handlers;
+        # reset then removes that pair and destroys both deployed painted sprites.
+        page.evaluate("() => {const s=window.__e2e.state;Object.assign(s.getState().troops,{iop:1,cra:1});s.save();}")
+        page.locator('#raid-btn').click()
+        page.locator('#expedition-start').click()
+        active(page, 'BattleScene')
+        page.evaluate(BATTLE_CHARACTER_SAMPLER)
+        deploy_pair()
+        page.evaluate('window.__battleSpriteProbe.remember()')
+        page.locator('#menu-settings').click()
+        page.locator('#menu-reset').click()
+        expect(page.locator('#reset-overlay')).to_be_visible()
+        page.locator('#reset-confirm').click()
+        active(page, 'VillageScene')
+        assert not page.evaluate("window.__e2e.main.game.scene.isActive('BattleScene')")
+        assert_cleaned()
+        assert not errors and not failed, {'pageerrors': errors, 'failed_requests': failed}
+        result = {'viewport': label, **metrics, 'reduced_motion': 'idle pose while movement and damage continue',
+                  'pauses': ['help modal', 'synthetic document.hidden'], 'cleanup': ['return', 'restart and reset'],
+                  'pageerrors': errors, 'failed_requests': failed}
+        (OUT / f'battle-probe-{label}.json').write_text(json.dumps(result, ensure_ascii=False, indent=2))
+        return result
+    except Exception:
+        page.screenshot(path=str(OUT / f'battle-probe-failure-{label}.png'))
+        raise
+    finally:
+        # Closing this isolated context also clears sampling and synthetic
+        # document visibility if an assertion failed before restoring them.
+        context.close()
+
 if __name__ == '__main__':
     OUT.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, executable_path=os.getenv('ASTRUB_CHROMIUM') or shutil.which('chromium') or shutil.which('chromium-browser'), args=['--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader'])
         results = []
+        painted_battle = None
         for label,width,height in VIEWPORTS:
             print(f'Checking {label} {width}x{height}', flush=True)
             try:
-                results.append(run_viewport(browser,label,width,height))
+                if painted_battle is None:
+                    print('Checking painted battle animation runtime', flush=True)
+                    painted_battle = run_battle_sprite_probe(browser,URL,label,width,height)
+                result=run_viewport(browser,label,width,height)
+                result['painted_sprite_checks']='PNG cells/pivots, distinct painted poses, stable building images, frame-only animation, transparent pixel hit area, pause/reduced motion'
+                if label==VIEWPORTS[0][0]:
+                    result['painted_battle']=painted_battle
+                results.append(result)
             except Exception as error:
                 print(str(error),flush=True)
                 for context in browser.contexts:

@@ -1,15 +1,29 @@
 {
-  "version": "0.7.2",
+  "version": "0.8.0",
   "unit_tests": {
-    "executed": 25,
-    "passed": 25,
+    "executed": 32,
+    "passed": 32,
+    "failed": 0
+  },
+  "sprite_export_tests": {
+    "executed": 7,
+    "passed": 7,
     "failed": 0
   },
   "build": "passed",
   "production_smoke": {
     "status": "passed",
+    "url": "http://127.0.0.1:5177/",
+    "checks": [
+      "startup/canvas/help",
+      "construction categories and Army",
+      "expedition blocked without barracks",
+      "Escape and restored focus",
+      "served Cra PNG equals final repository PNG"
+    ],
     "page_errors": [],
-    "failed_requests": []
+    "failed_requests": [],
+    "cra_sha256": "265a6ef8cd04049a3019aa67d37fa47d10191b960d48c517ee3b29d9ef792fb2"
   },
   "browser": [
     {
@@ -17,10 +31,6 @@
       "width": 1440,
       "height": 960,
       "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle, training completion reactivates troop card, victory/reward/troop accounting/3 objectives complete",
-      "pageerrors": [],
-      "failed_requests": [],
-      "result": "PASS",
-      "version": "0.7.2",
       "meter_percentages": [
         0,
         1,
@@ -28,28 +38,75 @@
         100
       ],
       "ambience": "walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup",
-      "targeted_layer_lifecycle": {
+      "pageerrors": [],
+      "failed_requests": [],
+      "painted_sprite_checks": "PNG cells/pivots, distinct painted poses, stable building images, frame-only animation, transparent pixel hit area, pause/reduced motion",
+      "painted_battle": {
         "viewport": "desktop",
-        "hud_percentages": [
-          0,
-          1,
-          50,
-          100
+        "samples": 77,
+        "errors": [],
+        "observed": {
+          "iop": {
+            "idle": [
+              0,
+              1
+            ],
+            "walk": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "attack": [
+              10,
+              11,
+              8,
+              9
+            ],
+            "directions": [
+              "s"
+            ]
+          },
+          "cra": {
+            "idle": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "walk": [
+              4,
+              5,
+              6
+            ],
+            "attack": [
+              10,
+              11,
+              8,
+              9
+            ],
+            "directions": [
+              "s"
+            ]
+          }
+        },
+        "reduced_motion": "idle pose while movement and damage continue",
+        "pauses": [
+          "help modal",
+          "synthetic document.hidden"
         ],
-        "hud_precision_px": 0.1,
-        "small_meters": [
-          "collection",
-          "upgrade"
-        ],
-        "ambience": [
-          "exact current footprints before/after move and build",
-          "old sprites destroyed",
-          "old media/visibility/destroy listeners removed",
-          "reset from active raid"
+        "cleanup": [
+          "return",
+          "restart and reset"
         ],
         "pageerrors": [],
-        "result": "PASS"
-      }
+        "failed_requests": []
+      },
+      "status": "passed",
+      "version": "0.8.0",
+      "final_painted_assets": "painted-atlases-final.json",
+      "final_cra_png_sha256": "265a6ef8cd04049a3019aa67d37fa47d10191b960d48c517ee3b29d9ef792fb2",
+      "result": "PASS"
     },
     {
       "viewport": "mobile",
@@ -65,30 +122,12 @@
       "ambience": "walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup",
       "pageerrors": [],
       "failed_requests": [],
-      "result": "PASS",
-      "version": "0.7.2",
-      "targeted_layer_lifecycle": {
-        "viewport": "mobile",
-        "hud_percentages": [
-          0,
-          1,
-          50,
-          100
-        ],
-        "hud_precision_px": 0.1,
-        "small_meters": [
-          "collection",
-          "upgrade"
-        ],
-        "ambience": [
-          "exact current footprints before/after move and build",
-          "old sprites destroyed",
-          "old media/visibility/destroy listeners removed",
-          "reset from active raid"
-        ],
-        "pageerrors": [],
-        "result": "PASS"
-      }
+      "painted_sprite_checks": "PNG cells/pivots, distinct painted poses, stable building images, frame-only animation, transparent pixel hit area, pause/reduced motion",
+      "status": "passed",
+      "version": "0.8.0",
+      "final_painted_assets": "painted-atlases-final.json",
+      "final_cra_png_sha256": "265a6ef8cd04049a3019aa67d37fa47d10191b960d48c517ee3b29d9ef792fb2",
+      "result": "PASS"
     },
     {
       "viewport": "landscape",
@@ -104,32 +143,522 @@
       "ambience": "walking poses, shared world depth, non-interactivity, bounded routes/building obstacles, modal/placement/hidden pause, reduced motion, reroute, scene cleanup",
       "pageerrors": [],
       "failed_requests": [],
-      "result": "PASS",
-      "version": "0.7.2",
-      "targeted_layer_lifecycle": {
-        "viewport": "landscape",
-        "hud_percentages": [
-          0,
-          1,
-          50,
-          100
-        ],
-        "hud_precision_px": 0.1,
-        "small_meters": [
-          "collection",
-          "upgrade"
-        ],
-        "ambience": [
-          "exact current footprints before/after move and build",
-          "old sprites destroyed",
-          "old media/visibility/destroy listeners removed",
-          "reset from active raid"
-        ],
-        "pageerrors": [],
-        "result": "PASS"
-      }
+      "painted_sprite_checks": "PNG cells/pivots, distinct painted poses, stable building images, frame-only animation, transparent pixel hit area, pause/reduced motion",
+      "status": "passed",
+      "version": "0.8.0",
+      "final_painted_assets": "painted-atlases-final.json",
+      "final_cra_png_sha256": "265a6ef8cd04049a3019aa67d37fa47d10191b960d48c517ee3b29d9ef792fb2",
+      "result": "PASS"
     }
   ],
+  "painted_assets": {
+    "passed": true,
+    "assets": [
+      {
+        "type": "villager",
+        "family": "characters",
+        "atlasSize": [
+          768,
+          1024
+        ],
+        "frameCount": 16,
+        "distinctFrames": 16,
+        "bodyBounds": [
+          45,
+          139,
+          100,
+          98
+        ],
+        "pivot": [
+          96.0,
+          236.0
+        ],
+        "opaqueGroundYRange": [
+          236,
+          236
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "hen",
+        "family": "characters",
+        "atlasSize": [
+          768,
+          1024
+        ],
+        "frameCount": 16,
+        "distinctFrames": 16,
+        "bodyBounds": [
+          39,
+          151,
+          113,
+          86
+        ],
+        "pivot": [
+          96.0,
+          236.0
+        ],
+        "opaqueGroundYRange": [
+          236,
+          236
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "rabbit",
+        "family": "characters",
+        "atlasSize": [
+          768,
+          1024
+        ],
+        "frameCount": 16,
+        "distinctFrames": 16,
+        "bodyBounds": [
+          38,
+          155,
+          112,
+          82
+        ],
+        "pivot": [
+          96.0,
+          236.0
+        ],
+        "opaqueGroundYRange": [
+          236,
+          236
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "iop",
+        "family": "characters",
+        "atlasSize": [
+          2304,
+          1024
+        ],
+        "frameCount": 48,
+        "distinctFrames": 32,
+        "bodyBounds": [
+          6,
+          119,
+          182,
+          118
+        ],
+        "pivot": [
+          96.0,
+          236.0
+        ],
+        "opaqueGroundYRange": [
+          236,
+          236
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "cra",
+        "family": "characters",
+        "atlasSize": [
+          2304,
+          1024
+        ],
+        "frameCount": 48,
+        "distinctFrames": 32,
+        "bodyBounds": [
+          4,
+          106,
+          174,
+          131
+        ],
+        "pivot": [
+          96.0,
+          236.0
+        ],
+        "opaqueGroundYRange": [
+          236,
+          236
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "townhall",
+        "family": "buildings",
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "frameCount": 4,
+        "distinctFrames": 4,
+        "bodyBounds": [
+          25,
+          92,
+          375,
+          379
+        ],
+        "pivot": [
+          256.0,
+          470.0
+        ],
+        "opaqueGroundYRange": [
+          470,
+          470
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "sawmill",
+        "family": "buildings",
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "frameCount": 4,
+        "distinctFrames": 4,
+        "bodyBounds": [
+          58,
+          93,
+          388,
+          378
+        ],
+        "pivot": [
+          256.0,
+          470.0
+        ],
+        "opaqueGroundYRange": [
+          470,
+          470
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "mine",
+        "family": "buildings",
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "frameCount": 4,
+        "distinctFrames": 4,
+        "bodyBounds": [
+          92,
+          65,
+          404,
+          406
+        ],
+        "pivot": [
+          256.0,
+          470.0
+        ],
+        "opaqueGroundYRange": [
+          470,
+          470
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "warehouse",
+        "family": "buildings",
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "frameCount": 4,
+        "distinctFrames": 4,
+        "bodyBounds": [
+          25,
+          32,
+          456,
+          439
+        ],
+        "pivot": [
+          256.0,
+          470.0
+        ],
+        "opaqueGroundYRange": [
+          470,
+          470
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "barracks",
+        "family": "buildings",
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "frameCount": 4,
+        "distinctFrames": 4,
+        "bodyBounds": [
+          84,
+          52,
+          342,
+          419
+        ],
+        "pivot": [
+          256.0,
+          470.0
+        ],
+        "opaqueGroundYRange": [
+          470,
+          470
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "tower",
+        "family": "buildings",
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "frameCount": 4,
+        "distinctFrames": 4,
+        "bodyBounds": [
+          30,
+          64,
+          402,
+          407
+        ],
+        "pivot": [
+          256.0,
+          470.0
+        ],
+        "opaqueGroundYRange": [
+          470,
+          470
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "decor-cart",
+        "family": "decorations",
+        "atlasSize": [
+          192,
+          192
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          5,
+          27,
+          174,
+          150
+        ],
+        "pivot": [
+          96.0,
+          176.0
+        ],
+        "opaqueGroundYRange": [
+          176,
+          176
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "decor-crate",
+        "family": "decorations",
+        "atlasSize": [
+          192,
+          192
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          6,
+          10,
+          170,
+          166
+        ],
+        "pivot": [
+          96.0,
+          176.0
+        ],
+        "opaqueGroundYRange": [
+          176,
+          176
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "decor-fountain",
+        "family": "decorations",
+        "atlasSize": [
+          192,
+          192
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          6,
+          8,
+          171,
+          168
+        ],
+        "pivot": [
+          96.0,
+          176.0
+        ],
+        "opaqueGroundYRange": [
+          176,
+          176
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "decor-ore",
+        "family": "decorations",
+        "atlasSize": [
+          192,
+          192
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          14,
+          4,
+          144,
+          172
+        ],
+        "pivot": [
+          96.0,
+          176.0
+        ],
+        "opaqueGroundYRange": [
+          176,
+          176
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "decor-rock",
+        "family": "decorations",
+        "atlasSize": [
+          192,
+          192
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          4,
+          15,
+          171,
+          161
+        ],
+        "pivot": [
+          96.0,
+          176.0
+        ],
+        "opaqueGroundYRange": [
+          176,
+          176
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "tree-0",
+        "family": "decorations",
+        "atlasSize": [
+          128,
+          160
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          3,
+          33,
+          116,
+          117
+        ],
+        "pivot": [
+          64.0,
+          150.0
+        ],
+        "opaqueGroundYRange": [
+          150,
+          150
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "tree-1",
+        "family": "decorations",
+        "atlasSize": [
+          128,
+          160
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          6,
+          37,
+          119,
+          114
+        ],
+        "pivot": [
+          64.0,
+          150.0
+        ],
+        "opaqueGroundYRange": [
+          150,
+          150
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      },
+      {
+        "type": "decor-flowers",
+        "family": "decorations",
+        "atlasSize": [
+          192,
+          192
+        ],
+        "frameCount": 1,
+        "distinctFrames": 1,
+        "bodyBounds": [
+          36,
+          68,
+          149,
+          108
+        ],
+        "pivot": [
+          96.0,
+          176.0
+        ],
+        "opaqueGroundYRange": [
+          176,
+          176
+        ],
+        "noVisibleEdgeTouch": true,
+        "hashesMatch": true
+      }
+    ]
+  },
+  "animation_scope": {
+    "characters": 5,
+    "buildings": 6,
+    "decorations": 8,
+    "orientations": 4,
+    "poses_per_walk_or_attack": 4,
+    "poses_per_building": 4,
+    "idle": "fixed pose repeated in four cells"
+  },
   "resource_meter_checks": {
     "status": "passed",
     "tested_percentages": [
@@ -143,19 +672,2752 @@
       "mobile",
       "landscape"
     ],
-    "max_width_error_px": 0.0122,
+    "width_error_tolerance_px": 0.1,
     "layers": "background, clipped fill, masked illustrated rim, labels/icons, production shortcut"
   },
-  "ambient_checks": {
-    "status": "passed",
-    "species": [
-      "hen",
-      "rabbit",
-      "villager"
-    ],
-    "max_actors": 4,
-    "checks": "walking poses, real-time movement, shared world depth, non-interactive sprites, building detours and reroutes, unchanged resources/troops/building state, modal/placement/hidden-tab pauses, reduced-motion preference, shutdown cleanup and restart after battle/reset"
+  "windows_launcher": "provided, not executed natively on Linux",
+  "final_asset_checks": {
+    "battle-probe-final": {
+      "viewport": "desktop",
+      "samples": 77,
+      "errors": [],
+      "observed": {
+        "iop": {
+          "idle": [
+            0,
+            1
+          ],
+          "walk": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "attack": [
+            10,
+            11,
+            8,
+            9
+          ],
+          "directions": [
+            "s"
+          ]
+        },
+        "cra": {
+          "idle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walk": [
+            4,
+            5,
+            6
+          ],
+          "attack": [
+            10,
+            11,
+            8,
+            9
+          ],
+          "directions": [
+            "s"
+          ]
+        }
+      },
+      "reduced_motion": "idle pose while movement and damage continue",
+      "pauses": [
+        "help modal",
+        "synthetic document.hidden"
+      ],
+      "cleanup": [
+        "return",
+        "restart and reset"
+      ],
+      "pageerrors": [],
+      "failed_requests": []
+    },
+    "final-asset-check": {
+      "status": "passed",
+      "cra_sha256": "265a6ef8cd04049a3019aa67d37fa47d10191b960d48c517ee3b29d9ef792fb2",
+      "changed_cra_frames": [
+        31,
+        43
+      ],
+      "decor_ready": 7,
+      "fresh_context": true,
+      "png_audit": [],
+      "battle_probe": {
+        "viewport": "desktop",
+        "samples": 77,
+        "errors": [],
+        "observed": {
+          "iop": {
+            "idle": [
+              0,
+              1
+            ],
+            "walk": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "attack": [
+              10,
+              11,
+              8,
+              9
+            ],
+            "directions": [
+              "s"
+            ]
+          },
+          "cra": {
+            "idle": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "walk": [
+              4,
+              5,
+              6
+            ],
+            "attack": [
+              10,
+              11,
+              8,
+              9
+            ],
+            "directions": [
+              "s"
+            ]
+          }
+        },
+        "reduced_motion": "idle pose while movement and damage continue",
+        "pauses": [
+          "help modal",
+          "synthetic document.hidden"
+        ],
+        "cleanup": [
+          "return",
+          "restart and reset"
+        ],
+        "pageerrors": [],
+        "failed_requests": []
+      },
+      "production_smoke": {
+        "status": "passed",
+        "url": "http://127.0.0.1:5177/",
+        "checks": [
+          "startup/canvas/help",
+          "construction categories and Army",
+          "expedition blocked without barracks",
+          "Escape and restored focus",
+          "served Cra PNG equals final repository PNG"
+        ],
+        "page_errors": [],
+        "failed_requests": [],
+        "cra_sha256": "265a6ef8cd04049a3019aa67d37fa47d10191b960d48c517ee3b29d9ef792fb2"
+      }
+    },
+    "painted-atlases-final": {
+      "errors": [],
+      "atlases": [
+        {
+          "type": "villager",
+          "key": "astrub-ambient-villager",
+          "frames": 16,
+          "frameWidth": 192,
+          "frameHeight": 256,
+          "pivot": [
+            96,
+            236
+          ],
+          "source": "/assets/sprites/villager-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": "s",
+              "action": "walk",
+              "hash": "a20450a64a72420dea9350f955176f6f0079131a26e5a23ff3c228518460560d",
+              "bounds": [
+                70,
+                142,
+                65,
+                94
+              ],
+              "opaque": 3567,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": "s",
+              "action": "walk",
+              "hash": "38168c5868a5f428c5106c3382d10ef97e335e0a9715e0282ca3e6424d254885",
+              "bounds": [
+                65,
+                141,
+                68,
+                95
+              ],
+              "opaque": 3531,
+              "changedFromFirst": 3893
+            },
+            {
+              "index": 2,
+              "direction": "s",
+              "action": "walk",
+              "hash": "fa102ae5ff22ab071fce36f9252a72e935059aed83f8158246f237730a5686a3",
+              "bounds": [
+                67,
+                142,
+                67,
+                94
+              ],
+              "opaque": 3506,
+              "changedFromFirst": 3780
+            },
+            {
+              "index": 3,
+              "direction": "s",
+              "action": "walk",
+              "hash": "dec81328aa4e950de28bd918124a624e0187834af839908f55ecb04127807bbb",
+              "bounds": [
+                67,
+                143,
+                66,
+                93
+              ],
+              "opaque": 3405,
+              "changedFromFirst": 3819
+            },
+            {
+              "index": 4,
+              "direction": "w",
+              "action": "walk",
+              "hash": "2e33287586c7b44e751df5e63c1b3e5810834f839026e602b39dfa76b5f22a98",
+              "bounds": [
+                46,
+                140,
+                68,
+                96
+              ],
+              "opaque": 3648,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 5,
+              "direction": "w",
+              "action": "walk",
+              "hash": "b0a05755f782b8894a0880e3bf56d3946833439a9925c05657bb7cc8544846c1",
+              "bounds": [
+                51,
+                142,
+                65,
+                94
+              ],
+              "opaque": 3379,
+              "changedFromFirst": 3777
+            },
+            {
+              "index": 6,
+              "direction": "w",
+              "action": "walk",
+              "hash": "c51e866fd7e1727155b1d4b70a195c7d7fa0b688e168402fb3626555017bb136",
+              "bounds": [
+                48,
+                141,
+                67,
+                95
+              ],
+              "opaque": 3596,
+              "changedFromFirst": 3805
+            },
+            {
+              "index": 7,
+              "direction": "w",
+              "action": "walk",
+              "hash": "131a6a5bc38817c47b436a73a35ff87b62902700b584ecae8431cc7fedb1efec",
+              "bounds": [
+                50,
+                141,
+                66,
+                95
+              ],
+              "opaque": 3531,
+              "changedFromFirst": 3779
+            },
+            {
+              "index": 8,
+              "direction": "n",
+              "action": "walk",
+              "hash": "017dd9df96ed66e988a8587e589a359e09d30ca77af46d350644bd6d7463eb77",
+              "bounds": [
+                76,
+                140,
+                66,
+                96
+              ],
+              "opaque": 3528,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 9,
+              "direction": "n",
+              "action": "walk",
+              "hash": "beac1ea5ee468a1678ae06b3503a1be1bb21a62b2f8592f454b067ba6529b98c",
+              "bounds": [
+                80,
+                141,
+                64,
+                95
+              ],
+              "opaque": 3556,
+              "changedFromFirst": 3779
+            },
+            {
+              "index": 10,
+              "direction": "n",
+              "action": "walk",
+              "hash": "e8a112230c222c547de1dab045e9c9949646acf88b293fe6c9f0a19910c94506",
+              "bounds": [
+                76,
+                142,
+                66,
+                94
+              ],
+              "opaque": 3576,
+              "changedFromFirst": 3759
+            },
+            {
+              "index": 11,
+              "direction": "n",
+              "action": "walk",
+              "hash": "5cbe6eccc3bfcf8909c74e2a6fd82770ae9181885a0e5e50ed5513b51186ee0f",
+              "bounds": [
+                81,
+                142,
+                63,
+                94
+              ],
+              "opaque": 3516,
+              "changedFromFirst": 3858
+            },
+            {
+              "index": 12,
+              "direction": "e",
+              "action": "walk",
+              "hash": "962751ab97dbb081ecd6aa58a4a7fac12bc53841369a1deb96f3ef9209ca98fc",
+              "bounds": [
+                57,
+                141,
+                65,
+                95
+              ],
+              "opaque": 3635,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 13,
+              "direction": "e",
+              "action": "walk",
+              "hash": "8486cba38ad9895e82807a67ff0932eb1fb48d603c8eeefebace797ec766fa81",
+              "bounds": [
+                57,
+                140,
+                66,
+                96
+              ],
+              "opaque": 3600,
+              "changedFromFirst": 3765
+            },
+            {
+              "index": 14,
+              "direction": "e",
+              "action": "walk",
+              "hash": "e5641efda23fc7e1504a69a993899e7001bbd92b6e572d5eef2b41d3b80e38f6",
+              "bounds": [
+                58,
+                141,
+                64,
+                95
+              ],
+              "opaque": 3552,
+              "changedFromFirst": 3772
+            },
+            {
+              "index": 15,
+              "direction": "e",
+              "action": "walk",
+              "hash": "ce6e41083dcb8023e0bdb10dd522fb02c1a12baf61b1e785f7f2e50eba1edc88",
+              "bounds": [
+                58,
+                141,
+                66,
+                95
+              ],
+              "opaque": 3624,
+              "changedFromFirst": 3878
+            }
+          ]
+        },
+        {
+          "type": "hen",
+          "key": "astrub-ambient-hen",
+          "frames": 16,
+          "frameWidth": 192,
+          "frameHeight": 256,
+          "pivot": [
+            96,
+            236
+          ],
+          "source": "/assets/sprites/hen-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": "s",
+              "action": "walk",
+              "hash": "ee18ab35ac81db3ac312ef8c8069295b02a151cdcab71051a3b9676587ce7ff4",
+              "bounds": [
+                77,
+                157,
+                65,
+                79
+              ],
+              "opaque": 3173,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": "s",
+              "action": "walk",
+              "hash": "03d020700c2633facc5abd3e2263520623902a13624fa82d42fca466f57a4a5f",
+              "bounds": [
+                47,
+                154,
+                76,
+                82
+              ],
+              "opaque": 3401,
+              "changedFromFirst": 5152
+            },
+            {
+              "index": 2,
+              "direction": "s",
+              "action": "walk",
+              "hash": "3bf3bfa9ba952bc8a054807b54a5bbc675345089e8c84cf99a825b3ae99acb74",
+              "bounds": [
+                75,
+                157,
+                76,
+                79
+              ],
+              "opaque": 3381,
+              "changedFromFirst": 3803
+            },
+            {
+              "index": 3,
+              "direction": "s",
+              "action": "walk",
+              "hash": "777619c91380b24db771b2344ea689d1d25ba5da31c26e428e1b1bf9bb80cd70",
+              "bounds": [
+                55,
+                159,
+                75,
+                77
+              ],
+              "opaque": 3327,
+              "changedFromFirst": 4766
+            },
+            {
+              "index": 4,
+              "direction": "w",
+              "action": "walk",
+              "hash": "0f1112acb2cc80b3c0e51600d3c4b615abaa45692fbcb8f1d05fb40e8dc17f93",
+              "bounds": [
+                54,
+                154,
+                70,
+                82
+              ],
+              "opaque": 3373,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 5,
+              "direction": "w",
+              "action": "walk",
+              "hash": "69a2396c76e00ee5479004583214c6ad47b10628d13fda0f0f33a562ff7fd152",
+              "bounds": [
+                72,
+                151,
+                71,
+                85
+              ],
+              "opaque": 3372,
+              "changedFromFirst": 5034
+            },
+            {
+              "index": 6,
+              "direction": "w",
+              "action": "walk",
+              "hash": "90066f2ec56d8687c2728c21d7d541b2d24849e00d3e5fd1a618408829ca0907",
+              "bounds": [
+                75,
+                152,
+                70,
+                84
+              ],
+              "opaque": 3390,
+              "changedFromFirst": 5230
+            },
+            {
+              "index": 7,
+              "direction": "w",
+              "action": "walk",
+              "hash": "ccc9d0c59b3af27d21c233b59ab1c33cb0ddc8e78cc7c98cf3981eabed65364b",
+              "bounds": [
+                55,
+                153,
+                70,
+                83
+              ],
+              "opaque": 3228,
+              "changedFromFirst": 3680
+            },
+            {
+              "index": 8,
+              "direction": "n",
+              "action": "walk",
+              "hash": "36f1b7fbe8f2b8025977e12b930d479432e06a841fe4e11648792b0d91aa85a4",
+              "bounds": [
+                73,
+                152,
+                67,
+                84
+              ],
+              "opaque": 3332,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 9,
+              "direction": "n",
+              "action": "walk",
+              "hash": "b6419a7abbcdf46407cdb208fcf903e31c11024ac4dbc45086493eb81e95e7a9",
+              "bounds": [
+                66,
+                152,
+                73,
+                84
+              ],
+              "opaque": 3437,
+              "changedFromFirst": 3811
+            },
+            {
+              "index": 10,
+              "direction": "n",
+              "action": "walk",
+              "hash": "a82a9714029b9956a46a6763a8699a52b9244e40778087ce0c9b420e9fced3b2",
+              "bounds": [
+                47,
+                155,
+                73,
+                81
+              ],
+              "opaque": 3335,
+              "changedFromFirst": 5188
+            },
+            {
+              "index": 11,
+              "direction": "n",
+              "action": "walk",
+              "hash": "3f2eaedd1d3ee158b5923615bf7873877c87266bc50c757a819e7ce378222bc6",
+              "bounds": [
+                66,
+                154,
+                75,
+                82
+              ],
+              "opaque": 3475,
+              "changedFromFirst": 3784
+            },
+            {
+              "index": 12,
+              "direction": "e",
+              "action": "walk",
+              "hash": "9c734665b3d8ee708025cf19d86a8f0a139bcfc6dfb78ac6377ae7040a8f8315",
+              "bounds": [
+                49,
+                155,
+                74,
+                81
+              ],
+              "opaque": 3430,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 13,
+              "direction": "e",
+              "action": "walk",
+              "hash": "cd1b5d58990b96304f3295af1c53583a4e33bd59f1219a9c53cf1b4f4aca6b8e",
+              "bounds": [
+                67,
+                157,
+                77,
+                79
+              ],
+              "opaque": 3427,
+              "changedFromFirst": 5143
+            },
+            {
+              "index": 14,
+              "direction": "e",
+              "action": "walk",
+              "hash": "d434f097aa3397df145b292a23bcb5be8721cd99aa0d9aaf2783beb22a27b5f7",
+              "bounds": [
+                39,
+                158,
+                76,
+                78
+              ],
+              "opaque": 3485,
+              "changedFromFirst": 4407
+            },
+            {
+              "index": 15,
+              "direction": "e",
+              "action": "walk",
+              "hash": "5c02894d6b5476312fe518c13e87539adf5b6d572ade66ea78b8760dbfdbd01c",
+              "bounds": [
+                46,
+                157,
+                77,
+                79
+              ],
+              "opaque": 3558,
+              "changedFromFirst": 3895
+            }
+          ]
+        },
+        {
+          "type": "rabbit",
+          "key": "astrub-ambient-rabbit",
+          "frames": 16,
+          "frameWidth": 192,
+          "frameHeight": 256,
+          "pivot": [
+            96,
+            236
+          ],
+          "source": "/assets/sprites/rabbit-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": "s",
+              "action": "walk",
+              "hash": "76d47a86fa1053cdb03e6101e66893ac12a8bda880e872ba8313f25ea0f42348",
+              "bounds": [
+                64,
+                161,
+                64,
+                75
+              ],
+              "opaque": 2815,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": "s",
+              "action": "walk",
+              "hash": "009bdecfe70f0a0db0a265c261253b26e0ba3a6f786d8b4f8f6c9bf98ef6b08d",
+              "bounds": [
+                50,
+                155,
+                61,
+                81
+              ],
+              "opaque": 2873,
+              "changedFromFirst": 3774
+            },
+            {
+              "index": 2,
+              "direction": "s",
+              "action": "walk",
+              "hash": "03967a7675c0aa4ab82e4176c2fa4b4435f2859d6002b26f040e5e33ab4d5d85",
+              "bounds": [
+                78,
+                165,
+                71,
+                71
+              ],
+              "opaque": 2997,
+              "changedFromFirst": 4211
+            },
+            {
+              "index": 3,
+              "direction": "s",
+              "action": "walk",
+              "hash": "b87266bb43f54677c4e0f4096c519dc7e0dfb04310a050306c27daa983fad104",
+              "bounds": [
+                72,
+                161,
+                59,
+                75
+              ],
+              "opaque": 2855,
+              "changedFromFirst": 3469
+            },
+            {
+              "index": 4,
+              "direction": "w",
+              "action": "walk",
+              "hash": "1cde74bc4c374520139cd9e2a11192eaebc57a7b40f5db1cbe3e0b069aac44dd",
+              "bounds": [
+                67,
+                159,
+                57,
+                77
+              ],
+              "opaque": 2490,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 5,
+              "direction": "w",
+              "action": "walk",
+              "hash": "bd70b2e621979115ec29736a4873176759178aab455fd4e733c26ee2923244ba",
+              "bounds": [
+                52,
+                155,
+                60,
+                81
+              ],
+              "opaque": 2560,
+              "changedFromFirst": 3250
+            },
+            {
+              "index": 6,
+              "direction": "w",
+              "action": "walk",
+              "hash": "cae278f468e4cb571605e7f992b25dfd6020cf57e35ad10e16a607b8a09a8fc5",
+              "bounds": [
+                43,
+                159,
+                69,
+                77
+              ],
+              "opaque": 2828,
+              "changedFromFirst": 3916
+            },
+            {
+              "index": 7,
+              "direction": "w",
+              "action": "walk",
+              "hash": "059e97a7e229cebc87e13015240645a0155919ffee3b8a06cd74f65676285f5b",
+              "bounds": [
+                65,
+                156,
+                60,
+                80
+              ],
+              "opaque": 2807,
+              "changedFromFirst": 3072
+            },
+            {
+              "index": 8,
+              "direction": "n",
+              "action": "walk",
+              "hash": "d2bb897ad77150c3ef11760aa46552b08b8d7dcdb345491cefcce743d099255e",
+              "bounds": [
+                67,
+                164,
+                58,
+                72
+              ],
+              "opaque": 2462,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 9,
+              "direction": "n",
+              "action": "walk",
+              "hash": "add12ab29f12084667d5b33b1f97ac1f48582eb8aecd7230828b344f7b785b73",
+              "bounds": [
+                74,
+                155,
+                58,
+                81
+              ],
+              "opaque": 2528,
+              "changedFromFirst": 3105
+            },
+            {
+              "index": 10,
+              "direction": "n",
+              "action": "walk",
+              "hash": "78e11fe7319d05d23d60855ebf1b8b650d66d12d48d61aff56cee655404d029d",
+              "bounds": [
+                79,
+                163,
+                66,
+                73
+              ],
+              "opaque": 2566,
+              "changedFromFirst": 3537
+            },
+            {
+              "index": 11,
+              "direction": "n",
+              "action": "walk",
+              "hash": "81821d8d37e6441eeacd648be624ca4ff8f2e4b176d7e6d13c8b9b4fd96e6231",
+              "bounds": [
+                66,
+                162,
+                60,
+                74
+              ],
+              "opaque": 2702,
+              "changedFromFirst": 2940
+            },
+            {
+              "index": 12,
+              "direction": "e",
+              "action": "walk",
+              "hash": "02d38000aca36ec8ca2c12f4d25ca6dea75dac5ce8d4004dd6096d4f322b22b2",
+              "bounds": [
+                66,
+                161,
+                64,
+                75
+              ],
+              "opaque": 2961,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 13,
+              "direction": "e",
+              "action": "walk",
+              "hash": "ee0fd53274246d4f5c9a79d270cba4a409f35c58e9a973fb671a7c6367589cf3",
+              "bounds": [
+                83,
+                160,
+                59,
+                76
+              ],
+              "opaque": 2787,
+              "changedFromFirst": 3854
+            },
+            {
+              "index": 14,
+              "direction": "e",
+              "action": "walk",
+              "hash": "6d30461e08fa8179d2c6fc7dc540b4698f3419338711624c66e5f07aeeb8da39",
+              "bounds": [
+                38,
+                165,
+                70,
+                71
+              ],
+              "opaque": 2985,
+              "changedFromFirst": 4607
+            },
+            {
+              "index": 15,
+              "direction": "e",
+              "action": "walk",
+              "hash": "734785b3865a82833a7548aad8c9cdcbe4629df3046824e21a2ff2c07a8da541",
+              "bounds": [
+                57,
+                164,
+                65,
+                72
+              ],
+              "opaque": 2910,
+              "changedFromFirst": 3713
+            }
+          ]
+        },
+        {
+          "type": "iop",
+          "key": "unit-anim-iop",
+          "frames": 48,
+          "frameWidth": 192,
+          "frameHeight": 256,
+          "pivot": [
+            96,
+            236
+          ],
+          "source": "/assets/sprites/iop-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": "s",
+              "action": "idle",
+              "hash": "cc7b7c9b29b3362d9548b9184758163f72673056540e806509cbebfd70a762a9",
+              "bounds": [
+                43,
+                126,
+                115,
+                110
+              ],
+              "opaque": 5473,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": "s",
+              "action": "idle",
+              "hash": "cc7b7c9b29b3362d9548b9184758163f72673056540e806509cbebfd70a762a9",
+              "bounds": [
+                43,
+                126,
+                115,
+                110
+              ],
+              "opaque": 5473,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 2,
+              "direction": "s",
+              "action": "idle",
+              "hash": "cc7b7c9b29b3362d9548b9184758163f72673056540e806509cbebfd70a762a9",
+              "bounds": [
+                43,
+                126,
+                115,
+                110
+              ],
+              "opaque": 5473,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 3,
+              "direction": "s",
+              "action": "idle",
+              "hash": "cc7b7c9b29b3362d9548b9184758163f72673056540e806509cbebfd70a762a9",
+              "bounds": [
+                43,
+                126,
+                115,
+                110
+              ],
+              "opaque": 5473,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 4,
+              "direction": "s",
+              "action": "walk",
+              "hash": "cc7b7c9b29b3362d9548b9184758163f72673056540e806509cbebfd70a762a9",
+              "bounds": [
+                43,
+                126,
+                115,
+                110
+              ],
+              "opaque": 5473,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 5,
+              "direction": "s",
+              "action": "walk",
+              "hash": "5a3ed2c040b8c70d827e7f6cfe5e3f935ea1436afc027c13f74f7615fd89e2de",
+              "bounds": [
+                48,
+                126,
+                109,
+                110
+              ],
+              "opaque": 5280,
+              "changedFromFirst": 5816
+            },
+            {
+              "index": 6,
+              "direction": "s",
+              "action": "walk",
+              "hash": "92aed898c7db331452ebea72bb7880c5f9a261d4aa58241a79900979b8fc2e2e",
+              "bounds": [
+                38,
+                126,
+                123,
+                110
+              ],
+              "opaque": 5466,
+              "changedFromFirst": 5989
+            },
+            {
+              "index": 7,
+              "direction": "s",
+              "action": "walk",
+              "hash": "0ef90b0b36d478569579f769acdc68a360d3bf1916e9a7ab50adb92aec25600a",
+              "bounds": [
+                50,
+                126,
+                115,
+                110
+              ],
+              "opaque": 5573,
+              "changedFromFirst": 6197
+            },
+            {
+              "index": 8,
+              "direction": "s",
+              "action": "attack",
+              "hash": "06bdd4de1a01d070b55626b30e4426feb36d866a5de6dec228a9f519de2c2312",
+              "bounds": [
+                47,
+                129,
+                110,
+                107
+              ],
+              "opaque": 4782,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 9,
+              "direction": "s",
+              "action": "attack",
+              "hash": "b03467cd363fcb7a575234700eef0cde1074bfd6b7db7fe5381a6abe406ebc30",
+              "bounds": [
+                37,
+                119,
+                89,
+                117
+              ],
+              "opaque": 4977,
+              "changedFromFirst": 7806
+            },
+            {
+              "index": 10,
+              "direction": "s",
+              "action": "attack",
+              "hash": "59cc725c5d82d1a66cccabc140260235e4ddcc7241c618e519a2fef7162f2f82",
+              "bounds": [
+                30,
+                135,
+                135,
+                101
+              ],
+              "opaque": 5550,
+              "changedFromFirst": 6553
+            },
+            {
+              "index": 11,
+              "direction": "s",
+              "action": "attack",
+              "hash": "9c90d9bdf0b642ac7cb803ce038c5b6876cc22c54b12a8e49ede838cc5845ddc",
+              "bounds": [
+                51,
+                138,
+                104,
+                98
+              ],
+              "opaque": 4681,
+              "changedFromFirst": 5760
+            },
+            {
+              "index": 12,
+              "direction": "w",
+              "action": "idle",
+              "hash": "b41791416da44292651cb91d49e2844f84d6ca9869eef1c5d1b2d3f37b499701",
+              "bounds": [
+                9,
+                124,
+                109,
+                112
+              ],
+              "opaque": 5479,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 13,
+              "direction": "w",
+              "action": "idle",
+              "hash": "b41791416da44292651cb91d49e2844f84d6ca9869eef1c5d1b2d3f37b499701",
+              "bounds": [
+                9,
+                124,
+                109,
+                112
+              ],
+              "opaque": 5479,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 14,
+              "direction": "w",
+              "action": "idle",
+              "hash": "b41791416da44292651cb91d49e2844f84d6ca9869eef1c5d1b2d3f37b499701",
+              "bounds": [
+                9,
+                124,
+                109,
+                112
+              ],
+              "opaque": 5479,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 15,
+              "direction": "w",
+              "action": "idle",
+              "hash": "b41791416da44292651cb91d49e2844f84d6ca9869eef1c5d1b2d3f37b499701",
+              "bounds": [
+                9,
+                124,
+                109,
+                112
+              ],
+              "opaque": 5479,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 16,
+              "direction": "w",
+              "action": "walk",
+              "hash": "b41791416da44292651cb91d49e2844f84d6ca9869eef1c5d1b2d3f37b499701",
+              "bounds": [
+                9,
+                124,
+                109,
+                112
+              ],
+              "opaque": 5479,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 17,
+              "direction": "w",
+              "action": "walk",
+              "hash": "c2cc4314e05845117c59b6167cd5a36d15a708aa6d501a693087faafd0b9adf2",
+              "bounds": [
+                24,
+                124,
+                104,
+                112
+              ],
+              "opaque": 5327,
+              "changedFromFirst": 7373
+            },
+            {
+              "index": 18,
+              "direction": "w",
+              "action": "walk",
+              "hash": "c1bbcc4637a1b255993d75327e6cfd44fc9f51eb5064c4cbeca289ab841f0b34",
+              "bounds": [
+                14,
+                124,
+                110,
+                112
+              ],
+              "opaque": 5480,
+              "changedFromFirst": 6443
+            },
+            {
+              "index": 19,
+              "direction": "w",
+              "action": "walk",
+              "hash": "8008de3064f10374efc29d3ce8b5d99eafe4a5295860120cb973a25591f8a198",
+              "bounds": [
+                6,
+                124,
+                116,
+                112
+              ],
+              "opaque": 5502,
+              "changedFromFirst": 5931
+            },
+            {
+              "index": 20,
+              "direction": "w",
+              "action": "attack",
+              "hash": "6773a3dc0c66ef14abd8a3a18f83432b70bb716640c7688d54a002a28c88c894",
+              "bounds": [
+                46,
+                132,
+                118,
+                104
+              ],
+              "opaque": 5210,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 21,
+              "direction": "w",
+              "action": "attack",
+              "hash": "ce88423c4f33535c1cb60ce7381d96fbf82ac717ed327b611e1cc80146d93c73",
+              "bounds": [
+                74,
+                122,
+                100,
+                114
+              ],
+              "opaque": 5398,
+              "changedFromFirst": 6378
+            },
+            {
+              "index": 22,
+              "direction": "w",
+              "action": "attack",
+              "hash": "f73696ab888833a7d9511b7593a7a60476c8fb66c3a4e6b373026c98c0b53491",
+              "bounds": [
+                38,
+                133,
+                137,
+                103
+              ],
+              "opaque": 5480,
+              "changedFromFirst": 6453
+            },
+            {
+              "index": 23,
+              "direction": "w",
+              "action": "attack",
+              "hash": "b5b30a5f2986a43278d9748cb1d1c38288fdda0ef42547c3d4c9fced8e70da15",
+              "bounds": [
+                45,
+                133,
+                125,
+                103
+              ],
+              "opaque": 5240,
+              "changedFromFirst": 6096
+            },
+            {
+              "index": 24,
+              "direction": "n",
+              "action": "idle",
+              "hash": "72e7f7295c7f76385235c852a129d24bbada5503b3b2496bbb047c477c77c17e",
+              "bounds": [
+                68,
+                124,
+                117,
+                112
+              ],
+              "opaque": 5629,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 25,
+              "direction": "n",
+              "action": "idle",
+              "hash": "72e7f7295c7f76385235c852a129d24bbada5503b3b2496bbb047c477c77c17e",
+              "bounds": [
+                68,
+                124,
+                117,
+                112
+              ],
+              "opaque": 5629,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 26,
+              "direction": "n",
+              "action": "idle",
+              "hash": "72e7f7295c7f76385235c852a129d24bbada5503b3b2496bbb047c477c77c17e",
+              "bounds": [
+                68,
+                124,
+                117,
+                112
+              ],
+              "opaque": 5629,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 27,
+              "direction": "n",
+              "action": "idle",
+              "hash": "72e7f7295c7f76385235c852a129d24bbada5503b3b2496bbb047c477c77c17e",
+              "bounds": [
+                68,
+                124,
+                117,
+                112
+              ],
+              "opaque": 5629,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 28,
+              "direction": "n",
+              "action": "walk",
+              "hash": "72e7f7295c7f76385235c852a129d24bbada5503b3b2496bbb047c477c77c17e",
+              "bounds": [
+                68,
+                124,
+                117,
+                112
+              ],
+              "opaque": 5629,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 29,
+              "direction": "n",
+              "action": "walk",
+              "hash": "490ad3cb1791c994ee3e7ebbe46047ce1d6098eabfa52867c298cc37e8ebebc0",
+              "bounds": [
+                66,
+                124,
+                117,
+                112
+              ],
+              "opaque": 5562,
+              "changedFromFirst": 6119
+            },
+            {
+              "index": 30,
+              "direction": "n",
+              "action": "walk",
+              "hash": "a6ca7c885a00fce4bc80b932cbaac3f91efb20f51c550b823de28c16958dc922",
+              "bounds": [
+                68,
+                124,
+                120,
+                112
+              ],
+              "opaque": 5681,
+              "changedFromFirst": 6174
+            },
+            {
+              "index": 31,
+              "direction": "n",
+              "action": "walk",
+              "hash": "ba03b0978e12deef984dbd2a447baf516e33baa5f6c2918417abfc42de24e3a0",
+              "bounds": [
+                68,
+                123,
+                119,
+                113
+              ],
+              "opaque": 5885,
+              "changedFromFirst": 6250
+            },
+            {
+              "index": 32,
+              "direction": "n",
+              "action": "attack",
+              "hash": "a1aa6f9a105b28880eefee06530230fa6ea6172c80213ed074b52b445b7f2b35",
+              "bounds": [
+                67,
+                130,
+                115,
+                106
+              ],
+              "opaque": 5134,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 33,
+              "direction": "n",
+              "action": "attack",
+              "hash": "34904447d57625d166f37bced8babf980f74bcf3e05dbf19404f3bda8d11e555",
+              "bounds": [
+                60,
+                121,
+                100,
+                115
+              ],
+              "opaque": 5578,
+              "changedFromFirst": 6314
+            },
+            {
+              "index": 34,
+              "direction": "n",
+              "action": "attack",
+              "hash": "57e054c7c1025245f7f828df53c8b0094c448332c6017a7bb4241024db527c20",
+              "bounds": [
+                23,
+                135,
+                143,
+                101
+              ],
+              "opaque": 5853,
+              "changedFromFirst": 8984
+            },
+            {
+              "index": 35,
+              "direction": "n",
+              "action": "attack",
+              "hash": "a30aca72a7a4fb7324fe4b6244da370e2c6bd3f0c5cb75221af27eb791a5bd53",
+              "bounds": [
+                65,
+                132,
+                116,
+                104
+              ],
+              "opaque": 5262,
+              "changedFromFirst": 5910
+            },
+            {
+              "index": 36,
+              "direction": "e",
+              "action": "idle",
+              "hash": "57817d25aa7997d4d3d7329da537427f7b9ee3943c2d52e227e4db9dc73eb487",
+              "bounds": [
+                34,
+                123,
+                124,
+                113
+              ],
+              "opaque": 5732,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 37,
+              "direction": "e",
+              "action": "idle",
+              "hash": "57817d25aa7997d4d3d7329da537427f7b9ee3943c2d52e227e4db9dc73eb487",
+              "bounds": [
+                34,
+                123,
+                124,
+                113
+              ],
+              "opaque": 5732,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 38,
+              "direction": "e",
+              "action": "idle",
+              "hash": "57817d25aa7997d4d3d7329da537427f7b9ee3943c2d52e227e4db9dc73eb487",
+              "bounds": [
+                34,
+                123,
+                124,
+                113
+              ],
+              "opaque": 5732,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 39,
+              "direction": "e",
+              "action": "idle",
+              "hash": "57817d25aa7997d4d3d7329da537427f7b9ee3943c2d52e227e4db9dc73eb487",
+              "bounds": [
+                34,
+                123,
+                124,
+                113
+              ],
+              "opaque": 5732,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 40,
+              "direction": "e",
+              "action": "walk",
+              "hash": "57817d25aa7997d4d3d7329da537427f7b9ee3943c2d52e227e4db9dc73eb487",
+              "bounds": [
+                34,
+                123,
+                124,
+                113
+              ],
+              "opaque": 5732,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 41,
+              "direction": "e",
+              "action": "walk",
+              "hash": "e3365c567bef805978003255933bbc33c9da8193e35996dd0e49d208ecee9e30",
+              "bounds": [
+                33,
+                122,
+                124,
+                114
+              ],
+              "opaque": 5693,
+              "changedFromFirst": 5907
+            },
+            {
+              "index": 42,
+              "direction": "e",
+              "action": "walk",
+              "hash": "00a8315f3574e8d2999010539de395c1e017d0c9aed820a25e1904046ee09c19",
+              "bounds": [
+                20,
+                121,
+                129,
+                115
+              ],
+              "opaque": 5907,
+              "changedFromFirst": 7032
+            },
+            {
+              "index": 43,
+              "direction": "e",
+              "action": "walk",
+              "hash": "b79e14e1cabfb225c7bcab022e7d00eefe716553396d55e34885d69051420101",
+              "bounds": [
+                25,
+                122,
+                126,
+                114
+              ],
+              "opaque": 5904,
+              "changedFromFirst": 6855
+            },
+            {
+              "index": 44,
+              "direction": "e",
+              "action": "attack",
+              "hash": "8e0fdd427dba8375d548298b4c5a5440209b634bc8694fdf55d6b1a308df83a9",
+              "bounds": [
+                35,
+                132,
+                112,
+                104
+              ],
+              "opaque": 5058,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 45,
+              "direction": "e",
+              "action": "attack",
+              "hash": "e9f826b8b456f74d24e134c75238d41ea06e671764e1e2969345ade17828ed0f",
+              "bounds": [
+                24,
+                121,
+                92,
+                115
+              ],
+              "opaque": 5701,
+              "changedFromFirst": 7287
+            },
+            {
+              "index": 46,
+              "direction": "e",
+              "action": "attack",
+              "hash": "00c0f5932bc8d46977f5cfaccfebb017ba44a0774fbbfddcc6dd0a73db520c7f",
+              "bounds": [
+                26,
+                133,
+                133,
+                103
+              ],
+              "opaque": 5568,
+              "changedFromFirst": 7099
+            },
+            {
+              "index": 47,
+              "direction": "e",
+              "action": "attack",
+              "hash": "fb16d8183ea9840de4412e0f433aab33bc20436aad7d7ae7a94cd2725c24b8c1",
+              "bounds": [
+                33,
+                132,
+                109,
+                104
+              ],
+              "opaque": 5126,
+              "changedFromFirst": 6107
+            }
+          ]
+        },
+        {
+          "type": "cra",
+          "key": "unit-anim-cra",
+          "frames": 48,
+          "frameWidth": 192,
+          "frameHeight": 256,
+          "pivot": [
+            96,
+            236
+          ],
+          "source": "/assets/sprites/cra-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": "s",
+              "action": "idle",
+              "hash": "8bca2937d7ec24d684d43508315123eec17c25e761924530d95c4803b7522b75",
+              "bounds": [
+                59,
+                115,
+                104,
+                121
+              ],
+              "opaque": 6249,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": "s",
+              "action": "idle",
+              "hash": "8bca2937d7ec24d684d43508315123eec17c25e761924530d95c4803b7522b75",
+              "bounds": [
+                59,
+                115,
+                104,
+                121
+              ],
+              "opaque": 6249,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 2,
+              "direction": "s",
+              "action": "idle",
+              "hash": "8bca2937d7ec24d684d43508315123eec17c25e761924530d95c4803b7522b75",
+              "bounds": [
+                59,
+                115,
+                104,
+                121
+              ],
+              "opaque": 6249,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 3,
+              "direction": "s",
+              "action": "idle",
+              "hash": "8bca2937d7ec24d684d43508315123eec17c25e761924530d95c4803b7522b75",
+              "bounds": [
+                59,
+                115,
+                104,
+                121
+              ],
+              "opaque": 6249,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 4,
+              "direction": "s",
+              "action": "walk",
+              "hash": "8bca2937d7ec24d684d43508315123eec17c25e761924530d95c4803b7522b75",
+              "bounds": [
+                59,
+                115,
+                104,
+                121
+              ],
+              "opaque": 6249,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 5,
+              "direction": "s",
+              "action": "walk",
+              "hash": "88d328d04c636d76dc8333392e8ef02759e4d6ca809a4c539fc707d27833b10b",
+              "bounds": [
+                59,
+                114,
+                101,
+                122
+              ],
+              "opaque": 6089,
+              "changedFromFirst": 6640
+            },
+            {
+              "index": 6,
+              "direction": "s",
+              "action": "walk",
+              "hash": "7179a7096232a684af8308b5097d260c14ee364a49556cbd8ffe64b8215b8889",
+              "bounds": [
+                60,
+                114,
+                97,
+                122
+              ],
+              "opaque": 5920,
+              "changedFromFirst": 6538
+            },
+            {
+              "index": 7,
+              "direction": "s",
+              "action": "walk",
+              "hash": "b5974b4afd0853a50a329b24739490d585e6c08c2babd1f297d019e6a0e5a2b0",
+              "bounds": [
+                59,
+                114,
+                100,
+                122
+              ],
+              "opaque": 6032,
+              "changedFromFirst": 6473
+            },
+            {
+              "index": 8,
+              "direction": "s",
+              "action": "attack",
+              "hash": "e1031f59ee66511f38e67f023643fb6478dbd7ff3ec019d15f7448ff069d54c3",
+              "bounds": [
+                56,
+                115,
+                109,
+                121
+              ],
+              "opaque": 6474,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 9,
+              "direction": "s",
+              "action": "attack",
+              "hash": "98cc6102e9fbeecac9e46194cd6ed6a0f7fa380cacfbf0cb3deaf2a7286060cb",
+              "bounds": [
+                54,
+                116,
+                109,
+                120
+              ],
+              "opaque": 6913,
+              "changedFromFirst": 8092
+            },
+            {
+              "index": 10,
+              "direction": "s",
+              "action": "attack",
+              "hash": "a40a53156acd89004c3665702f651f3e88d95b8332d3f45b5071bb1c3ea12951",
+              "bounds": [
+                32,
+                117,
+                126,
+                119
+              ],
+              "opaque": 7210,
+              "changedFromFirst": 8353
+            },
+            {
+              "index": 11,
+              "direction": "s",
+              "action": "attack",
+              "hash": "dd7ffcdf98580356fb0b1146b83a59c88fb569dfa8fe3b7471a1ae16680a104f",
+              "bounds": [
+                58,
+                115,
+                110,
+                121
+              ],
+              "opaque": 7221,
+              "changedFromFirst": 8447
+            },
+            {
+              "index": 12,
+              "direction": "w",
+              "action": "idle",
+              "hash": "fe9eb222ddc22c08fe1be6799c6666f1ac9d8709c12a55a8b05470f713899b38",
+              "bounds": [
+                27,
+                110,
+                103,
+                126
+              ],
+              "opaque": 6459,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 13,
+              "direction": "w",
+              "action": "idle",
+              "hash": "fe9eb222ddc22c08fe1be6799c6666f1ac9d8709c12a55a8b05470f713899b38",
+              "bounds": [
+                27,
+                110,
+                103,
+                126
+              ],
+              "opaque": 6459,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 14,
+              "direction": "w",
+              "action": "idle",
+              "hash": "fe9eb222ddc22c08fe1be6799c6666f1ac9d8709c12a55a8b05470f713899b38",
+              "bounds": [
+                27,
+                110,
+                103,
+                126
+              ],
+              "opaque": 6459,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 15,
+              "direction": "w",
+              "action": "idle",
+              "hash": "fe9eb222ddc22c08fe1be6799c6666f1ac9d8709c12a55a8b05470f713899b38",
+              "bounds": [
+                27,
+                110,
+                103,
+                126
+              ],
+              "opaque": 6459,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 16,
+              "direction": "w",
+              "action": "walk",
+              "hash": "fe9eb222ddc22c08fe1be6799c6666f1ac9d8709c12a55a8b05470f713899b38",
+              "bounds": [
+                27,
+                110,
+                103,
+                126
+              ],
+              "opaque": 6459,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 17,
+              "direction": "w",
+              "action": "walk",
+              "hash": "911d1a4b6f0adb444c1d89ca8918f0a259bc9b52f915f1ff13dd1d1f7360b882",
+              "bounds": [
+                25,
+                111,
+                103,
+                125
+              ],
+              "opaque": 6534,
+              "changedFromFirst": 6991
+            },
+            {
+              "index": 18,
+              "direction": "w",
+              "action": "walk",
+              "hash": "fec2ad102084e1177cbf20e78ecdfef15123f915f042c79600abf364bed2608a",
+              "bounds": [
+                28,
+                112,
+                103,
+                124
+              ],
+              "opaque": 6497,
+              "changedFromFirst": 6929
+            },
+            {
+              "index": 19,
+              "direction": "w",
+              "action": "walk",
+              "hash": "a9a973f41e5d9c20096f9f02d98c0cd54d6f0a1f271f89319c5a21114935c5bf",
+              "bounds": [
+                26,
+                110,
+                105,
+                126
+              ],
+              "opaque": 6813,
+              "changedFromFirst": 7233
+            },
+            {
+              "index": 20,
+              "direction": "w",
+              "action": "attack",
+              "hash": "f8040af8e2f50746c8bd58e7acce9c70549c3c880456daf1b973a565c4093c1c",
+              "bounds": [
+                68,
+                114,
+                103,
+                122
+              ],
+              "opaque": 6617,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 21,
+              "direction": "w",
+              "action": "attack",
+              "hash": "8737e76f33517c00646f3bbb5779c6d3675caeb973ec18be4af2d77fba7af861",
+              "bounds": [
+                39,
+                115,
+                124,
+                121
+              ],
+              "opaque": 6799,
+              "changedFromFirst": 8285
+            },
+            {
+              "index": 22,
+              "direction": "w",
+              "action": "attack",
+              "hash": "ae0efa02792a196d9acc2e1868587e77e62b08157ca146e2863688e6c5408420",
+              "bounds": [
+                34,
+                114,
+                133,
+                122
+              ],
+              "opaque": 7126,
+              "changedFromFirst": 8250
+            },
+            {
+              "index": 23,
+              "direction": "w",
+              "action": "attack",
+              "hash": "d6936151852153e2d55930596c3da5aec90c2d497584a068459263a19374a605",
+              "bounds": [
+                57,
+                110,
+                117,
+                126
+              ],
+              "opaque": 7192,
+              "changedFromFirst": 8571
+            },
+            {
+              "index": 24,
+              "direction": "n",
+              "action": "idle",
+              "hash": "4b8d1c88eae7ef1fa6d8b2ddd74f2666267f5d5614c8d80b7266fc80d1201bd0",
+              "bounds": [
+                65,
+                108,
+                113,
+                128
+              ],
+              "opaque": 7107,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 25,
+              "direction": "n",
+              "action": "idle",
+              "hash": "4b8d1c88eae7ef1fa6d8b2ddd74f2666267f5d5614c8d80b7266fc80d1201bd0",
+              "bounds": [
+                65,
+                108,
+                113,
+                128
+              ],
+              "opaque": 7107,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 26,
+              "direction": "n",
+              "action": "idle",
+              "hash": "4b8d1c88eae7ef1fa6d8b2ddd74f2666267f5d5614c8d80b7266fc80d1201bd0",
+              "bounds": [
+                65,
+                108,
+                113,
+                128
+              ],
+              "opaque": 7107,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 27,
+              "direction": "n",
+              "action": "idle",
+              "hash": "4b8d1c88eae7ef1fa6d8b2ddd74f2666267f5d5614c8d80b7266fc80d1201bd0",
+              "bounds": [
+                65,
+                108,
+                113,
+                128
+              ],
+              "opaque": 7107,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 28,
+              "direction": "n",
+              "action": "walk",
+              "hash": "4b8d1c88eae7ef1fa6d8b2ddd74f2666267f5d5614c8d80b7266fc80d1201bd0",
+              "bounds": [
+                65,
+                108,
+                113,
+                128
+              ],
+              "opaque": 7107,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 29,
+              "direction": "n",
+              "action": "walk",
+              "hash": "ea45036b6d8ec89819c1c37a801addfbdfb3a213e181a1ce71bb24b849cb8c01",
+              "bounds": [
+                60,
+                108,
+                114,
+                128
+              ],
+              "opaque": 7206,
+              "changedFromFirst": 8117
+            },
+            {
+              "index": 30,
+              "direction": "n",
+              "action": "walk",
+              "hash": "a9af627c896ebc6d4a8e4343a8ca0cc07706139170aa12563c87c6a0f6b08557",
+              "bounds": [
+                64,
+                108,
+                112,
+                128
+              ],
+              "opaque": 7182,
+              "changedFromFirst": 7708
+            },
+            {
+              "index": 31,
+              "direction": "n",
+              "action": "walk",
+              "hash": "fd04d4fa793a12e0b1fccfefecff0b8ea929ea0aba606bd6d48312b2e4697a9f",
+              "bounds": [
+                62,
+                108,
+                105,
+                128
+              ],
+              "opaque": 6392,
+              "changedFromFirst": 7870
+            },
+            {
+              "index": 32,
+              "direction": "n",
+              "action": "attack",
+              "hash": "e6116d9d201fb781f61ec5358ed710e764c47cb7921561d43178e05fb42be3e5",
+              "bounds": [
+                29,
+                116,
+                105,
+                120
+              ],
+              "opaque": 6484,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 33,
+              "direction": "n",
+              "action": "attack",
+              "hash": "557f9790195c12a000b5dc4de74a899272e1c417404cfeeb6de3b0db3829ff61",
+              "bounds": [
+                22,
+                116,
+                132,
+                120
+              ],
+              "opaque": 7437,
+              "changedFromFirst": 8399
+            },
+            {
+              "index": 34,
+              "direction": "n",
+              "action": "attack",
+              "hash": "9491aafb30eb56bda8ac559609baef7940d4da305d519c1d36d71d2d7536adf9",
+              "bounds": [
+                25,
+                117,
+                131,
+                119
+              ],
+              "opaque": 7439,
+              "changedFromFirst": 8475
+            },
+            {
+              "index": 35,
+              "direction": "n",
+              "action": "attack",
+              "hash": "4a1888e4a1f714a03479cf2df33afe1454d7bb371ba4cb9bf6ed6cae57028928",
+              "bounds": [
+                4,
+                117,
+                127,
+                119
+              ],
+              "opaque": 7803,
+              "changedFromFirst": 9260
+            },
+            {
+              "index": 36,
+              "direction": "e",
+              "action": "idle",
+              "hash": "5c3a9d8dc40bdc1f74f70da43b95373499345adeee5f8880a016c07437ef5206",
+              "bounds": [
+                19,
+                107,
+                114,
+                129
+              ],
+              "opaque": 6840,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 37,
+              "direction": "e",
+              "action": "idle",
+              "hash": "5c3a9d8dc40bdc1f74f70da43b95373499345adeee5f8880a016c07437ef5206",
+              "bounds": [
+                19,
+                107,
+                114,
+                129
+              ],
+              "opaque": 6840,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 38,
+              "direction": "e",
+              "action": "idle",
+              "hash": "5c3a9d8dc40bdc1f74f70da43b95373499345adeee5f8880a016c07437ef5206",
+              "bounds": [
+                19,
+                107,
+                114,
+                129
+              ],
+              "opaque": 6840,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 39,
+              "direction": "e",
+              "action": "idle",
+              "hash": "5c3a9d8dc40bdc1f74f70da43b95373499345adeee5f8880a016c07437ef5206",
+              "bounds": [
+                19,
+                107,
+                114,
+                129
+              ],
+              "opaque": 6840,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 40,
+              "direction": "e",
+              "action": "walk",
+              "hash": "5c3a9d8dc40bdc1f74f70da43b95373499345adeee5f8880a016c07437ef5206",
+              "bounds": [
+                19,
+                107,
+                114,
+                129
+              ],
+              "opaque": 6840,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 41,
+              "direction": "e",
+              "action": "walk",
+              "hash": "16fd67afa6a436f4782a898b1eda7db59c1e0c7f72ccb5e522aa1f455f7dff8d",
+              "bounds": [
+                27,
+                109,
+                110,
+                127
+              ],
+              "opaque": 6716,
+              "changedFromFirst": 7607
+            },
+            {
+              "index": 42,
+              "direction": "e",
+              "action": "walk",
+              "hash": "9872aecb0921ac93a84ad4ab8cb4f7af3daff16209d57a5eab8601f02a4caa0e",
+              "bounds": [
+                21,
+                110,
+                112,
+                126
+              ],
+              "opaque": 6768,
+              "changedFromFirst": 7361
+            },
+            {
+              "index": 43,
+              "direction": "e",
+              "action": "walk",
+              "hash": "62d3405607b4ba2ae969357a86cd06754c8f8f29f45687773ab3f0c188aac9d4",
+              "bounds": [
+                31,
+                109,
+                103,
+                127
+              ],
+              "opaque": 6286,
+              "changedFromFirst": 7564
+            },
+            {
+              "index": 44,
+              "direction": "e",
+              "action": "attack",
+              "hash": "3760cab9cb29200be0524d28aa3c35061deb5955f745f578ded442e116785699",
+              "bounds": [
+                24,
+                111,
+                117,
+                125
+              ],
+              "opaque": 7073,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 45,
+              "direction": "e",
+              "action": "attack",
+              "hash": "934483e6e7e5caee4c7e9c7b08d51f7460088731dc97fd7dce1aad685920b49b",
+              "bounds": [
+                17,
+                114,
+                138,
+                122
+              ],
+              "opaque": 7889,
+              "changedFromFirst": 9052
+            },
+            {
+              "index": 46,
+              "direction": "e",
+              "action": "attack",
+              "hash": "10c8d90f566f50b653fa4ce35a508ddc57518dfc99bb70222cf22d0fca433c42",
+              "bounds": [
+                22,
+                114,
+                139,
+                122
+              ],
+              "opaque": 7829,
+              "changedFromFirst": 9241
+            },
+            {
+              "index": 47,
+              "direction": "e",
+              "action": "attack",
+              "hash": "f6a55dc048cfa4c9e752021ece11eb4bd9a195f4e2306db5e87c612aedb093c7",
+              "bounds": [
+                14,
+                112,
+                124,
+                124
+              ],
+              "opaque": 8336,
+              "changedFromFirst": 9788
+            }
+          ]
+        },
+        {
+          "type": "townhall",
+          "key": "b-animated-townhall",
+          "frames": 4,
+          "frameWidth": 512,
+          "frameHeight": 512,
+          "pivot": [
+            256,
+            470
+          ],
+          "source": "/assets/buildings/animated/townhall-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": null,
+              "action": "ambient",
+              "hash": "2d7e6e8354a1687b8ea084148c344f4ac8487b14a5c2794c9d07c54810c1e2ec",
+              "bounds": [
+                25,
+                92,
+                374,
+                378
+              ],
+              "opaque": 83976,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": null,
+              "action": "ambient",
+              "hash": "88d0f69a672e2228ad9da89c0347a56b49b0ecbf776007e2bf894c83968d00c8",
+              "bounds": [
+                25,
+                92,
+                374,
+                378
+              ],
+              "opaque": 84298,
+              "changedFromFirst": 83917
+            },
+            {
+              "index": 2,
+              "direction": null,
+              "action": "ambient",
+              "hash": "c37c973e1d06b6632cdd602ef22ddf3132d5c42f709e78194d7cd41e330cce77",
+              "bounds": [
+                26,
+                92,
+                374,
+                378
+              ],
+              "opaque": 84566,
+              "changedFromFirst": 84369
+            },
+            {
+              "index": 3,
+              "direction": null,
+              "action": "ambient",
+              "hash": "986e890a380e21e76073bf7d12e581bd1c8aa708e3afa30d206bf561e18cdfc0",
+              "bounds": [
+                25,
+                92,
+                374,
+                378
+              ],
+              "opaque": 84354,
+              "changedFromFirst": 84258
+            }
+          ]
+        },
+        {
+          "type": "sawmill",
+          "key": "b-animated-sawmill",
+          "frames": 4,
+          "frameWidth": 512,
+          "frameHeight": 512,
+          "pivot": [
+            256,
+            470
+          ],
+          "source": "/assets/buildings/animated/sawmill-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": null,
+              "action": "ambient",
+              "hash": "bbcbdc1523c8aa395b5dad1e476833d76f7f21b063b846003bf10887950d8f05",
+              "bounds": [
+                61,
+                54,
+                383,
+                416
+              ],
+              "opaque": 103945,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": null,
+              "action": "ambient",
+              "hash": "d93e4691302270d9e268cc8b200fd185b528825801af1df28724b20a4f2c4ae4",
+              "bounds": [
+                62,
+                49,
+                384,
+                421
+              ],
+              "opaque": 104741,
+              "changedFromFirst": 105776
+            },
+            {
+              "index": 2,
+              "direction": null,
+              "action": "ambient",
+              "hash": "09b41d615387a6513bf3ca3524c7ef2dd298fe554d278c471c574d2a41ee8142",
+              "bounds": [
+                59,
+                32,
+                384,
+                438
+              ],
+              "opaque": 104344,
+              "changedFromFirst": 105540
+            },
+            {
+              "index": 3,
+              "direction": null,
+              "action": "ambient",
+              "hash": "4d085fdd59c0fc1a313fc0704c63ba91dfbbf8212a7f8d2a300a076a1785ad31",
+              "bounds": [
+                58,
+                54,
+                385,
+                416
+              ],
+              "opaque": 104575,
+              "changedFromFirst": 105209
+            }
+          ]
+        },
+        {
+          "type": "mine",
+          "key": "b-animated-mine",
+          "frames": 4,
+          "frameWidth": 512,
+          "frameHeight": 512,
+          "pivot": [
+            256,
+            470
+          ],
+          "source": "/assets/buildings/animated/mine-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": null,
+              "action": "ambient",
+              "hash": "cc2b93d7c7ebca7e6b1382f4fa08954b745fd8bd353bf1271a5e6c87a3d589d6",
+              "bounds": [
+                93,
+                65,
+                402,
+                405
+              ],
+              "opaque": 103141,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": null,
+              "action": "ambient",
+              "hash": "2839cbc203a94f9587513c16ba86ebcec34be9822263eeecb805342eded65b7e",
+              "bounds": [
+                93,
+                66,
+                402,
+                405
+              ],
+              "opaque": 103357,
+              "changedFromFirst": 104143
+            },
+            {
+              "index": 2,
+              "direction": null,
+              "action": "ambient",
+              "hash": "27305a821320a5908c6c60c2f258b526742235c4eb0784392453c91a6ab27644",
+              "bounds": [
+                93,
+                65,
+                402,
+                405
+              ],
+              "opaque": 103763,
+              "changedFromFirst": 104292
+            },
+            {
+              "index": 3,
+              "direction": null,
+              "action": "ambient",
+              "hash": "5a50ea878e27adc637f66e6f4d0749a530b65e3d300e8fd63ba77cb5c7ebc721",
+              "bounds": [
+                93,
+                65,
+                402,
+                405
+              ],
+              "opaque": 104049,
+              "changedFromFirst": 105127
+            }
+          ]
+        },
+        {
+          "type": "warehouse",
+          "key": "b-animated-warehouse",
+          "frames": 4,
+          "frameWidth": 512,
+          "frameHeight": 512,
+          "pivot": [
+            256,
+            470
+          ],
+          "source": "/assets/buildings/animated/warehouse-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": null,
+              "action": "ambient",
+              "hash": "4d720e01b15f22559713497295c85518864ffd96c6008a464c64cc8a7d419682",
+              "bounds": [
+                26,
+                33,
+                454,
+                438
+              ],
+              "opaque": 122619,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": null,
+              "action": "ambient",
+              "hash": "131ea8ba0812c088ffb5ed1ffa27ec6cc4a4492f7ba2a0a72a4642fc6dce2731",
+              "bounds": [
+                27,
+                33,
+                454,
+                437
+              ],
+              "opaque": 121594,
+              "changedFromFirst": 123481
+            },
+            {
+              "index": 2,
+              "direction": null,
+              "action": "ambient",
+              "hash": "34832383a9eb928c6bbd9eac3e2f74d09786295242be336af4b80a1dc9d6032e",
+              "bounds": [
+                26,
+                33,
+                454,
+                437
+              ],
+              "opaque": 122380,
+              "changedFromFirst": 123019
+            },
+            {
+              "index": 3,
+              "direction": null,
+              "action": "ambient",
+              "hash": "75af9f38518c18e81e248c0fb1e4cbe58ba1e460067ac924ef898d8e8de54de0",
+              "bounds": [
+                26,
+                33,
+                454,
+                437
+              ],
+              "opaque": 120683,
+              "changedFromFirst": 123219
+            }
+          ]
+        },
+        {
+          "type": "barracks",
+          "key": "b-animated-barracks",
+          "frames": 4,
+          "frameWidth": 512,
+          "frameHeight": 512,
+          "pivot": [
+            256,
+            470
+          ],
+          "source": "/assets/buildings/animated/barracks-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": null,
+              "action": "ambient",
+              "hash": "e910c79f3c52c3df049f9235a00d5b3e44d91c73b17c2cc5112b6fd8b111bf78",
+              "bounds": [
+                86,
+                54,
+                337,
+                416
+              ],
+              "opaque": 94194,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": null,
+              "action": "ambient",
+              "hash": "fe9c576f79e0edde3e75e8ea983423ff8d9fc91efeed7d17862a677c5c75b537",
+              "bounds": [
+                87,
+                54,
+                335,
+                416
+              ],
+              "opaque": 94162,
+              "changedFromFirst": 94855
+            },
+            {
+              "index": 2,
+              "direction": null,
+              "action": "ambient",
+              "hash": "5ff34d3a003655d95d74c7f6155a36b647833d51e764adbb6f9bed2b594c345c",
+              "bounds": [
+                85,
+                53,
+                338,
+                417
+              ],
+              "opaque": 94859,
+              "changedFromFirst": 95333
+            },
+            {
+              "index": 3,
+              "direction": null,
+              "action": "ambient",
+              "hash": "ad58521f5e4620d241c7c033b2f0f3d7e294afb43bb1e2c607852c70a04d9fc3",
+              "bounds": [
+                86,
+                53,
+                340,
+                417
+              ],
+              "opaque": 94691,
+              "changedFromFirst": 95393
+            }
+          ]
+        },
+        {
+          "type": "tower",
+          "key": "b-animated-tower",
+          "frames": 4,
+          "frameWidth": 512,
+          "frameHeight": 512,
+          "pivot": [
+            256,
+            470
+          ],
+          "source": "/assets/buildings/animated/tower-atlas.png",
+          "status": 200,
+          "visibleAlphaThreshold": 32,
+          "poses": [
+            {
+              "index": 0,
+              "direction": null,
+              "action": "ambient",
+              "hash": "57059f414e5c0192ce1215fdbc7721ee7995280e34a0d27cc5b97156ae990e67",
+              "bounds": [
+                31,
+                66,
+                399,
+                404
+              ],
+              "opaque": 103745,
+              "changedFromFirst": 0
+            },
+            {
+              "index": 1,
+              "direction": null,
+              "action": "ambient",
+              "hash": "fa1b0cabf5f5ea57a980c8c8f83f60fbacdf34ce925e02fa211af06e4990b395",
+              "bounds": [
+                31,
+                66,
+                400,
+                404
+              ],
+              "opaque": 103912,
+              "changedFromFirst": 103908
+            },
+            {
+              "index": 2,
+              "direction": null,
+              "action": "ambient",
+              "hash": "960a7c5da538a6d261bfeca42a841b436c0b3e618ad2816e6d96a52531d61059",
+              "bounds": [
+                31,
+                65,
+                399,
+                405
+              ],
+              "opaque": 103891,
+              "changedFromFirst": 103856
+            },
+            {
+              "index": 3,
+              "direction": null,
+              "action": "ambient",
+              "hash": "a16f3e58b60209d850222a3a33c3126fd489ffb29eebe707ae6bfe6c5f226f64",
+              "bounds": [
+                31,
+                65,
+                400,
+                405
+              ],
+              "opaque": 104020,
+              "changedFromFirst": 104082
+            }
+          ]
+        }
+      ],
+      "decor": [
+        {
+          "key": "tree-0",
+          "path": "/assets/decor/tree-0.png",
+          "width": 128,
+          "height": 160,
+          "status": 200
+        },
+        {
+          "key": "tree-1",
+          "path": "/assets/decor/tree-1.png",
+          "width": 128,
+          "height": 160,
+          "status": 200
+        },
+        {
+          "key": "decor-cart",
+          "path": "/assets/decor/decor-cart.png",
+          "width": 192,
+          "height": 192,
+          "status": 200
+        },
+        {
+          "key": "decor-crate",
+          "path": "/assets/decor/decor-crate.png",
+          "width": 192,
+          "height": 192,
+          "status": 200
+        },
+        {
+          "key": "decor-fountain",
+          "path": "/assets/decor/decor-fountain.png",
+          "width": 192,
+          "height": 192,
+          "status": 200
+        },
+        {
+          "key": "decor-ore",
+          "path": "/assets/decor/decor-ore.png",
+          "width": 192,
+          "height": 192,
+          "status": 200
+        },
+        {
+          "key": "decor-rock",
+          "path": "/assets/decor/decor-rock.png",
+          "width": 192,
+          "height": 192,
+          "status": 200
+        }
+      ]
+    }
   },
-  "slow_boot_modal_input": "passed (desktop, terrain response delayed 1200 ms)",
-  "windows_launcher": "provided, not executed natively on Linux"
+  "preview_capture": {
+    "status": "passed",
+    "page_errors": [],
+    "sprite_preview": "passed",
+    "gif": {
+      "frames": 108,
+      "fps": 6,
+      "width": 800,
+      "seconds": 18
+    }
+  }
 }

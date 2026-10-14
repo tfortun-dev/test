@@ -1,30 +1,37 @@
-/**
- * Offline-baked sprite sheets: four facing rows, 16 frames/row.
- * frame 0..3 idle, 4..9 walk, 10..15 attack. No live 3D rendering.
- */
-export const UNIT_SHEET={frameWidth:108,frameHeight:116,framesPerDirection:16,directions:['s','w','n','e']};
+import {characterFrame,characterSheet,installCharacterMetadata} from './characterSprites.js';
+
+/** Painted poses: four facing rows, idle 0..3, walk 4..7, attack 8..11. */
+export const UNIT_SHEET=Object.freeze({frameWidth:192,frameHeight:256,framesPerDirection:12,directions:['s','w','n','e']});
 export function directionFromVector(dx,dy,previous='s'){
   if(Math.abs(dx)+Math.abs(dy)<.15)return previous;
-  return Math.abs(dx)>Math.abs(dy) ? (dx>0?'e':'w'):(dy>0?'s':'n');
+  // Four isometric angles, matching the cardinal tile steps of village walkers.
+  if(Math.abs(dy)<.15)return dx>0?'e':'w';
+  if(Math.abs(dx)<.15)return dy>0?'s':'n';
+  return dy>0?(dx>0?'e':'s'):(dx>0?'n':'w');
 }
 export function animationKey(type,action,direction){return `astrub:${type}:${action}:${direction}`;}
 export function installUnitAnimations(scene){
+  installCharacterMetadata(scene);
   for(const type of ['iop','cra']){
-    if(!scene.textures.exists('unit-anim-'+type))continue;
-    for(let row=0;row<UNIT_SHEET.directions.length;row++){
-      const facing=UNIT_SHEET.directions[row],start=row*16;
-      for(const [action,first,last,fps,repeat] of [
-        ['idle',0,3,5,-1],['walk',4,9,10,-1],['attack',10,15,13,0]
-      ]){
+    const sheet=characterSheet(scene,type);
+    if(!scene.textures.exists(sheet.key))continue;
+    for(const facing of sheet.directions){
+      for(const [action,{first,last,fps,repeat}] of Object.entries(sheet.actions)){
         const key=animationKey(type,action,facing);
         if(scene.anims.exists(key))continue;
-        scene.anims.create({key,frames:scene.anims.generateFrameNumbers('unit-anim-'+type,
-          {start:start+first,end:start+last}),frameRate:fps,repeat});
+        scene.anims.create({key,frames:scene.anims.generateFrameNumbers(sheet.key,{
+          start:characterFrame(sheet,facing,first),end:characterFrame(sheet,facing,last)
+        }),frameRate:fps,repeat});
       }
     }
   }
 }
 export function playUnitAnimation(sprite,type,action,facing){
-  const key=animationKey(type,action,facing);
-  if(sprite.anims.currentAnim?.key!==key)sprite.play(key,true);
+  const sheet=characterSheet(sprite.scene,type),key=animationKey(type,action,facing);
+  if(sprite.scene.characterMotionReduced){
+    sprite.anims.stop();sprite.setFrame(characterFrame(sheet,facing,sheet.actions.idle.first));
+    return;
+  }
+  if(sprite.anims.currentAnim?.key!==key||!sprite.anims.isPlaying)sprite.play(key,true);
+  else if(sprite.anims.isPaused)sprite.anims.resume();
 }

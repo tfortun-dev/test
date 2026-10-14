@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "sources": {
+    "townhall": {
+      "path": "../../source/v0.8.0/townhall-source.png",
+      "columns": 2,
+      "rows": 2
+    },
+    "sawmill": {
+      "path": "../../source/v0.8.0/sawmill-source.png",
+      "columns": 2,
+      "rows": 2
+    },
+    "mine": {
+      "path": "../../source/v0.8.0/mine-source.png",
+      "columns": 2,
+      "rows": 2
+    },
+    "warehouse": {
+      "path": "../../source/v0.8.0/warehouse-source.png",
+      "columns": 2,
+      "rows": 2
+    },
+    "barracks": {
+      "path": "../../source/v0.8.0/barracks-source.png",
+      "columns": 2,
+      "rows": 2
+    },
+    "tower-left": {
+      "path": "../../source/v0.8.0/tower-source.png",
+      "columns": 1,
+      "rows": 2,
+      "rect": [
+        0,
+        0,
+        638,
+        1254
+      ]
+    },
+    "tower-right": {
+      "path": "../../source/v0.8.0/tower-source.png",
+      "columns": 1,
+      "rows": 2,
+      "rect": [
+        638,
+        0,
+        616,
+        1254
+      ]
+    }
+  },
+  "outputRoot": "../../../public/assets/buildings/animated",
+  "manifest": {
+    "path": "manifest.json",
+    "root": "buildings"
+  },
+  "sprites": [
+    {
+      "name": "townhall",
+      "frameSize": [
+        512,
+        512
+      ],
+      "columns": 2,
+      "pivot": [
+        256,
+        470
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "townhall-atlas.png",
+        "portrait": "../b-townhall.png",
+        "publicPath": "/assets/buildings/animated/townhall-atlas.png"
+      },
+      "metadata": {
+        "fps": 3,
+        "repeat": -1
+      },
+      "source": "townhall"
+    },
+    {
+      "name": "sawmill",
+      "frameSize": [
+        512,
+        512
+      ],
+      "columns": 2,
+      "pivot": [
+        256,
+        470
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "sawmill-atlas.png",
+        "portrait": "../b-sawmill.png",
+        "publicPath": "/assets/buildings/animated/sawmill-atlas.png"
+      },
+      "metadata": {
+        "fps": 3,
+        "repeat": -1
+      },
+      "source": "sawmill",
+      "bodyRect": [
+        0,
+        100,
+        627,
+        527
+      ]
+    },
+    {
+      "name": "mine",
+      "frameSize": [
+        512,
+        512
+      ],
+      "columns": 2,
+      "pivot": [
+        256,
+        470
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "mine-atlas.png",
+        "portrait": "../b-mine.png",
+        "publicPath": "/assets/buildings/animated/mine-atlas.png"
+      },
+      "metadata": {
+        "fps": 3,
+        "repeat": -1
+      },
+      "source": "mine"
+    },
+    {
+      "name": "warehouse",
+      "frameSize": [
+        512,
+        512
+      ],
+      "columns": 2,
+      "pivot": [
+        256,
+        470
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "warehouse-atlas.png",
+        "portrait": "../b-warehouse.png",
+        "publicPath": "/assets/buildings/animated/warehouse-atlas.png"
+      },
+      "metadata": {
+        "fps": 3,
+        "repeat": -1
+      },
+      "source": "warehouse"
+    },
+    {
+      "name": "barracks",
+      "frameSize": [
+        512,
+        512
+      ],
+      "columns": 2,
+      "pivot": [
+        256,
+        470
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "barracks-atlas.png",
+        "portrait": "../b-barracks.png",
+        "publicPath": "/assets/buildings/animated/barracks-atlas.png"
+      },
+      "metadata": {
+        "fps": 3,
+        "repeat": -1
+      },
+      "source": "barracks"
+    },
+    {
+      "name": "tower",
+      "frameSize": [
+        512,
+        512
+      ],
+      "columns": 2,
+      "pivot": [
+        256,
+        470
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "tower-atlas.png",
+        "portrait": "../b-tower.png",
+        "publicPath": "/assets/buildings/animated/tower-atlas.png"
+      },
+      "metadata": {
+        "fps": 3,
+        "repeat": -1
+      },
+      "frames": [
+        {
+          "source": "tower-left",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "source": "tower-right",
+          "cell": [
+            0,
+            0
+          ]
+        },
+        {
+          "source": "tower-left",
+          "cell": [
+            0,
+            1
+          ]
+        },
+        {
+          "source": "tower-right",
+          "cell": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

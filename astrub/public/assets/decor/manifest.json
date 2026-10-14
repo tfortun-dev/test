@@ -1,0 +1,748 @@
+{
+  "version": 1,
+  "decorations": {
+    "decor-cart": {
+      "animated": false,
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9166666666666666,
+      "pivot": [
+        96.0,
+        176.0
+      ],
+      "commonScale": 0.44729639,
+      "bodyBounds": [
+        5,
+        27,
+        174,
+        150
+      ],
+      "frameBounds": [
+        [
+          4,
+          27,
+          177,
+          153
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          176.0
+        ]
+      ],
+      "frameHashes": [
+        "3864e0b40c1f95aa8f0c522448cb74d5962a52aa0c8a0e75db4133af1ce32fdb"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "decor-cart",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            18,
+            150,
+            398,
+            350
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            6,
+            398,
+            344
+          ],
+          "sourcePivot": [
+            207.5,
+            341.0
+          ],
+          "bounds": [
+            4,
+            27,
+            177,
+            153
+          ],
+          "pivot": [
+            96.0,
+            176.0
+          ],
+          "sha256": "3864e0b40c1f95aa8f0c522448cb74d5962a52aa0c8a0e75db4133af1ce32fdb"
+        }
+      ],
+      "path": "/assets/decor/decor-cart.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "decor-crate": {
+      "animated": false,
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9166666666666666,
+      "pivot": [
+        96.0,
+        176.0
+      ],
+      "commonScale": 0.47233588,
+      "bodyBounds": [
+        6,
+        10,
+        170,
+        166
+      ],
+      "frameBounds": [
+        [
+          3,
+          7,
+          175,
+          171
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          176.0
+        ]
+      ],
+      "frameHashes": [
+        "1510c8632de3b6b3256f2c101b5ad46c1e28d34ba5e4c0ee09bd46497461ec6d"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "decor-crate",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            418,
+            145,
+            371,
+            363
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            371,
+            363
+          ],
+          "sourcePivot": [
+            196.5,
+            358.0
+          ],
+          "bounds": [
+            3,
+            7,
+            175,
+            171
+          ],
+          "pivot": [
+            96.0,
+            176.0
+          ],
+          "sha256": "1510c8632de3b6b3256f2c101b5ad46c1e28d34ba5e4c0ee09bd46497461ec6d"
+        }
+      ],
+      "path": "/assets/decor/decor-crate.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "decor-fountain": {
+      "animated": false,
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9166666666666666,
+      "pivot": [
+        96.0,
+        176.0
+      ],
+      "commonScale": 0.41902483,
+      "bodyBounds": [
+        6,
+        8,
+        171,
+        168
+      ],
+      "frameBounds": [
+        [
+          3,
+          7,
+          174,
+          172
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          176.0
+        ]
+      ],
+      "frameHashes": [
+        "91f23176b714e79430d4974d355f9dae02ab4718b891f36b8792e1113870eefc"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "decor-fountain",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            790,
+            100,
+            420,
+            412
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            3,
+            420,
+            409
+          ],
+          "sourcePivot": [
+            221.5,
+            406.0
+          ],
+          "bounds": [
+            3,
+            7,
+            174,
+            172
+          ],
+          "pivot": [
+            96.0,
+            176.0
+          ],
+          "sha256": "91f23176b714e79430d4974d355f9dae02ab4718b891f36b8792e1113870eefc"
+        }
+      ],
+      "path": "/assets/decor/decor-fountain.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "decor-ore": {
+      "animated": false,
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9166666666666666,
+      "pivot": [
+        96.0,
+        176.0
+      ],
+      "commonScale": 0.47826593,
+      "bodyBounds": [
+        14,
+        4,
+        144,
+        172
+      ],
+      "frameBounds": [
+        [
+          12,
+          4,
+          147,
+          175
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          176.0
+        ]
+      ],
+      "frameHashes": [
+        "a6b92b34608338cb2da3fc45bc06559ea9409c8a70b79792e1236ef6017e042b"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "decor-ore",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1213,
+            134,
+            313,
+            372
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            4,
+            309,
+            367
+          ],
+          "sourcePivot": [
+            177.5,
+            365.0
+          ],
+          "bounds": [
+            12,
+            4,
+            147,
+            175
+          ],
+          "pivot": [
+            96.0,
+            176.0
+          ],
+          "sha256": "a6b92b34608338cb2da3fc45bc06559ea9409c8a70b79792e1236ef6017e042b"
+        }
+      ],
+      "path": "/assets/decor/decor-ore.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "decor-rock": {
+      "animated": false,
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9166666666666666,
+      "pivot": [
+        96.0,
+        176.0
+      ],
+      "commonScale": 0.53805217,
+      "bodyBounds": [
+        4,
+        15,
+        171,
+        161
+      ],
+      "frameBounds": [
+        [
+          3,
+          10,
+          173,
+          171
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          176.0
+        ]
+      ],
+      "frameHashes": [
+        "6809ecea59964292fa9bcb543f603a29e58127a1b795eacc352aa749ae6ab242"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "decor-rock",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            25,
+            640,
+            325,
+            318
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            3,
+            0,
+            322,
+            318
+          ],
+          "sourcePivot": [
+            175.5,
+            309.0
+          ],
+          "bounds": [
+            3,
+            10,
+            173,
+            171
+          ],
+          "pivot": [
+            96.0,
+            176.0
+          ],
+          "sha256": "6809ecea59964292fa9bcb543f603a29e58127a1b795eacc352aa749ae6ab242"
+        }
+      ],
+      "path": "/assets/decor/decor-rock.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "tree-0": {
+      "animated": false,
+      "frameWidth": 128,
+      "frameHeight": 160,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9375,
+      "pivot": [
+        64.0,
+        150.0
+      ],
+      "commonScale": 0.27360899,
+      "bodyBounds": [
+        3,
+        33,
+        116,
+        117
+      ],
+      "frameBounds": [
+        [
+          3,
+          32,
+          117,
+          119
+        ]
+      ],
+      "framePivots": [
+        [
+          64.0,
+          150.0
+        ]
+      ],
+      "frameHashes": [
+        "ade679c23bc61846fbcdd928cb1499f6d736a51ca0f745e37b46cc844f131946"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "tree-0",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            349,
+            526,
+            427,
+            440
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            427,
+            438
+          ],
+          "sourcePivot": [
+            222.5,
+            433.0
+          ],
+          "bounds": [
+            3,
+            32,
+            117,
+            119
+          ],
+          "pivot": [
+            64.0,
+            150.0
+          ],
+          "sha256": "ade679c23bc61846fbcdd928cb1499f6d736a51ca0f745e37b46cc844f131946"
+        }
+      ],
+      "path": "/assets/decor/tree-0.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "tree-1": {
+      "animated": false,
+      "frameWidth": 128,
+      "frameHeight": 160,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9375,
+      "pivot": [
+        64.0,
+        150.0
+      ],
+      "commonScale": 0.13820204,
+      "bodyBounds": [
+        6,
+        37,
+        119,
+        114
+      ],
+      "frameBounds": [
+        [
+          6,
+          37,
+          119,
+          114
+        ]
+      ],
+      "framePivots": [
+        [
+          64.0,
+          150.0
+        ]
+      ],
+      "frameHashes": [
+        "35d93c8bd531bdaa692232fbc04df929a945fb67cf93a87cf3447f18b74ce173"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "tree-1",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            95,
+            25,
+            890,
+            845
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            11,
+            0,
+            862,
+            842
+          ],
+          "sourcePivot": [
+            432.5,
+            827.0
+          ],
+          "bounds": [
+            6,
+            37,
+            119,
+            114
+          ],
+          "pivot": [
+            64.0,
+            150.0
+          ],
+          "sha256": "35d93c8bd531bdaa692232fbc04df929a945fb67cf93a87cf3447f18b74ce173"
+        }
+      ],
+      "path": "/assets/decor/tree-1.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    },
+    "decor-flowers": {
+      "animated": false,
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 1,
+      "columns": 1,
+      "rows": 1,
+      "originX": 0.5,
+      "originY": 0.9166666666666666,
+      "pivot": [
+        96.0,
+        176.0
+      ],
+      "commonScale": 0.25463374,
+      "bodyBounds": [
+        36,
+        68,
+        149,
+        108
+      ],
+      "frameBounds": [
+        [
+          36,
+          67,
+          153,
+          110
+        ]
+      ],
+      "framePivots": [
+        [
+          96.0,
+          176.0
+        ]
+      ],
+      "frameHashes": [
+        "94c2df9e0a3915dee0a7d34fe483a42e73dc946d944d886e522d4470e009aaf5"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "decor-flowers",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            1075,
+            395,
+            615,
+            455
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            8,
+            3,
+            607,
+            441
+          ],
+          "sourcePivot": [
+            250.5,
+            439.0
+          ],
+          "bounds": [
+            36,
+            67,
+            153,
+            110
+          ],
+          "pivot": [
+            96.0,
+            176.0
+          ],
+          "sha256": "94c2df9e0a3915dee0a7d34fe483a42e73dc946d944d886e522d4470e009aaf5"
+        }
+      ],
+      "path": "/assets/decor/decor-flowers.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 1,
+        "maxPivotError": 0.0
+      }
+    }
+  },
+  "export": {
+    "tool": "pack_generated_sprites.py",
+    "recipe": "decor.json",
+    "sources": {
+      "decor-cart": {
+        "file": "../../source/v0.8.0/decor-source.png",
+        "sha256": "23fb56cdc5a8f2bf3b6d6456cd6e2d5dc8c6f225f42953c50ab488115a9945b2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "decor-crate": {
+        "file": "../../source/v0.8.0/decor-source.png",
+        "sha256": "23fb56cdc5a8f2bf3b6d6456cd6e2d5dc8c6f225f42953c50ab488115a9945b2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "decor-fountain": {
+        "file": "../../source/v0.8.0/decor-source.png",
+        "sha256": "23fb56cdc5a8f2bf3b6d6456cd6e2d5dc8c6f225f42953c50ab488115a9945b2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "decor-ore": {
+        "file": "../../source/v0.8.0/decor-source.png",
+        "sha256": "23fb56cdc5a8f2bf3b6d6456cd6e2d5dc8c6f225f42953c50ab488115a9945b2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "decor-rock": {
+        "file": "../../source/v0.8.0/decor-source.png",
+        "sha256": "23fb56cdc5a8f2bf3b6d6456cd6e2d5dc8c6f225f42953c50ab488115a9945b2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "tree-0": {
+        "file": "../../source/v0.8.0/decor-source.png",
+        "sha256": "23fb56cdc5a8f2bf3b6d6456cd6e2d5dc8c6f225f42953c50ab488115a9945b2",
+        "size": [
+          1536,
+          1024
+        ]
+      },
+      "tree-1": {
+        "file": "../../source/v0.8.0/decor-isolated-source.png",
+        "sha256": "6777fe889415b7c4cb45b7e39c580478490a4bca439841106331dd6a18d724e8",
+        "size": [
+          1774,
+          887
+        ]
+      },
+      "decor-flowers": {
+        "file": "../../source/v0.8.0/decor-isolated-source.png",
+        "sha256": "6777fe889415b7c4cb45b7e39c580478490a4bca439841106331dd6a18d724e8",
+        "size": [
+          1774,
+          887
+        ]
+      }
+    },
+    "warnings": []
+  }
+}

@@ -1,6 +1,7 @@
 import {xy} from './isometric.js';
 import {unitDepth} from './renderLayers.js';
 import {createAmbienceArt,AMBIENCE_SPRITES} from './ambienceArt.js';
+import {characterTextureKey,sizeCharacterSprite} from './characterSprites.js';
 import {AMBIENCE_MAX_ACTORS,ambientCellFree,ambientDirection,buildingsSignature,chooseAmbientRoute,createAmbientGrid,findAmbientPath} from './ambiencePaths.js';
 
 /** Decorative passers-by only. No interactive object, timer, tween or saved state. */
@@ -45,9 +46,11 @@ export class VillageAmbience {
     const path=chooseAmbientRoute(this.grid,this.random,this.spawnCount===0);
     if(!path.length)return false;
     const kind=['hen','villager','rabbit','villager'][this.spawnCount%4];
+    const textureKey=characterTextureKey(kind);
+    if(!this.scene.textures.exists(textureKey))return false;
     const config=AMBIENCE_SPRITES[kind],at=path[0],point=xy(at.i,at.j);
-    const sprite=this.scene.add.image(point.x,point.y,`astrub-ambient-${kind}`,'s:0')
-      .setOrigin(.5,.9).setScale(config.scale).setAlpha(0).setDepth(unitDepth(point.y))
+    const sprite=sizeCharacterSprite(this.scene.add.image(point.x,point.y,textureKey,'s:0'),kind)
+      .setAlpha(0).setDepth(unitDepth(point.y))
       .setName(`astrub:ambient:${kind}`);
     this.scene.layers.world.add(sprite);
     this.actors.push({kind,sprite,path,i:at.i,j:at.j,waypointIndex:1,speed:config.speed,age:0,walkTime:0,direction:'s',exitAge:null,reroutes:0});

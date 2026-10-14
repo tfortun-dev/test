@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "sources": {
+    "decor-cart": {
+      "path": "../../source/v0.8.0/decor-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        18,
+        150,
+        398,
+        350
+      ]
+    },
+    "decor-crate": {
+      "path": "../../source/v0.8.0/decor-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        418,
+        145,
+        371,
+        363
+      ]
+    },
+    "decor-fountain": {
+      "path": "../../source/v0.8.0/decor-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        790,
+        100,
+        420,
+        412
+      ]
+    },
+    "decor-ore": {
+      "path": "../../source/v0.8.0/decor-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        1213,
+        134,
+        313,
+        372
+      ]
+    },
+    "decor-rock": {
+      "path": "../../source/v0.8.0/decor-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        25,
+        640,
+        325,
+        318
+      ]
+    },
+    "tree-0": {
+      "path": "../../source/v0.8.0/decor-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        349,
+        526,
+        427,
+        440
+      ]
+    },
+    "tree-1": {
+      "path": "../../source/v0.8.0/decor-isolated-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        95,
+        25,
+        890,
+        845
+      ]
+    },
+    "decor-flowers": {
+      "path": "../../source/v0.8.0/decor-isolated-source.png",
+      "columns": 1,
+      "rows": 1,
+      "rect": [
+        1075,
+        395,
+        615,
+        455
+      ]
+    }
+  },
+  "outputRoot": "../../../public/assets/decor",
+  "manifest": {
+    "path": "manifest.json",
+    "root": "decorations"
+  },
+  "sprites": [
+    {
+      "name": "decor-cart",
+      "source": "decor-cart",
+      "frameSize": [
+        192,
+        192
+      ],
+      "columns": 1,
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "decor-cart.png",
+        "publicPath": "/assets/decor/decor-cart.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "decor-crate",
+      "source": "decor-crate",
+      "frameSize": [
+        192,
+        192
+      ],
+      "columns": 1,
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "decor-crate.png",
+        "publicPath": "/assets/decor/decor-crate.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "decor-fountain",
+      "source": "decor-fountain",
+      "frameSize": [
+        192,
+        192
+      ],
+      "columns": 1,
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "decor-fountain.png",
+        "publicPath": "/assets/decor/decor-fountain.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "decor-ore",
+      "source": "decor-ore",
+      "frameSize": [
+        192,
+        192
+      ],
+      "columns": 1,
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "decor-ore.png",
+        "publicPath": "/assets/decor/decor-ore.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "decor-rock",
+      "source": "decor-rock",
+      "frameSize": [
+        192,
+        192
+      ],
+      "columns": 1,
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "decor-rock.png",
+        "publicPath": "/assets/decor/decor-rock.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "tree-0",
+      "source": "tree-0",
+      "frameSize": [
+        128,
+        160
+      ],
+      "columns": 1,
+      "pivot": [
+        64,
+        150
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "tree-0.png",
+        "publicPath": "/assets/decor/tree-0.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "tree-1",
+      "source": "tree-1",
+      "frameSize": [
+        128,
+        160
+      ],
+      "columns": 1,
+      "pivot": [
+        64,
+        150
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "tree-1.png",
+        "publicPath": "/assets/decor/tree-1.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    },
+    {
+      "name": "decor-flowers",
+      "source": "decor-flowers",
+      "frameSize": [
+        192,
+        192
+      ],
+      "columns": 1,
+      "pivot": [
+        96,
+        176
+      ],
+      "anchor": {
+        "mode": "ground",
+        "threshold": 96,
+        "bandFraction": 0.06
+      },
+      "output": {
+        "atlas": "decor-flowers.png",
+        "publicPath": "/assets/decor/decor-flowers.png"
+      },
+      "metadata": {
+        "animated": false
+      }
+    }
+  ]
+}

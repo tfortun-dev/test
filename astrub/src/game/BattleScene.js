@@ -1,22 +1,31 @@
 import Phaser from 'phaser';
-import {createArt} from './assets.js';
+import {createArt,preloadWorldDecor} from './assets.js';
 import {xy,ij,tilePoly,hash} from './isometric.js';
-import {getState,resolveBattle,TROOPS} from './state.js';
+import {getState,resolveBattle,TROOPS,BUILDINGS} from './state.js';
 import {createRenderLayers,buildingDepth,unitDepth,decorDepth} from './renderLayers.js';
-import {sizeBuildingSprite} from './spriteCatalog.js';
+import {sizeBuildingSprite,buildingSpriteTop} from './spriteCatalog.js';
 import {installUnitAnimations,playUnitAnimation,directionFromVector} from './unitAnimations.js';
+import {characterTextureKey,preloadCharacterSprites,sizeCharacterSprite} from './characterSprites.js';
+import {preloadBuildingAnimations,installBuildingAnimationFrames,buildingTexture,BuildingAnimator} from './buildingAnimations.js';
 
 export class BattleScene extends Phaser.Scene {
   constructor(){super('BattleScene');}
   preload(){
-    for(const type of ['iop','cra']){
-      const key='unit-anim-'+type;
-      if(!this.textures.exists(key))this.load.spritesheet(key,`/assets/units/${type}-atlas.png`,{frameWidth:108,frameHeight:116});
+    preloadCharacterSprites(this);
+    preloadBuildingAnimations(this);
+    preloadWorldDecor(this);
+    if(!this.textures.exists('astrub-ground'))this.load.image('astrub-ground','/assets/prairie-astrub-etendue.webp');
+    // A direct scene entry also needs the placement stills required by createArt.
+    for(const type of Object.keys(BUILDINGS)){
+      const key=`b-${type}`;
+      if(!this.textures.exists(key))this.load.image(key,`/assets/buildings/b-${type}.png`);
     }
   }
   create(){
     createArt(this);
+    installBuildingAnimationFrames(this);
     this.layers=createRenderLayers(this);
+    this.buildingAnimator=new BuildingAnimator(this);
     installUnitAnimations(this);
     this.cameras.main.setBackgroundColor('#9cbe76');
     if(this.textures.exists('astrub-ground')){
@@ -31,7 +40,7 @@ export class BattleScene extends Phaser.Scene {
       if(i+j<11&&i>0&&j>0)tilePoly(this.ground,i,j,0xbadcc0,.24);
       if(hash(i,j,71)>.91){this.ground.fillStyle(0xf6e3a6,.75);this.ground.fillCircle(p.x+4,p.y,2);}
       if(j>10&&hash(i,j,72)>.82){
-        const tree=this.add.image(p.x,p.y,'tree-'+(i%2)).setOrigin(.5,.985).setScale(.67).setDepth(decorDepth(p.y));
+        const tree=this.add.image(p.x,p.y,'tree-'+(i%2)).setOrigin(.5,150/160).setScale(.67).setDepth(decorDepth(p.y));
         this.layers.world.add(tree);
       }
     }
@@ -41,6 +50,27 @@ export class BattleScene extends Phaser.Scene {
     this.makeTarget(6,10,'b-warehouse',75,'Réserve');
     this.units=[];
     this.used={iop:0,cra:0};this.chosen='iop';this.over=false;this.finalized=false;
+    this.motionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.characterMotionReduced=this.motionPreference.matches;
+    this.onCharacterMotionChange=event=>{
+      this.characterMotionReduced=event.matches;
+      for(const unit of this.units)if(!unit.dead&&unit.image.active){
+        playUnitAnimation(unit.image,unit.type,'idle',unit.facing);
+      }
+    };
+    this.motionPreference.addEventListener('change',this.onCharacterMotionChange);
+    this.onCharacterVisibilityChange=()=>{
+      if(document.hidden)for(const unit of this.units)unit.image.anims.pause();
+    };
+    document.addEventListener('visibilitychange',this.onCharacterVisibilityChange);
+    this.cleanupCharacterMotion=()=>{
+      this.motionPreference.removeEventListener('change',this.onCharacterMotionChange);
+      document.removeEventListener('visibilitychange',this.onCharacterVisibilityChange);
+      this.events.off('shutdown',this.cleanupCharacterMotion);
+      this.events.off('destroy',this.cleanupCharacterMotion);
+    };
+    this.events.once('shutdown',this.cleanupCharacterMotion);
+    this.events.once('destroy',this.cleanupCharacterMotion);
     this.cameras.main.setZoom(Math.min(.97,window.innerWidth<800?.72:.91));
     this.cameras.main.centerOn(0,258);
     this.input.on('pointerdown',this.deploy,this);
@@ -49,6 +79,7 @@ export class BattleScene extends Phaser.Scene {
     this.game.events.on('astrub:chooseTroop',this.pickTroop);
     this.game.events.on('astrub:leaveBattle',this.leave);
     this.events.once('shutdown',()=>{
+      this.buildingAnimator?.destroy();this.buildingAnimator=null;
       this.game.events.off('astrub:chooseTroop',this.pickTroop);
       this.game.events.off('astrub:leaveBattle',this.leave);
     });
@@ -66,12 +97,15 @@ export class BattleScene extends Phaser.Scene {
     const shadow=this.add.ellipse(p.x,p.y+12,104,31,0x233b27,.3).setDepth(unitDepth(p.y+12)-20);
     this.layers.world.add(shadow);
     const building={x:i,y:j};
-    const img=sizeBuildingSprite(this.add.image(p.x,p.y+12,texture),type)
+    const visual=buildingTexture(this,type);
+    const img=sizeBuildingSprite(this.add.image(p.x,p.y+12,visual.key,visual.frame),type)
       .setDepth(buildingDepth(building,[2,2]))
       .setTint(texture==='b-barracks'?0xffdddd:0xf9ede0);
     this.layers.world.add(img);
+    const animationId=`battle:${this.targets.length}:${type}`;
+    this.buildingAnimator.attach(img,type,animationId);
     const bar=this.add.graphics();this.layers.effects.add(bar);
-    const target={img,bar,x:p.x,y:p.y,barY:p.y+12-img.displayHeight*img.originY-19,hp,maxHp:hp,name};
+    const target={img,bar,animationId,x:p.x,y:p.y,barY:buildingSpriteTop(img)-19,hp,maxHp:hp,name};
     this.targets.push(target);this.drawHP(target);
   }
   drawHP(t){
@@ -92,9 +126,13 @@ export class BattleScene extends Phaser.Scene {
     const type=this.chosen;
     if(this.getAvailable()[type]<=0){this.game.events.emit('astrub:toast',`Plus de ${TROOPS[type].label} disponibles. Sélectionnez une autre troupe.`);return;}
     const t=TROOPS[type];
-    const animated=this.textures.exists('unit-anim-'+type);
-    const image=this.add.sprite(p.x,p.y,animated?'unit-anim-'+type:'unit-'+type)
-      .setOrigin(.5,.92).setScale(.88).setDepth(unitDepth(p.y));
+    const textureKey=characterTextureKey(type);
+    if(!this.textures.exists(textureKey)){
+      this.game.events.emit('astrub:toast','Le sprite de cette troupe n’a pas pu être chargé. Rechargez le jeu.');
+      return;
+    }
+    const animated=true;
+    const image=sizeCharacterSprite(this.add.sprite(p.x,p.y,textureKey),type).setDepth(unitDepth(p.y));
     this.layers.world.add(image);
     const unit={image,type,x:p.x,y:p.y,hp:t.hp,attackTimer:0,speed:t.speed,dead:false,facing:'s',animated};
     if(animated){
@@ -107,7 +145,13 @@ export class BattleScene extends Phaser.Scene {
     this.game.events.emit('astrub:troops',this.getAvailable());
   }
   update(time,dt){
-    if(this.over)return;
+    const motionPaused=this.over||!this.input.enabled||document.hidden;
+    this.buildingAnimator?.update(dt,motionPaused);
+    if(motionPaused){
+      for(const unit of this.units)unit.image.anims.pause();
+      return;
+    }
+    for(const unit of this.units)if(unit.image.anims.isPaused)unit.image.anims.resume();
     const delta=Math.min(dt,70)/1000;
     for(const u of this.units){
       if(u.dead)continue;
@@ -115,21 +159,25 @@ export class BattleScene extends Phaser.Scene {
       if(!alive.length){this.win();break;}
       let target=alive[0],dist=Infinity;
       for(const t of alive){const d=Math.hypot(t.x-u.x,t.y-u.y);if(d<dist){dist=d;target=t;}}
-      u.facing=directionFromVector(target.x-u.x,target.y-u.y,u.facing);
+      const facing=directionFromVector(target.x-u.x,target.y-u.y,u.facing);
       const reach=u.type==='cra'?75:35;
       if(dist>reach){
         const step=Math.min(u.speed*delta,dist-reach);
         u.x+=(target.x-u.x)/dist*step;u.y+=(target.y-u.y)/dist*step;
         u.image.setPosition(u.x,u.y).setDepth(unitDepth(u.y));
+        u.facing=facing;
         if(u.animated)playUnitAnimation(u.image,u.type,'walk',u.facing);
       }else if(time>u.attackTimer){
+        u.facing=facing;
         if(u.animated)playUnitAnimation(u.image,u.type,'attack',u.facing);
         u.attackTimer=time+(u.type==='iop'?760:1040);
         target.hp=Math.max(0,target.hp-TROOPS[u.type].damage);
         this.drawHP(target);
-        this.cameras.main.shake(32,.0007);
+        if(!this.characterMotionReduced)this.cameras.main.shake(32,.0007);
         if(target.hp<=0){
-          this.tweens.add({targets:target.img,alpha:0,scaleX:.4,scaleY:.4,duration:400,ease:'Cubic.easeIn'});
+          this.buildingAnimator.detach(target.animationId);
+          const deathScale=this.characterMotionReduced?1:.4;
+          this.tweens.add({targets:target.img,alpha:0,scaleX:target.img.scaleX*deathScale,scaleY:target.img.scaleY*deathScale,duration:this.characterMotionReduced?0:400,ease:'Cubic.easeIn'});
           this.game.events.emit('astrub:toast',`${target.name} détruit !`);
         }else{target.img.setTint(0xffd4b9);this.time.delayedCall(100,()=>target.img?.active&&target.img.setTint(0xfce5d1));}
       }else if(u.animated&&(!u.image.anims.isPlaying || u.image.anims.currentAnim?.key.includes(':walk:'))){

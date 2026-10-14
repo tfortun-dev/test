@@ -1,4 +1,4 @@
-# Architecture de l'interface — Astrub v0.7.2
+# Architecture de l'interface — Astrub v0.8.0
 
 ## Où se trouve chaque responsabilité
 
@@ -12,9 +12,15 @@
 | `src/ui.js` | Raisons d'indisponibilité, conditions de départ et aperçu du butin |
 | `src/game/` | Village et combat Phaser, état de la partie, économie et sauvegarde |
 | `src/game/ambience.js` | Passages décoratifs : apparition, marche, pause et destruction des acteurs |
-| `src/game/ambienceArt.js` | Petits sprites originaux dessinés en Canvas à l'exécution |
+| `src/game/ambienceArt.js` | Alias des poses de marche dans les atlas peints de l'ambiance |
 | `src/game/ambiencePaths.js` | Trajets courts qui évitent les emprises des bâtiments |
+| `src/game/characterSprites.js` | Chargement des atlas de personnages et de leurs métadonnées, taille et ancrage aux pieds |
+| `src/game/unitAnimations.js` | Séquences de repos, marche et attaque des Iops et Crâs |
+| `src/game/buildingAnimations.js` | Poses animées des bâtiments, cadence et pauses sans modifier leur géométrie |
+| `src/game/spriteCatalog.js` | Dimensions et ancrages des bâtiments, indépendants de leur emprise sur la carte |
 | `public/assets/ui-layered/` | Atlas transparent, 24 sprites PNG et paramètres de neuf tranches dans `sprites.json` |
+| `public/assets/sprites/` | Atlas peints des personnages, décrits par `manifest.json` |
+| `public/assets/buildings/animated/` | Atlas des six bâtiments et `manifest.json` |
 | `public/assets/` | Images du monde, sprites des unités et visuels historiques conservés |
 | `tools/export_ui_layers.sh` | Rectangles de découpe et réexport facultatif des 24 sprites à partir de l'atlas, avec ImageMagick |
 
@@ -45,7 +51,7 @@ Le bouton HTML porte l'interaction et sa zone cliquable. Les boutons statiques c
 
 Les petits contrôles ajustent la largeur du cadre sans changer sa texture. Les panneaux et boutons utilisent `stretch` pour les bords. Les trois textures de remplissage exportées restent disponibles dans l'atlas ; le remplissage animé courant est dessiné en CSS.
 
-Les jauges empilent leur fond sombre, le remplissage dans une zone découpée, puis le rail illustré. Les icônes, montants, capacités et boutons **+** restent au-dessus. Dans le HUD, `.resource-meter` est un frère du texte, et non un enfant de son calque. Les variables `--rail-*` alignent la zone de remplissage sur l'ouverture du cadre ; la réserve et l'amélioration reprennent le même ordre de calques. Un masque CSS (`mask-composite:exclude`) retire aussi les pixels sombres des bandes latérales à l'intérieur de l'ouverture, pour qu'une petite quantité reste visible derrière le cadre. Le PNG du rail reste intact. Ces décorations n'interceptent aucun clic.
+Les jauges empilent leur fond sombre, le remplissage dans une zone découpée, puis le rail illustré. Les icônes et valeurs restent au-dessus, puis les boutons **+**. Dans le HUD, `.resource-meter` est un frère du texte, et non un enfant de son calque. Les variables `--rail-*` alignent la zone de remplissage sur l'ouverture du cadre ; la réserve et l'amélioration utilisent une `.meter-window` découpée et reprennent le même ordre. Un masque CSS (`mask-composite:exclude`) retire aussi les pixels sombres des bandes latérales à l'intérieur de l'ouverture, pour qu'une petite quantité reste visible derrière le cadre. Le PNG du rail reste intact. Ces décorations n'interceptent aucun clic.
 
 Pour modifier une dimension, commencer dans `style.css`. Pour modifier la matière, la variante ou le relief, travailler dans `ui-skin.css`. Éviter d'étirer un bouton complet comme une simple image de fond : cette méthode déforme aussi ses coins et son biseau.
 
@@ -82,9 +88,25 @@ Le bouton **Valider** et Entrée confirment le point de placement mémorisé par
 
 `VillageScene` crée `VillageAmbience`, puis la met à jour dans sa boucle d'affichage. Poules, lapins et villageois sont dans le calque Phaser `world`, avec une profondeur calculée au niveau des pieds. Leurs sprites ne sont pas interactifs et ne modifient ni l'économie ni la sauvegarde.
 
+Depuis la v0.8.0, `characterSprites.js` charge leurs PNG peints depuis le manifeste. `ambienceArt.js` crée les alias de frames ; il ne dessine plus de personnages en Canvas à l'exécution.
+
 L'ambiance limite le nombre de passants à quatre et espace les apparitions d'environ 6 à 9,5 secondes de temps actif. Les trajets locaux contournent les bâtiments et sont recalculés quand leurs emprises changent. L'ouverture d'une fenêtre, le placement ou un onglet masqué suspendent les déplacements ; `prefers-reduced-motion` retire les passants. La fermeture de la scène détruit les acteurs et le suivi de cette préférence.
 
 L'ambiance utilise `game.loop.rawDelta`, avec un maximum de 250 ms par image. Cela évite que le delta lissé de Phaser ralentisse les passants quand le nombre d'images par seconde baisse, tout en limitant les grands déplacements à la reprise. Les horloges de production, de formation et de combat restent celles du jeu existant.
+
+## Atlas du monde et des troupes
+
+| Famille | Cellule | Organisation |
+|---|---|---|
+| Passants | `192 × 256` | Quatre poses de marche, quatre lignes d'orientation `s / w / n / e` |
+| Iop / Crâ | `192 × 256` | Douze colonnes : repos `0–3`, marche `4–7`, attaque `8–11`, quatre lignes d'orientation |
+| Bâtiments | `512 × 512` | Quatre poses en grille `2 × 2`, boucle à environ 3 images par seconde |
+
+Les personnages utilisent le pivot de contact `[96, 236]`. Leur largeur affichée est calculée sur le corps visible décrit par `bodyBounds`, et non sur les marges transparentes de la cellule. Leur échelle est fixe par type ; changer une pose ne change pas le format de cellule. Les copies de repos sont admises, alors que marche et attaque utilisent plusieurs poses.
+
+`BuildingAnimator` change la frame de la même image Phaser : échelle, origine, tri et sélection restent stables. Le manifeste décrit le corps du bâtiment et son pivot ; la fumée éventuelle n'a pas à modifier sa taille visuelle. Les images `b-{type}.png` servent de poses fixes aux cartes et au placement. La géométrie invalide d'un atlas laisse le rendu fixe disponible.
+
+La préférence de réduction des animations retire les passants, fixe les bâtiments sur la pose 0 et affiche les troupes dans une pose de repos. Elle ne change pas les coûts, les dégâts ou les règles de progression. Les boucles sont courtes et la façade ne varie pas selon le niveau. La fabrication des PNG et manifestes est détaillée dans [ART_PIPELINE.md](ART_PIPELINE.md).
 
 ## Réexporter les images
 

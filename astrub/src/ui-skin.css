@@ -48,8 +48,8 @@ button>span,button>svg,button>img,button>strong,button>small { pointer-events:no
 .icon-info { background-image:url('/assets/ui-layered/icon-info.png'); }
 .icon-home,.icon-storage { background-image:url('/assets/ui-layered/icon-house.png'); }
 .icon-map { background-image:url('/assets/ui-layered/icon-map.png'); }
-.icon-iop,.icon-cra { background-image:url('/assets/units/iop-atlas.png');background-size:1600% 400%;background-position:left top;aspect-ratio:108 / 116; }
-.icon-cra { background-image:url('/assets/units/cra-atlas.png'); }
+.icon-iop,.icon-cra { background-image:url('/assets/sprites/portraits/iop.png');background-size:contain;background-position:center; }
+.icon-cra { background-image:url('/assets/sprites/portraits/cra.png'); }
 
 /* Nine slices preserve the corners and bevel thickness at every control size. */
 :is(.build-toggle,.raid-fab,.icon-action,.info-button,.building-close,.detail-close,.panel-close,.guide-action,.goal-count,.build-card-cta,.train-btn,.primary-btn,.secondary-btn,.subtle-button,.utility-btn,.map-action,.raid-btn,.settings-action,#astrub-startup button)::before {

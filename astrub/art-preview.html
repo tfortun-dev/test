@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Astrub v0.5 — Aperçu des sprites</title>
+<title>Astrub v0.8.0 — Aperçu des sprites</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#172b27;color:#fff4d7;font:15px/1.5 system-ui,Arial,sans-serif}
 header,main{max-width:1060px;margin:auto;padding:20px}h1{margin:0;font-size:29px}h2{font-size:18px}p{color:#d2dfcf}
@@ -14,17 +14,17 @@ header,main{max-width:1060px;margin:auto;padding:20px}h1{margin:0;font-size:29px
 canvas{image-rendering:auto;background:#a1c36d;border-radius:12px;width:180px;height:220px}
 footer{font-size:13px;color:#bacbbb;padding-top:30px}
 </style></head>
-<body><header><h1>Astrub — Aperçu des sprites v0.5</h1><p>Prévisualisation locale, sans Phaser ni installation. Tous les sprites de bâtiments ont été précalculés depuis des modèles 3D.</p></header>
-<main><section><h2>Bâtiments — cadrage et ombres normalisés</h2><div id="gallery" class="gallery"></div></section>
-<section><h2>Troupes — 4 orientations / repos, marche, attaque</h2>
-<div class="demo"><canvas id="demo" width="360" height="440"></canvas><div><label>Unité <select id="unit"><option value="iop">Iop</option><option value="cra">Crâ</option></select></label>
+<body><header><h1>Astrub — Aperçu des sprites v0.8.0</h1><p>Prévisualisation des sprites peints, sans Phaser. Les bâtiments utilisent des planches de quatre poses ; les personnages ont quatre orientations.</p></header>
+<main><section><h2>Bâtiments — poses fixes issues des atlas peints</h2><div id="gallery" class="gallery"></div></section>
+<section><h2>Personnages — quatre orientations et poses animées</h2>
+<div class="demo"><canvas id="demo" width="360" height="440"></canvas><div><label>Unité <select id="unit"><option value="iop">Iop</option><option value="cra">Crâ</option><option value="villager">Villageois</option><option value="hen">Poule</option><option value="rabbit">Lapin</option></select></label>
 <p><label>Animation <select id="action"><option value="idle">Repos</option><option value="walk" selected>Marche</option><option value="attack">Attaque</option></select></label></p>
-<p><label>Direction <select id="direction"><option value="0">Sud</option><option value="1">Ouest</option><option value="2">Nord</option><option value="3">Est</option></select></label></p>
-<p>Spritesheet de 64 images par unité.<br>Ce sont des illustrations provisoires.</p></div></div></section>
-<footer>Les modèles KayKit/Kenney utilisés dans ce prototype sont CC0. Cette page n'est qu'un aperçu graphique ; pour jouer, lance DEMARRER_WINDOWS.bat.</footer>
+<p><label>Direction <select id="direction"><option value="0">Face · bas gauche</option><option value="1">Dos · haut gauche</option><option value="2">Dos · haut droite</option><option value="3">Face · bas droite</option></select></label></p>
+<p>Quatre poses par séquence et direction.<br>Les passants disposent d’une marche ; le repos conserve une pose fixe.</p></div></div></section>
+<footer>Sprites 2D peints. Sources et recettes dans le pack ART. Pour jouer, lancer DEMARRER_WINDOWS.bat.</footer>
 </main>
 <script>
-const names={townhall:'Golden Crest Hall',sawmill:'Whimsical Village',mine:'Alchemist',warehouse:'Entrepôt',barracks:'Guardhouse',tower:'Golden Vault'};
+const names={townhall:'Maison de guilde',sawmill:'Ferme d’Astrub',mine:'Atelier alchimique',warehouse:'Entrepôt',barracks:'Caserne',tower:'Banque d’Astrub'};
 const widths={townhall:150,sawmill:132,mine:138,warehouse:120,barracks:118,tower:130};
 for(const [id,name] of Object.entries(names)){
  const card=document.createElement('div');card.className='card';
@@ -32,15 +32,20 @@ for(const [id,name] of Object.entries(names)){
  document.getElementById('gallery').append(card);
 }
 const canvas=document.getElementById('demo'),ctx=canvas.getContext('2d'),atlases={};
-for(const unit of ['iop','cra']){const img=new Image();img.src=`./public/assets/units/${unit}-atlas.png`;atlases[unit]=img;}
-let last=-1;
-function paint(ms){const unit=document.getElementById('unit').value,act=document.getElementById('action').value,row=+document.getElementById('direction').value;
- const group={idle:[0,4],walk:[4,6],attack:[10,6]}[act];
- const idx=group[0]+Math.floor(ms/(act==='idle'?210:act==='walk'?105:95))%group[1];
- const img=atlases[unit];ctx.clearRect(0,0,360,440);
- ctx.fillStyle='#a8cc7a';ctx.fillRect(0,0,360,440);
- ctx.fillStyle='#8eb969';ctx.beginPath();ctx.ellipse(180,352,100,27,0,0,Math.PI*2);ctx.fill();
- if(img.complete&&img.naturalWidth)ctx.drawImage(img,idx*108,row*116,108,116,65,40,230,270);
+// Geometry from the v0.8.0 exported manifest; kept inline for file:// previews.
+const sheets={"villager":{"frameWidth":192,"frameHeight":256,"columns":4,"bodyBounds":[45,139,100,98],"pivot":[96.0,236.0]},"hen":{"frameWidth":192,"frameHeight":256,"columns":4,"bodyBounds":[39,151,113,86],"pivot":[96.0,236.0]},"rabbit":{"frameWidth":192,"frameHeight":256,"columns":4,"bodyBounds":[38,155,112,82],"pivot":[96.0,236.0]},"iop":{"frameWidth":192,"frameHeight":256,"columns":12,"bodyBounds":[6,119,182,118],"pivot":[96.0,236.0]},"cra":{"frameWidth":192,"frameHeight":256,"columns":12,"bodyBounds":[4,106,174,131],"pivot":[96.0,236.0]}};
+for(const unit of Object.keys(sheets)){const img=new Image();img.src=`./public/assets/sprites/${unit}-atlas.png`;atlases[unit]=img;}
+const motion=matchMedia('(prefers-reduced-motion: reduce)');
+document.getElementById('unit').addEventListener('change',()=>{if(sheets[document.getElementById('unit').value].columns!==12&&document.getElementById('action').value==='attack')document.getElementById('action').value='walk';});
+function paint(ms){
+ const unit=document.getElementById('unit').value,act=document.getElementById('action').value,row=+document.getElementById('direction').value,sheet=sheets[unit];
+ const troop=sheet.columns===12,step=motion.matches||act==='idle'?0:Math.floor(ms/(act==='walk'?140:110))%4;
+ const column=troop?({idle:0,walk:4,attack:8}[act]+step):(act==='idle'?0:step);
+ const img=atlases[unit],body=sheet.bodyBounds,scale=Math.min(250/body[2],295/body[3]);
+ ctx.clearRect(0,0,360,440);ctx.fillStyle='#a8cc7a';ctx.fillRect(0,0,360,440);
+ if(img.complete&&img.naturalWidth)ctx.drawImage(img,column*sheet.frameWidth,row*sheet.frameHeight,sheet.frameWidth,sheet.frameHeight,
+   180-sheet.pivot[0]*scale,365-sheet.pivot[1]*scale,sheet.frameWidth*scale,sheet.frameHeight*scale);
+ document.querySelector('#action option[value="attack"]').disabled=!troop;
  requestAnimationFrame(paint);
 }
 requestAnimationFrame(paint);

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "sources": {
+    "townhall-poses": { "path": "../art/source/townhall-poses.png", "columns": 2, "rows": 2 }
+  },
+  "outputRoot": "../public/assets/sprites",
+  "manifest": { "path": "buildings.json", "root": "buildings", "version": 1 },
+  "sprites": [
+    {
+      "name": "townhall",
+      "source": "townhall-poses",
+      "frameSize": [512, 512],
+      "columns": 2,
+      "pivot": [256, 470],
+      "anchor": { "mode": "ground", "threshold": 96, "bandFraction": 0.06, "x": "ground-median" },
+      "bodyRect": [0, 160, 512, 352],
+      "output": { "atlas": "townhall-atlas.png", "portrait": "townhall.png", "publicPath": "/assets/sprites/townhall-atlas.png" },
+      "metadata": { "fps": 3, "repeat": -1 }
+    }
+  ]
+}

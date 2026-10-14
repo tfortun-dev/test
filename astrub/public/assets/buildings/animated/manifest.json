@@ -1,0 +1,1424 @@
+{
+  "version": 1,
+  "buildings": {
+    "townhall": {
+      "fps": 3,
+      "repeat": -1,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frameCount": 4,
+      "columns": 2,
+      "rows": 2,
+      "originX": 0.5,
+      "originY": 0.91796875,
+      "pivot": [
+        256.0,
+        470.0
+      ],
+      "commonScale": 0.66184535,
+      "bodyBounds": [
+        25,
+        92,
+        375,
+        379
+      ],
+      "frameBounds": [
+        [
+          16,
+          91,
+          392,
+          400
+        ],
+        [
+          8,
+          90,
+          392,
+          401
+        ],
+        [
+          24,
+          89,
+          392,
+          384
+        ],
+        [
+          12,
+          80,
+          396,
+          394
+        ]
+      ],
+      "framePivots": [
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ]
+      ],
+      "frameHashes": [
+        "0ddbb573f60ae26440d5071a0392e50a09d2d617b3cb28a1ba6c9330f775741c",
+        "8a96b34ac38215bc5a1a2f7cb37b42b7ed4a6ac582ff44dd9c1f5f0f3eb4cfab",
+        "366e2fa55303664ddb58070a0a7fd9cd446eed7fb7bd558df7b08a3e31126849",
+        "430d8556c45809e8e3641f46ad72c54f71ebd1a8f3993bc8db2c3cfa19e44ba4"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "townhall",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            17,
+            627,
+            610
+          ],
+          "sourcePivot": [
+            381.5,
+            592.0
+          ],
+          "bounds": [
+            16,
+            91,
+            392,
+            400
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "0ddbb573f60ae26440d5071a0392e50a09d2d617b3cb28a1ba6c9330f775741c"
+        },
+        {
+          "index": 1,
+          "source": "townhall",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            17,
+            606,
+            610
+          ],
+          "sourcePivot": [
+            381.5,
+            592.0
+          ],
+          "bounds": [
+            8,
+            90,
+            392,
+            401
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "8a96b34ac38215bc5a1a2f7cb37b42b7ed4a6ac582ff44dd9c1f5f0f3eb4cfab"
+        },
+        {
+          "index": 2,
+          "source": "townhall",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            1,
+            627,
+            626
+          ],
+          "sourcePivot": [
+            381.5,
+            592.0
+          ],
+          "bounds": [
+            24,
+            89,
+            392,
+            384
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "366e2fa55303664ddb58070a0a7fd9cd446eed7fb7bd558df7b08a3e31126849"
+        },
+        {
+          "index": 3,
+          "source": "townhall",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            618,
+            627
+          ],
+          "sourcePivot": [
+            381.5,
+            592.0
+          ],
+          "bounds": [
+            12,
+            80,
+            396,
+            394
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "430d8556c45809e8e3641f46ad72c54f71ebd1a8f3993bc8db2c3cfa19e44ba4"
+        }
+      ],
+      "path": "/assets/buildings/animated/townhall-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 4,
+        "maxPivotError": 0.0
+      }
+    },
+    "sawmill": {
+      "fps": 3,
+      "repeat": -1,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frameCount": 4,
+      "columns": 2,
+      "rows": 2,
+      "originX": 0.5,
+      "originY": 0.91796875,
+      "pivot": [
+        256.0,
+        470.0
+      ],
+      "commonScale": 0.74372312,
+      "bodyBounds": [
+        58,
+        93,
+        388,
+        378
+      ],
+      "frameBounds": [
+        [
+          5,
+          42,
+          466,
+          448
+        ],
+        [
+          24,
+          26,
+          459,
+          460
+        ],
+        [
+          4,
+          27,
+          466,
+          467
+        ],
+        [
+          21,
+          26,
+          466,
+          456
+        ]
+      ],
+      "framePivots": [
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ]
+      ],
+      "frameHashes": [
+        "d3c138c56c5f21a1bfa61e8c4d9522441dfcb607fa9d568e3fab2d11401f7804",
+        "21a4f2047cbe57f9b5a4b8f7c8647995f44d7511bc60c3e86e98b4bceae418ec",
+        "9bc69bcf6364598e6315fd242f911a0fb870a59040cb6fe0d793b2da0fc0e879",
+        "4b4ab5ab65a7a8d994b5b1b25aec129308ab18cfe3906c774078d5837f7aa49d"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "sawmill",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            15,
+            627,
+            612
+          ],
+          "sourcePivot": [
+            337.5,
+            600.0
+          ],
+          "bounds": [
+            5,
+            42,
+            466,
+            448
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "d3c138c56c5f21a1bfa61e8c4d9522441dfcb607fa9d568e3fab2d11401f7804"
+        },
+        {
+          "index": 1,
+          "source": "sawmill",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            7,
+            619,
+            620
+          ],
+          "sourcePivot": [
+            312.5,
+            606.0
+          ],
+          "bounds": [
+            24,
+            26,
+            459,
+            460
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "21a4f2047cbe57f9b5a4b8f7c8647995f44d7511bc60c3e86e98b4bceae418ec"
+        },
+        {
+          "index": 2,
+          "source": "sawmill",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "sourcePivot": [
+            339.5,
+            595.0
+          ],
+          "bounds": [
+            4,
+            27,
+            466,
+            467
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "9bc69bcf6364598e6315fd242f911a0fb870a59040cb6fe0d793b2da0fc0e879"
+        },
+        {
+          "index": 3,
+          "source": "sawmill",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            626,
+            627
+          ],
+          "sourcePivot": [
+            315.5,
+            597.0
+          ],
+          "bounds": [
+            21,
+            26,
+            466,
+            456
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "4b4ab5ab65a7a8d994b5b1b25aec129308ab18cfe3906c774078d5837f7aa49d"
+        }
+      ],
+      "path": "/assets/buildings/animated/sawmill-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 4,
+        "maxPivotError": 0.0
+      }
+    },
+    "mine": {
+      "fps": 3,
+      "repeat": -1,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frameCount": 4,
+      "columns": 2,
+      "rows": 2,
+      "originX": 0.5,
+      "originY": 0.91796875,
+      "pivot": [
+        256.0,
+        470.0
+      ],
+      "commonScale": 0.69461898,
+      "bodyBounds": [
+        92,
+        65,
+        404,
+        406
+      ],
+      "frameBounds": [
+        [
+          72,
+          61,
+          436,
+          423
+        ],
+        [
+          88,
+          62,
+          412,
+          423
+        ],
+        [
+          73,
+          58,
+          433,
+          436
+        ],
+        [
+          88,
+          58,
+          413,
+          436
+        ]
+      ],
+      "framePivots": [
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ]
+      ],
+      "frameHashes": [
+        "836fcd6975d557c48fca521a92a9a912be023bc0c251d16d205905f35779bc61",
+        "6c3ec7256c3e8249570246d70906d05afb5278d5e5e07bf41ead1677bbdbdc79",
+        "5b7dc72d5f8a53f278a47f995c4c55bdf6dc31d762e12c8e4f983eb7331b17ab",
+        "d65979bb31fc8d6edc8ffdecc228c41652b129c51040626c09e86c5d80ec50b3"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "mine",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            17,
+            627,
+            610
+          ],
+          "sourcePivot": [
+            264.5,
+            607.0
+          ],
+          "bounds": [
+            72,
+            61,
+            436,
+            423
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "836fcd6975d557c48fca521a92a9a912be023bc0c251d16d205905f35779bc61"
+        },
+        {
+          "index": 1,
+          "source": "mine",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            18,
+            605,
+            609
+          ],
+          "sourcePivot": [
+            242.5,
+            606.0
+          ],
+          "bounds": [
+            88,
+            62,
+            412,
+            423
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "6c3ec7256c3e8249570246d70906d05afb5278d5e5e07bf41ead1677bbdbdc79"
+        },
+        {
+          "index": 2,
+          "source": "mine",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "sourcePivot": [
+            263.5,
+            593.0
+          ],
+          "bounds": [
+            73,
+            58,
+            433,
+            436
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "5b7dc72d5f8a53f278a47f995c4c55bdf6dc31d762e12c8e4f983eb7331b17ab"
+        },
+        {
+          "index": 3,
+          "source": "mine",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            1,
+            0,
+            595,
+            627
+          ],
+          "sourcePivot": [
+            242.5,
+            593.0
+          ],
+          "bounds": [
+            88,
+            58,
+            413,
+            436
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "d65979bb31fc8d6edc8ffdecc228c41652b129c51040626c09e86c5d80ec50b3"
+        }
+      ],
+      "path": "/assets/buildings/animated/mine-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 4,
+        "maxPivotError": 0.0
+      }
+    },
+    "warehouse": {
+      "fps": 3,
+      "repeat": -1,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frameCount": 4,
+      "columns": 2,
+      "rows": 2,
+      "originX": 0.5,
+      "originY": 0.91796875,
+      "pivot": [
+        256.0,
+        470.0
+      ],
+      "commonScale": 0.76154575,
+      "bodyBounds": [
+        25,
+        32,
+        456,
+        439
+      ],
+      "frameBounds": [
+        [
+          8,
+          6,
+          478,
+          472
+        ],
+        [
+          15,
+          13,
+          467,
+          467
+        ],
+        [
+          8,
+          20,
+          478,
+          461
+        ],
+        [
+          14,
+          18,
+          466,
+          467
+        ]
+      ],
+      "framePivots": [
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ]
+      ],
+      "frameHashes": [
+        "401bc6cbf3cab3d30c1689f743c9b0b728786914a950460e3e7f12cd6203b8b4",
+        "9c67b056dcfb6ea0362f18d5e0e109442c4a1db1cf8fd5888c429fb2311dcb30",
+        "e48a85efadeaa8fa50e44b7afe7b0da8f62293f82d18bc14ae21c7d03faf9922",
+        "64670f04b2c36c8f698f83d7340c55084141fd9bac9f3dbb0420fba51b0e58c8"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "warehouse",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            2,
+            627,
+            625
+          ],
+          "sourcePivot": [
+            325.5,
+            614.0
+          ],
+          "bounds": [
+            8,
+            6,
+            478,
+            472
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "401bc6cbf3cab3d30c1689f743c9b0b728786914a950460e3e7f12cd6203b8b4"
+        },
+        {
+          "index": 1,
+          "source": "warehouse",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            9,
+            615,
+            618
+          ],
+          "sourcePivot": [
+            316.5,
+            614.0
+          ],
+          "bounds": [
+            15,
+            13,
+            467,
+            467
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "9c67b056dcfb6ea0362f18d5e0e109442c4a1db1cf8fd5888c429fb2311dcb30"
+        },
+        {
+          "index": 2,
+          "source": "warehouse",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "sourcePivot": [
+            325.5,
+            594.0
+          ],
+          "bounds": [
+            8,
+            20,
+            478,
+            461
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "e48a85efadeaa8fa50e44b7afe7b0da8f62293f82d18bc14ae21c7d03faf9922"
+        },
+        {
+          "index": 3,
+          "source": "warehouse",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            614,
+            627
+          ],
+          "sourcePivot": [
+            317.5,
+            594.0
+          ],
+          "bounds": [
+            14,
+            18,
+            466,
+            467
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "64670f04b2c36c8f698f83d7340c55084141fd9bac9f3dbb0420fba51b0e58c8"
+        }
+      ],
+      "path": "/assets/buildings/animated/warehouse-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 4,
+        "maxPivotError": 0.0
+      }
+    },
+    "barracks": {
+      "fps": 3,
+      "repeat": -1,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frameCount": 4,
+      "columns": 2,
+      "rows": 2,
+      "originX": 0.5,
+      "originY": 0.91796875,
+      "pivot": [
+        256.0,
+        470.0
+      ],
+      "commonScale": 0.70234771,
+      "bodyBounds": [
+        84,
+        52,
+        342,
+        419
+      ],
+      "frameBounds": [
+        [
+          4,
+          42,
+          440,
+          441
+        ],
+        [
+          27,
+          52,
+          439,
+          431
+        ],
+        [
+          31,
+          44,
+          413,
+          441
+        ],
+        [
+          26,
+          44,
+          418,
+          441
+        ]
+      ],
+      "framePivots": [
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ]
+      ],
+      "frameHashes": [
+        "2aaad25c6b9f90ecc99d1964d45709a89d970e28b1fb603d149ca993ab0b6058",
+        "6567596283f292bfb42510c7dc8ea4a6475a8ce7d45ad7015cca7a138a46abda",
+        "13da337fb074015bd719298b82ac54d2562f2f6a0039cca44035965958dad171",
+        "db0c749ea2fdb45d1068021a1be7548643f222c65806d3b73244fec24708c80e"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "barracks",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "sourcePivot": [
+            359.5,
+            609.0
+          ],
+          "bounds": [
+            4,
+            42,
+            440,
+            441
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "2aaad25c6b9f90ecc99d1964d45709a89d970e28b1fb603d149ca993ab0b6058"
+        },
+        {
+          "index": 1,
+          "source": "barracks",
+          "cell": [
+            1,
+            0
+          ],
+          "sourceRect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            14,
+            626,
+            613
+          ],
+          "sourcePivot": [
+            326.5,
+            609.0
+          ],
+          "bounds": [
+            27,
+            52,
+            439,
+            431
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "6567596283f292bfb42510c7dc8ea4a6475a8ce7d45ad7015cca7a138a46abda"
+        },
+        {
+          "index": 2,
+          "source": "barracks",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "sourcePivot": [
+            359.5,
+            606.0
+          ],
+          "bounds": [
+            31,
+            44,
+            413,
+            441
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "13da337fb074015bd719298b82ac54d2562f2f6a0039cca44035965958dad171"
+        },
+        {
+          "index": 3,
+          "source": "barracks",
+          "cell": [
+            1,
+            1
+          ],
+          "sourceRect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            607,
+            627
+          ],
+          "sourcePivot": [
+            327.5,
+            606.0
+          ],
+          "bounds": [
+            26,
+            44,
+            418,
+            441
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "db0c749ea2fdb45d1068021a1be7548643f222c65806d3b73244fec24708c80e"
+        }
+      ],
+      "path": "/assets/buildings/animated/barracks-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 4,
+        "maxPivotError": 0.0
+      }
+    },
+    "tower": {
+      "fps": 3,
+      "repeat": -1,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frameCount": 4,
+      "columns": 2,
+      "rows": 2,
+      "originX": 0.5,
+      "originY": 0.91796875,
+      "pivot": [
+        256.0,
+        470.0
+      ],
+      "commonScale": 0.67783624,
+      "bodyBounds": [
+        30,
+        64,
+        402,
+        407
+      ],
+      "frameBounds": [
+        [
+          19,
+          52,
+          417,
+          425
+        ],
+        [
+          24,
+          64,
+          412,
+          413
+        ],
+        [
+          18,
+          59,
+          418,
+          412
+        ],
+        [
+          24,
+          55,
+          409,
+          419
+        ]
+      ],
+      "framePivots": [
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ],
+        [
+          256.0,
+          470.0
+        ]
+      ],
+      "frameHashes": [
+        "cf4ebaf48bcc21282a453cd8b3ac2748b59fc55ba90fb6e48d598789baeffc0e",
+        "5532a3db3db233076608de820d1a1f7260b56e87af3ff77a80632af92a541a43",
+        "3864c98563270b608f657bdef06705fc13ab247e3d05a24fc7b2c528cfe7b60a",
+        "136fb0b041cb9ac2a846f413040a75c3f76c559200a00b9b64ca8c94f57b247c"
+      ],
+      "frameSources": [
+        {
+          "index": 0,
+          "source": "tower-left",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            0,
+            0,
+            638,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            638,
+            627
+          ],
+          "sourcePivot": [
+            372.5,
+            617.0
+          ],
+          "bounds": [
+            19,
+            52,
+            417,
+            425
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "cf4ebaf48bcc21282a453cd8b3ac2748b59fc55ba90fb6e48d598789baeffc0e"
+        },
+        {
+          "index": 1,
+          "source": "tower-right",
+          "cell": [
+            0,
+            0
+          ],
+          "sourceRect": [
+            638,
+            0,
+            616,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            18,
+            608,
+            609
+          ],
+          "sourcePivot": [
+            342.5,
+            617.0
+          ],
+          "bounds": [
+            24,
+            64,
+            412,
+            413
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "5532a3db3db233076608de820d1a1f7260b56e87af3ff77a80632af92a541a43"
+        },
+        {
+          "index": 2,
+          "source": "tower-left",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            0,
+            627,
+            638,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            1,
+            638,
+            626
+          ],
+          "sourcePivot": [
+            372.5,
+            613.0
+          ],
+          "bounds": [
+            18,
+            59,
+            418,
+            412
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "3864c98563270b608f657bdef06705fc13ab247e3d05a24fc7b2c528cfe7b60a"
+        },
+        {
+          "index": 3,
+          "source": "tower-right",
+          "cell": [
+            0,
+            1
+          ],
+          "sourceRect": [
+            638,
+            627,
+            616,
+            627
+          ],
+          "flipX": false,
+          "sourceBounds": [
+            0,
+            0,
+            606,
+            627
+          ],
+          "sourcePivot": [
+            342.5,
+            613.0
+          ],
+          "bounds": [
+            24,
+            55,
+            409,
+            419
+          ],
+          "pivot": [
+            256.0,
+            470.0
+          ],
+          "sha256": "136fb0b041cb9ac2a846f413040a75c3f76c559200a00b9b64ca8c94f57b247c"
+        }
+      ],
+      "path": "/assets/buildings/animated/tower-atlas.png",
+      "validation": {
+        "alpha": true,
+        "noClipping": true,
+        "edgeGuard": 2,
+        "distinctFrames": 4,
+        "maxPivotError": 0.0
+      }
+    }
+  },
+  "export": {
+    "tool": "pack_generated_sprites.py",
+    "recipe": "buildings.json",
+    "sources": {
+      "townhall": {
+        "file": "../../source/v0.8.0/townhall-source.png",
+        "sha256": "1de4371937896e7c7370579afdd53677ca1a2f58ae3cb4c0f2efe8fb102edbc0",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "sawmill": {
+        "file": "../../source/v0.8.0/sawmill-source.png",
+        "sha256": "1895269ab256559d3758d56ed1253cd0f1cb2575f533527b4a37d90ae688dbf4",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "mine": {
+        "file": "../../source/v0.8.0/mine-source.png",
+        "sha256": "842736a6074f9acd5c444bf4e903c50d11eee78c3b0937a35e79206515721319",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "warehouse": {
+        "file": "../../source/v0.8.0/warehouse-source.png",
+        "sha256": "05bdb899be42bce46ca3ab50dd4b90404645a0d623deed108414cbaa7cdf6e87",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "barracks": {
+        "file": "../../source/v0.8.0/barracks-source.png",
+        "sha256": "641da98480f8b655d63af18afc3bfa377043b42ca3e3b0403386f50188102ebc",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "tower-left": {
+        "file": "../../source/v0.8.0/tower-source.png",
+        "sha256": "ea2b79732e6049672b4270958ca0b6bc4b87604a94e65cf3b93fb4f7eee7b017",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "tower-right": {
+        "file": "../../source/v0.8.0/tower-source.png",
+        "sha256": "ea2b79732e6049672b4270958ca0b6bc4b87604a94e65cf3b93fb4f7eee7b017",
+        "size": [
+          1254,
+          1254
+        ]
+      }
+    },
+    "warnings": []
+  }
+}

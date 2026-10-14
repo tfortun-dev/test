@@ -1,11 +1,13 @@
 import Phaser from 'phaser';
 import { BUILDINGS, MAP_SIZE, buildingAt, canBuild, canMove, collect, getProductionInfo, getState, moveBuilding, number, place } from './state.js';
-import { createArt } from './assets.js';
+import { createArt,preloadWorldDecor } from './assets.js';
 import { xy, ij, hash, TW, TH, tilePoly } from './isometric.js';
 import { formatCountdown, remainingMs, upgradeProgress } from './time.js';
 import {createRenderLayers, buildingDepth, decorDepth} from './renderLayers.js';
-import {sizeBuildingSprite} from './spriteCatalog.js';
+import {sizeBuildingSprite,buildingSpriteTop} from './spriteCatalog.js';
 import {VillageAmbience} from './ambience.js';
+import {BuildingAnimator,preloadBuildingAnimations,installBuildingAnimationFrames,buildingTexture} from './buildingAnimations.js';
+import {preloadCharacterSprites} from './characterSprites.js';
 
 export class VillageScene extends Phaser.Scene {
   constructor(){ super('VillageScene'); }
@@ -14,10 +16,15 @@ export class VillageScene extends Phaser.Scene {
     const loadOnce=(key,url)=>{if(!this.textures.exists(key))this.load.image(key,url);};
     loadOnce('astrub-ground','/assets/prairie-astrub-etendue.webp');
     for(const type of Object.keys(BUILDINGS))loadOnce('b-'+type,`/assets/buildings/b-${type}.png`);
+    preloadBuildingAnimations(this);
+    preloadCharacterSprites(this);
+    preloadWorldDecor(this);
     // No optional decor sprites for the gameplay-first version.
   }
   create(){
     createArt(this);
+    installBuildingAnimationFrames(this);
+    this.buildingAnimator=new BuildingAnimator(this);
     this.cameras.main.setBackgroundColor('#8dbb60');
     this.layers=createRenderLayers(this);
     this.drawGround();
@@ -69,6 +76,7 @@ export class VillageScene extends Phaser.Scene {
     this.game.events.on('astrub:confirmPlacement',this.sceneConfirmPlacement);
     this.events.once('shutdown',()=>{
       this.ambience?.destroy();this.ambience=null;
+      this.buildingAnimator?.destroy();this.buildingAnimator=null;
       this.game.events.off('astrub:cameraCenter',this.sceneCenter);
       this.game.events.off('astrub:zoom',this.sceneZoom);
       this.game.events.off('astrub:build',this.sceneBuild);
@@ -113,10 +121,8 @@ export class VillageScene extends Phaser.Scene {
   renderBuildings(){
     if(!this.sys.isActive()) return;
     this.ambience?.updateObstacles(getState().buildings);
-    for(const obj of this.buildingObjects){
-      for(const key of ['image','label','glow','shadow','progress','harvest'])obj[key]?.destroy();
-    }
-    this.buildingObjects=[];
+    const existing=new Map(this.buildingObjects.map(entry=>[entry.buildingId,entry]));
+    const next=[];
     const now=Date.now();
     for(const b of getState().buildings){
       const [w,h]=BUILDINGS[b.type].size;
@@ -131,14 +137,29 @@ export class VillageScene extends Phaser.Scene {
           .setDepth(depth-3);
         this.layers.world.add(glow);
       }
-      const image=sizeBuildingSprite(
-        this.add.image(p.x,floorY,'b-'+b.type),b.type
-      ).setDepth(depth).setData('buildingId',b.id);
-      image.setInteractive({pixelPerfect:true,alphaTolerance:18,useHandCursor:true});
-      this.layers.world.add(image);
+      let entry=existing.get(b.id);
+      existing.delete(b.id);
+      if(entry&&entry.type!==b.type){
+        for(const key of ['image','label','glow','shadow','progress','harvest'])entry[key]?.destroy();
+        this.buildingAnimator.detach(b.id);entry=null;
+      }
+      // Keep animated images and their pixel-perfect hit areas when selection,
+      // upgrades or production refresh the world HUD.
+      let image=entry?.image;
+      if(!image){
+        const texture=buildingTexture(this,b.type);
+        image=sizeBuildingSprite(this.add.image(p.x,floorY,texture.key,texture.frame),b.type)
+          .setData('buildingId',b.id);
+        image.setInteractive({pixelPerfect:true,alphaTolerance:18,useHandCursor:true});
+        this.layers.world.add(image);
+        this.buildingAnimator.attach(image,b.type,b.id);
+      }else{
+        for(const key of ['label','glow','shadow','progress','harvest'])entry[key]?.destroy();
+      }
+      image.setPosition(p.x,floorY).setDepth(depth);
       // World HUD lives in a separate top layer, so building geometry never
       // accidentally masks resource badges or the remaining construction time.
-      const badgeY=floorY-image.displayHeight*image.originY-15;
+      const badgeY=buildingSpriteTop(image)-15;
       const active=b.upgradingUntil>now;
       let label=null,progress=null;
       if(active){
@@ -154,10 +175,15 @@ export class VillageScene extends Phaser.Scene {
       // No floating resource counter above producer buildings anymore:
       // production is revealed in the side panel and can be collected on click.
       const harvest=null;
-      const entry={image,label,glow,shadow,progress,harvest,buildingId:b.id,barX:p.x-38,barY:badgeY+15};
-      this.buildingObjects.push(entry);
+      entry={image,label,glow,shadow,progress,harvest,type:b.type,buildingId:b.id,barX:p.x-38,barY:badgeY+15};
+      next.push(entry);
       if(progress)this.drawUpgradeBar(entry,upgradeProgress(b,now));
     }
+    for(const entry of existing.values()){
+      this.buildingAnimator.detach(entry.buildingId);
+      for(const key of ['image','label','glow','shadow','progress','harvest'])entry[key]?.destroy();
+    }
+    this.buildingObjects=next;
     this.updateProductionLabels();
     if(this.selectedId&&!getState().buildings.find(b=>b.id===this.selectedId))this.selectBuilding(null);
   }
@@ -353,7 +379,9 @@ export class VillageScene extends Phaser.Scene {
     this.renderBuildings();
   }
   update(time,delta){
-    this.ambience?.update(this.game.loop.rawDelta||delta,!this.input.enabled||Boolean(this.buildMode)||this.moveId!==null);
+    const sceneryPaused=!this.input.enabled||Boolean(this.buildMode)||this.moveId!==null;
+    this.ambience?.update(this.game.loop.rawDelta||delta,sceneryPaused);
+    this.buildingAnimator?.update(this.game.loop.rawDelta||delta,sceneryPaused);
     if(Phaser.Input.Keyboard.JustDown(this.keys.home))this.centerCamera();
     if(time-this.lastTimerRefresh>=90){
       this.updateBuildingTimers();
