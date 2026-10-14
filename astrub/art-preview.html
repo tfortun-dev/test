@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Astrub v0.5 — Aperçu des sprites</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#172b27;color:#fff4d7;font:15px/1.5 system-ui,Arial,sans-serif}
+header,main{max-width:1060px;margin:auto;padding:20px}h1{margin:0;font-size:29px}h2{font-size:18px}p{color:#d2dfcf}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px}
+.card{background:#294c3b;border:1px solid #547758;border-radius:14px;overflow:hidden;text-align:center}
+.visual{height:242px;background:linear-gradient(0deg,#8fb95cdd,#b6cf76a0),url('./public/assets/prairie-astrub-etendue.webp') center/cover;display:flex;align-items:flex-end;justify-content:center}
+.visual img{object-fit:contain;object-position:bottom;max-height:232px;filter:drop-shadow(0px 6px 6px #1d342966)}
+.card b{display:block;padding:11px 3px}section{margin:26px 0}select{background:#e6ddbe;border:0;border-radius:7px;color:#1e352b;padding:9px;font-size:15px}
+.demo{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:20px;background:#294c3b;border-radius:14px;padding:24px}
+canvas{image-rendering:auto;background:#a1c36d;border-radius:12px;width:180px;height:220px}
+footer{font-size:13px;color:#bacbbb;padding-top:30px}
+</style></head>
+<body><header><h1>Astrub — Aperçu des sprites v0.5</h1><p>Prévisualisation locale, sans Phaser ni installation. Tous les sprites de bâtiments ont été précalculés depuis des modèles 3D.</p></header>
+<main><section><h2>Bâtiments — cadrage et ombres normalisés</h2><div id="gallery" class="gallery"></div></section>
+<section><h2>Troupes — 4 orientations / repos, marche, attaque</h2>
+<div class="demo"><canvas id="demo" width="360" height="440"></canvas><div><label>Unité <select id="unit"><option value="iop">Iop</option><option value="cra">Crâ</option></select></label>
+<p><label>Animation <select id="action"><option value="idle">Repos</option><option value="walk" selected>Marche</option><option value="attack">Attaque</option></select></label></p>
+<p><label>Direction <select id="direction"><option value="0">Sud</option><option value="1">Ouest</option><option value="2">Nord</option><option value="3">Est</option></select></label></p>
+<p>Spritesheet de 64 images par unité.<br>Ce sont des illustrations provisoires.</p></div></div></section>
+<footer>Les modèles KayKit/Kenney utilisés dans ce prototype sont CC0. Cette page n'est qu'un aperçu graphique ; pour jouer, lance DEMARRER_WINDOWS.bat.</footer>
+</main>
+<script>
+const names={townhall:'Golden Crest Hall',sawmill:'Whimsical Village',mine:'Alchemist',warehouse:'Entrepôt',barracks:'Guardhouse',tower:'Golden Vault'};
+const widths={townhall:150,sawmill:132,mine:138,warehouse:120,barracks:118,tower:130};
+for(const [id,name] of Object.entries(names)){
+ const card=document.createElement('div');card.className='card';
+ card.innerHTML=`<div class="visual"><img src="./public/assets/buildings/b-${id}.png" alt="${name}" style="width:${widths[id]}px"></div><b>${name}</b>`;
+ document.getElementById('gallery').append(card);
+}
+const canvas=document.getElementById('demo'),ctx=canvas.getContext('2d'),atlases={};
+for(const unit of ['iop','cra']){const img=new Image();img.src=`./public/assets/units/${unit}-atlas.png`;atlases[unit]=img;}
+let last=-1;
+function paint(ms){const unit=document.getElementById('unit').value,act=document.getElementById('action').value,row=+document.getElementById('direction').value;
+ const group={idle:[0,4],walk:[4,6],attack:[10,6]}[act];
+ const idx=group[0]+Math.floor(ms/(act==='idle'?210:act==='walk'?105:95))%group[1];
+ const img=atlases[unit];ctx.clearRect(0,0,360,440);
+ ctx.fillStyle='#a8cc7a';ctx.fillRect(0,0,360,440);
+ ctx.fillStyle='#8eb969';ctx.beginPath();ctx.ellipse(180,352,100,27,0,0,Math.PI*2);ctx.fill();
+ if(img.complete&&img.naturalWidth)ctx.drawImage(img,idx*108,row*116,108,116,65,40,230,270);
+ requestAnimationFrame(paint);
+}
+requestAnimationFrame(paint);
+</script></body></html>

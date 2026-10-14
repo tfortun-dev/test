@@ -1,0 +1,37 @@
+{
+  "version": "0.7.0",
+  "unit_tests": {
+    "executed": 20,
+    "passed": 20,
+    "failed": 0
+  },
+  "build": "passed",
+  "production_smoke": "passed",
+  "browser": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 960,
+      "checks": "startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload, victory/reward/troop accounting/3 objectives complete",
+      "pageerrors": [],
+      "failed_requests": []
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "checks": "startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload",
+      "pageerrors": [],
+      "failed_requests": []
+    },
+    {
+      "viewport": "landscape",
+      "width": 844,
+      "height": 390,
+      "checks": "startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload",
+      "pageerrors": [],
+      "failed_requests": []
+    }
+  ],
+  "windows_launcher": "provided, not executed natively on Linux"
+}
