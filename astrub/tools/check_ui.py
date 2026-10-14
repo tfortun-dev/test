@@ -6,6 +6,7 @@ Playwright for Python and a Chromium executable are required.
 import json
 import os
 import shutil
+import time
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
@@ -24,8 +25,8 @@ def install_observer(page):
     # Vite timestamps modules during HMR. Reuse the actual loaded module URLs
     # instead of instantiating another Phaser game with a different URL.
     page.evaluate("""async () => {
-      const main=document.querySelector('script[src*="/src/main.js"]').src;
-      const resource=path=>performance.getEntriesByType('resource').find(e=>new URL(e.name).pathname===path)?.name||path;
+      const resource=path=>performance.getEntriesByType('resource').filter(e=>new URL(e.name).pathname===path).at(-1)?.name||path;
+      const main=resource('/src/main.js');
       window.__e2e={main:await import(main),state:await import(resource('/src/game/state.js')),iso:await import(resource('/src/game/isometric.js'))};
     }""")
 
@@ -39,7 +40,8 @@ def screenshot(page, name):
 
 
 def active(page, scene):
-    page.wait_for_function("async name => (window.__e2e.main).game.scene.isActive(name)", arg=scene)
+    # Phaser's active flag can already be true while a scene is loading.
+    page.wait_for_function("name => {const game=window.__e2e.main.game;return game.scene.isActive(name)&&game.scene.getScene(name)?.sys.settings.status===5;}", arg=scene)
 
 
 def scene_value(page, expression):
@@ -64,10 +66,27 @@ def floor_point(page, building_id):
 
 
 def click_building(page, building_id):
-    pt = floor_point(page, building_id)
-    assert pt['tag'] == 'CANVAS', f"Building floor hidden under UI: {pt}"
-    page.mouse.click(pt['x'], pt['y'])
-    expect(page.locator('#selection-panel')).to_be_visible()
+    # A neighbouring roof can overlap the floor of an isometric footprint.
+    # Aim at opaque pixels of the target sprite and confirm the actual selection.
+    candidates = page.evaluate("""id => {
+      const scene=window.__e2e.main.game.scene.getScene('VillageScene');
+      const image=scene.buildingObjects.find(item=>item.buildingId===id)?.image;
+      if(!image)return [];
+      const camera=scene.cameras.main,points=[];
+      for(const fy of [.28,.4,.55,.7,.85])for(const fx of [.5,.35,.65,.2,.8]){
+        const alpha=scene.textures.getPixelAlpha(Math.floor(fx*image.frame.realWidth),Math.floor(fy*image.frame.realHeight),image.texture.key,image.frame.name);
+        if(alpha<18)continue;
+        const p=camera.matrix.transformPoint(image.x+(fx-image.originX)*image.displayWidth-camera.scrollX,image.y+(fy-image.originY)*image.displayHeight-camera.scrollY);
+        if(document.elementFromPoint(p.x,p.y)?.tagName==='CANVAS')points.push({x:p.x,y:p.y});
+      }
+      return points;
+    }""",building_id)
+    for pt in candidates:
+        page.mouse.click(pt['x'],pt['y'])
+        if scene_value(page,'scene.selectedId')==building_id:
+            expect(page.locator('#selection-panel')).to_be_visible()
+            return
+    raise AssertionError(f'No reachable opaque part of building {building_id}; tried {len(candidates)} pixels')
 
 
 def open_slot(page, type_name, ignore_id=None):
@@ -99,6 +118,88 @@ def assert_in_view(page, selector):
     assert box['x'] >= -1 and box['y'] >= -1 and box['x'] + box['width'] <= vp['width'] + 1 and box['y'] + box['height'] <= vp['height'] + 1, f'{selector} leaves viewport: {box}, {vp}'
 
 
+def assert_button_art(page, selector):
+    """Decorative graphics must let the real DOM button receive the click."""
+    issues = page.locator(selector).evaluate_all("""buttons => buttons.flatMap(button => {
+      const issues=[];
+      for(const label of ['.action-label','.build-name','.build-filter-copy','.train-label','.guide-action-label']){
+        if(button.querySelectorAll(label).length>1)issues.push('Functional label rendered more than once: '+button.id+' '+label);
+      }
+      for(const art of button.querySelectorAll('.ui-art,.ui-icon')){
+        if(!art.closest('[aria-hidden="true"]'))issues.push('Illustration exposed to assistive technologies: '+button.id);
+        if(getComputedStyle(art).pointerEvents!=='none')issues.push('Illustration intercepts clicks: '+button.id+' '+art.className);
+      }
+      for(const part of [button,...button.querySelectorAll('.ui-art,.ui-icon')]){
+        for(const pseudo of ['::before','::after']){
+          const style=getComputedStyle(part,pseudo);
+          if(!['none','normal',''].includes(style.content)&&(style.backgroundImage+style.borderImageSource).includes('url(')&&style.pointerEvents!=='none')issues.push('Illustrated pseudo-element intercepts clicks: '+button.id+' '+pseudo);
+        }
+      }
+      if(!button.getClientRects().length)return issues;
+      const rect=button.getBoundingClientRect(),x=rect.x+rect.width/2,y=rect.y+rect.height/2;
+      if(x<0||y<0||x>=innerWidth||y>=innerHeight)return issues;
+      for(let parent=button.parentElement;parent;parent=parent.parentElement){
+        const style=getComputedStyle(parent);
+        if(/auto|scroll|hidden|clip/.test(style.overflow+style.overflowX+style.overflowY)){
+          const clip=parent.getBoundingClientRect();
+          if(x<clip.left||x>clip.right||y<clip.top||y>clip.bottom)return issues;
+        }
+      }
+      if(document.elementFromPoint(x,y)?.closest('button')!==button)issues.push('Button centre obscured: '+(button.id||button.textContent.trim()));
+      return issues;
+    })""")
+    assert not issues, '; '.join(issues)
+
+
+def assert_stable_buttons(page, selector, focus_selector=None):
+    """Saving unchanged state must preserve graphic nodes and keyboard focus."""
+    if focus_selector:
+        page.locator(focus_selector).focus()
+    page.evaluate("""selector => {
+      window.__buttonCheck=[...document.querySelectorAll(selector)].map(button=>({button,nodes:[...button.querySelectorAll('*')],labelCount:button.querySelectorAll('.action-label,.build-name,.train-label,.guide-action-label').length}));
+      window.__buttonReplacements=[];
+      window.__buttonObserver=new MutationObserver(records=>{
+        for(const record of records)if([...record.addedNodes,...record.removedNodes].some(node=>node.nodeType===Node.ELEMENT_NODE))window.__buttonReplacements.push(record.target.id||record.target.className);
+      });
+      for(const item of window.__buttonCheck)window.__buttonObserver.observe(item.button,{childList:true,subtree:true});
+      for(let i=0;i<3;i++)window.__e2e.state.save();
+    }""", selector)
+    page.wait_for_timeout(1100)
+    issues = page.evaluate("""() => {
+      window.__buttonObserver.disconnect();
+      const issues=window.__buttonCheck.flatMap(({button,nodes,labelCount})=>{
+        const result=[];
+        if(!button.isConnected||nodes.some(node=>!node.isConnected||!button.contains(node)))result.push('Decorative/button node replaced: '+(button.id||button.textContent.trim()));
+        if(button.querySelectorAll('.action-label,.build-name,.train-label,.guide-action-label').length!==labelCount)result.push('Labels duplicated or removed: '+button.id);
+        return result;
+      });
+      if(window.__buttonReplacements.length)issues.push('Recreated element children: '+window.__buttonReplacements.join(', '));
+      return issues;
+    }""")
+    assert not issues, '; '.join(issues)
+    if focus_selector:
+        expect(page.locator(focus_selector)).to_be_focused()
+
+
+def assert_resource_fill(page):
+    issues = page.locator('.resource').evaluate_all("""cards => cards.flatMap(card => {
+      const amount=Number(card.dataset.amount),cap=Number(card.dataset.cap);
+      if(!Number.isFinite(amount)||!Number.isFinite(cap)||cap<=0)return ['Missing/invalid HUD amounts: '+card.className];
+      const ratio=Math.max(0,Math.min(1,amount/cap));
+      const raw=getComputedStyle(card).getPropertyValue('--fill').trim(),value=Number(raw);
+      const problems=!raw||!Number.isFinite(value)||Math.abs(value-ratio)>.001?['Incorrect resource fill: '+card.className]:[];
+      const meter=card.querySelector('.resource-meter'),fill=meter?.firstElementChild;
+      if(!meter||!fill)return [...problems,'Missing visible resource meter: '+card.className];
+      if(meter&&fill&&meter.getBoundingClientRect().width>0){
+        const width=fill.getBoundingClientRect().width;
+        const style=getComputedStyle(meter),available=meter.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
+        if(Math.abs(width-available*ratio)>2)problems.push('Visible resource fill disagrees with amount: '+card.className);
+      }
+      return problems;
+    })""")
+    assert not issues, '; '.join(issues)
+
+
 def show_goals(page):
     if page.locator('#goals-toggle').get_attribute('aria-expanded') == 'false':
         page.locator('#goals-toggle').click()
@@ -112,11 +213,18 @@ def run_viewport(browser, label, width, height):
     page.on('pageerror', lambda err: errors.append(str(err)))
     page.on('requestfailed', lambda req: failed.append(req.url))
     page.on('response', lambda res: failed.append(f'{res.status} {res.url}') if res.status >= 400 else None)
+    if label=='desktop':
+        # First-run help must also disable a scene whose assets finish loading later.
+        def delayed_ground(route):
+            time.sleep(1.2)
+            route.continue_()
+        page.route('**/assets/prairie-astrub-etendue.webp',delayed_ground,times=1)
     page.goto(URL, wait_until='networkidle')
     install_observer(page)
     active(page, 'VillageScene')
     expect(page.locator('#astrub-startup')).to_be_hidden()
     expect(page.locator('#help-overlay')).to_be_visible()
+    expect(page.locator('#game canvas')).to_have_count(1)
     assert scene_value(page, 'scene.input.enabled') is False
     screenshot(page, f'after-{label}-help')
     assert_in_view(page, '.help-modal')
@@ -130,11 +238,92 @@ def run_viewport(browser, label, width, height):
     for el in ['#build-toggle','#raid-btn','.resource-stack','.corner-menu']:
         assert_in_view(page, el)
     assert not page.evaluate('document.documentElement.scrollWidth > innerWidth')
+    assert_resource_fill(page)
+    assert_button_art(page, '#build-toggle,#raid-btn,.utility-btn,.goals-toggle')
+    assert_button_art(page,'[id^="resource-plus-"]')
+    assert_stable_buttons(page,'[id^="resource-plus-"]','#resource-plus-gold')
+    for resource,type_name in [('gold','tower'),('wood','sawmill'),('stone','mine')]:
+        wallet=state(page)['resources']
+        page.locator(f'#resource-plus-{resource}').click()
+        expect(page.locator('#build-filters [data-category="resources"]')).to_have_attribute('aria-selected','true')
+        expect(page.locator(f'[data-building="{type_name}"]')).to_be_focused()
+        assert state(page)['resources']==wallet, 'A resource shortcut must only open its producer card'
+        page.locator('#build-close').click()
+
+    # Every utility panel stays usable with illustrated graphics above it.
+    page.locator('#menu-settings').click()
+    expect(page.locator('#menu-settings')).to_have_attribute('aria-expanded','true')
+    expect(page.locator('#settings-popover')).to_be_visible()
+    assert_in_view(page,'#settings-popover')
+    assert_button_art(page,'#menu-settings,#settings-popover button')
+    screenshot(page,f'after-{label}-settings')
+    before_reset=state(page)
+    page.locator('#menu-reset').click()
+    expect(page.locator('#reset-overlay')).to_be_visible()
+    assert scene_value(page,'scene.input.enabled') is False
+    assert_button_art(page,'#reset-overlay button')
+    assert_in_view(page,'.reset-modal')
+    screenshot(page,f'after-{label}-reset')
+    page.locator('#reset-cancel').click()
+    expect(page.locator('#reset-overlay')).to_be_hidden()
+    assert state(page)['resources']==before_reset['resources']
+    assert [(b['id'],b['x'],b['y'],b['level']) for b in state(page)['buildings']]==[(b['id'],b['x'],b['y'],b['level']) for b in before_reset['buildings']]
+    page.locator('#menu-settings').click()
+    page.locator('#menu-reset').click()
+    page.keyboard.press('Escape')
+    expect(page.locator('#reset-overlay')).to_be_hidden()
+    page.locator('#menu-settings').click()
+    page.locator('#menu-reset').click()
+    page.mouse.click(3,3)
+    expect(page.locator('#reset-overlay')).to_be_hidden()
+    assert state(page)['resources']==before_reset['resources']
+    page.locator('#menu-settings').click()
+    page.locator('#menu-help').click()
+    expect(page.locator('#help-overlay')).to_be_visible()
+    expect(page.locator('#settings-popover')).to_be_hidden()
+    assert scene_value(page,'scene.input.enabled') is False
+    assert_button_art(page,'.help-modal button')
+    zoom_before=camera(page)[2]
+    page.locator('#zoom-in').click()
+    assert camera(page)[2]>zoom_before
+    page.locator('#zoom-out').click()
+    assert abs(camera(page)[2]-zoom_before)<.001
+    page.keyboard.press('Escape')
+    expect(page.locator('#help-overlay')).to_be_hidden()
+    assert scene_value(page,'scene.input.enabled') is True
+    page.locator('#menu-settings').click()
+    page.keyboard.press('Escape')
+    expect(page.locator('#settings-popover')).to_be_hidden()
+
+    # A producer exposes a real reserve, a collection button, and a full-store reason.
+    producer=next(b for b in state(page)['buildings'] if b['type']=='mine')
+    click_building(page,producer['id'])
+    if page.locator('#selection-info-toggle').get_attribute('aria-expanded')=='false':
+        page.locator('#selection-info-toggle').click()
+    expect(page.locator('#collect-panel')).to_be_visible()
+    assert_in_view(page,'#building-details')
+    assert_button_art(page,'#selection-panel button')
+    screenshot(page,f'after-{label}-producer')
+    original_resources=state(page)['resources']
+    page.evaluate("id => {const s=window.__e2e.state;s.getState().buildings.find(b=>b.id===id).stored=40;s.getState().resources.stone=s.cap();s.save();}",producer['id'])
+    expect(page.locator('#collect-btn')).to_be_disabled()
+    expect(page.locator('#selection-feedback')).to_contain_text('Stockage plein')
+    page.evaluate("({id,resources}) => {const s=window.__e2e.state;Object.assign(s.getState().resources,resources);s.getState().buildings.find(b=>b.id===id).stored=40;s.getState().lastTick=Date.now();s.save();}",{'id':producer['id'],'resources':original_resources})
+    expect(page.locator('#collect-btn')).to_be_enabled()
+    before_collect=state(page)
+    page.locator('#collect-btn').click()
+    assert state(page)['resources']['stone']>=before_collect['resources']['stone']+40
+    page.locator('#detail-close').click()
+    expect(page.locator('#selection-info-toggle')).to_have_attribute('aria-expanded','false')
+    page.locator('#close-selection').click()
     # The first discovery objective opens the correct construction category.
     show_goals(page)
     page.locator('#goal-action').click()
-    expect(page.locator('[data-category="army"]')).to_have_attribute('aria-selected','true')
+    expect(page.locator('#build-filters [data-category="army"]')).to_have_attribute('aria-selected','true')
     expect(page.locator('[data-building="barracks"]')).to_be_visible()
+    assert_button_art(page,'#build-filters button,#build-palette button')
+    assert_stable_buttons(page,'#build-filters button,#build-palette button','#build-filters [data-category="army"]')
+    screenshot(page,f'after-{label}-army')
     page.locator('#build-close').click()
 
     # A fresh village cannot launch a raid until a barracks is built.
@@ -152,14 +341,15 @@ def run_viewport(browser, label, width, height):
 
     # Categories show clear costs and never allow an unaffordable choice.
     page.locator('#build-toggle').click()
-    page.locator('[data-category="resources"]').click()
+    page.locator('#build-filters [data-category="resources"]').click()
     expect(page.locator('#build-filters [role="tab"]')).to_have_count(3)
-    expect(page.locator('#build-palette [data-building]')).to_have_count(3)
+    expect(page.locator('#build-palette [data-building]:visible')).to_have_count(3)
     screenshot(page, f'after-{label}-build')
     assert_in_view(page, '.build-popout')
-    page.locator('[data-category="economy"]').click()
+    assert_button_art(page,'#build-filters button,#build-palette button')
+    page.locator('#build-filters [data-category="economy"]').click()
     expect(page.locator('[data-building="warehouse"]')).to_be_visible()
-    page.locator('[data-category="army"]').click()
+    page.locator('#build-filters [data-category="army"]').click()
     barracks_card = page.locator('[data-building="barracks"]')
     expect(barracks_card).to_contain_text('360')
     expect(barracks_card).to_contain_text('210')
@@ -167,6 +357,9 @@ def run_viewport(browser, label, width, height):
     page.evaluate("async () => {const s=window.__e2e.state;Object.assign(s.getState().resources,{gold:0,wood:0,stone:0});s.save();}")
     expect(barracks_card).to_be_disabled()
     expect(barracks_card).to_contain_text('Manque')
+    page.wait_for_timeout(450)
+    assert_resource_fill(page)
+    assert_stable_buttons(page,'#build-filters button,#build-palette button','#build-filters [data-category="army"]')
     page.evaluate("async r => {const s=window.__e2e.state;Object.assign(s.getState().resources,r);s.save();}", original_resources)
     expect(barracks_card).to_be_enabled()
     barracks_card.click()
@@ -175,9 +368,18 @@ def run_viewport(browser, label, width, height):
         page.locator('#build-toggle').click()
     slot = open_slot(page, 'barracks')
     assert slot, 'No accessible valid barracks slot'
+    assert_in_view(page,'#placement-status')
+    assert_button_art(page,'#placement-status button')
+    townhall=next(b for b in state(page)['buildings'] if b['type']=='townhall')
+    occupied=floor_point(page,townhall['id'])
+    page.mouse.move(occupied['x'],occupied['y'])
+    expect(page.locator('#placement-confirm')).to_be_disabled()
+    expect(page.locator('#placement-status')).to_contain_text('occupée')
     before = state(page)
     page.mouse.move(slot['sx'],slot['sy'])
-    page.mouse.click(slot['sx'],slot['sy'])
+    expect(page.locator('#placement-confirm')).to_be_enabled()
+    screenshot(page,f'after-{label}-placement')
+    page.locator('#placement-confirm').click()
     page.wait_for_function("async n => (window.__e2e.state).getState().buildings.length===n", arg=len(before['buildings'])+1)
     after = state(page)
     barracks = next(b for b in after['buildings'] if b['type'] == 'barracks')
@@ -196,11 +398,14 @@ def run_viewport(browser, label, width, height):
     assert_in_view(page, '#selection-panel')
     assert_in_view(page, '#building-details')
     screenshot(page, f'after-{label}-barracks')
+    assert_button_art(page,'#selection-panel button')
+    assert_stable_buttons(page,'#selection-panel button','[data-unit="iop"]')
     before_train = state(page)
     page.evaluate("async () => {const s=window.__e2e.state;Object.assign(s.getState().resources,{gold:0,wood:0,stone:0});s.save();}")
     expect(page.locator('[data-unit="iop"]')).to_be_disabled()
     expect(page.locator('[data-unit="cra"]')).to_be_disabled()
     expect(page.locator('[data-unit="iop"]')).to_contain_text('Manque')
+    assert_stable_buttons(page,'#selection-panel button')
     page.evaluate("async r => {const s=window.__e2e.state;Object.assign(s.getState().resources,r);s.save();}", before_train['resources'])
     page.locator('[data-unit="iop"]').click()
     after_train = state(page)
@@ -214,7 +419,8 @@ def run_viewport(browser, label, width, height):
     assert move_slot, 'No accessible valid movement slot'
     before_move = state(page)
     page.mouse.move(move_slot['sx'], move_slot['sy'])
-    page.mouse.click(move_slot['sx'], move_slot['sy'])
+    expect(page.locator('#placement-confirm')).to_be_enabled()
+    page.locator('#placement-confirm').click()
     moved = next(b for b in state(page)['buildings'] if b['id'] == barracks['id'])
     assert (moved['x'],moved['y']) == (move_slot['x'],move_slot['y'])
     assert state(page)['resources'] == before_move['resources']
@@ -248,7 +454,7 @@ def run_viewport(browser, label, width, height):
 
     # Keyboard confirmation is a useful alternative to clicking the footprint.
     page.locator('#build-toggle').click()
-    page.locator('[data-category="resources"]').click()
+    page.locator('#build-filters [data-category="resources"]').click()
     page.locator('[data-building="sawmill"]').click()
     keyboard_slot = open_slot(page, 'sawmill')
     assert keyboard_slot, 'No accessible keyboard placement slot'
@@ -269,25 +475,55 @@ def run_viewport(browser, label, width, height):
     assert page.evaluate("document.getElementById('expedition-overlay').contains(document.activeElement)")
     screenshot(page, f'after-{label}-expedition')
     assert_in_view(page, '.expedition-modal')
+    assert_button_art(page,'.expedition-modal button')
+    assert_stable_buttons(page,'.expedition-modal button','#expedition-start')
     page.keyboard.press('Escape')
     expect(page.locator('#raid-btn')).to_be_focused()
     page.locator('#raid-btn').click()
+    page.wait_for_function('() => window.__e2e.state.getState().queue.length===0',timeout=15000)
     page.locator('#expedition-start').click()
     active(page, 'BattleScene')
     expect(page.locator('#battle-controls')).to_be_visible()
     expect(page.locator('#raid-btn')).to_be_hidden()
+    for resource in ['gold','wood','stone']:
+        expect(page.locator(f'#resource-plus-{resource}')).to_be_hidden()
+        expect(page.locator(f'#resource-plus-{resource}')).to_be_disabled()
     screenshot(page, f'after-{label}-battle')
     assert_in_view(page, '#battle-controls')
-    # A real click deploys one Iop. Leaving consumes only that deployed unit.
+    assert_button_art(page,'#battle-controls button,#menu-settings,#menu-home')
+    assert_in_view(page,'.corner-menu')
+    troop_cra=page.locator('#troop-palette .build-card').filter(has_text='Crâ')
+    troop_iop=page.locator('#troop-palette .build-card').filter(has_text='Iop')
+    troop_cra.click()
+    expect(troop_cra).to_be_focused()
+    expect(troop_cra).to_have_attribute('aria-pressed','true')
+    troop_iop.click()
+    expect(troop_iop).to_be_focused()
+    assert_stable_buttons(page,'#troop-palette button,#leave-battle')
+    # Real canvas clicks deploy troops; returning consumes precisely those units.
     pt = page.evaluate("""async () => {const {game}=window.__e2e.main;const {xy}=window.__e2e.iso;const scene=game.scene.getScene('BattleScene');const world=xy(3,3);const cam=scene.cameras.main;const pt=cam.matrix.transformPoint(world.x-cam.scrollX,world.y-cam.scrollY);return {x:pt.x,y:pt.y,tag:document.elementFromPoint(pt.x,pt.y)?.tagName};}""")
     assert pt['tag'] == 'CANVAS', f'Deployment zone obscured: {pt}'
     before_battle = state(page)
-    page.mouse.click(pt['x'],pt['y'])
-    page.wait_for_function("async () => (window.__e2e.main).game.scene.getScene('BattleScene').used.iop===1")
+    deployed_iops=1
+    newly_trained=0
+    if label=='desktop':
+        # Finish an actual paid training while its troop card is exhausted.
+        page.evaluate("() => {const s=window.__e2e.state;const result=s.train('iop');if(!result.ok)throw new Error(result.msg);window.__regressionIop=document.querySelector('[data-troop=\"iop\"]');}")
+        deployed_iops=before_battle['troops']['iop']
+    for _ in range(deployed_iops):
+        page.mouse.click(pt['x'],pt['y'])
+    page.wait_for_function("n => window.__e2e.main.game.scene.getScene('BattleScene').used.iop===n",arg=deployed_iops)
+    if label=='desktop':
+        expect(troop_iop).to_be_disabled()
+        page.evaluate("() => {const s=window.__e2e.state;s.getState().queue.find(q=>q.type==='iop').ends=Date.now()-1;s.getState().lastTick=Date.now()-600;s.tick();}")
+        expect(troop_iop).to_be_enabled()
+        expect(troop_iop.locator('.build-cost')).to_have_text('1 disponible(s)')
+        assert page.evaluate("window.__regressionIop===document.querySelector('[data-troop=\"iop\"]')"), 'Training must update the existing troop card'
+        newly_trained=1
     page.locator('#leave-battle').click()
     active(page, 'VillageScene')
     final = state(page)
-    assert final['troops']['iop'] == before_battle['troops']['iop'] - 1
+    assert final['troops']['iop'] == before_battle['troops']['iop'] + newly_trained - deployed_iops
     assert final['troops']['cra'] == before_battle['troops']['cra']
     saved = page.evaluate("JSON.parse(localStorage.getItem('astrub_village_local_v1'))")
     assert saved['buildings'] == final['buildings']
@@ -299,19 +535,21 @@ def run_viewport(browser, label, width, height):
         page.locator('#expedition-start').click()
         active(page,'BattleScene')
         before_victory=state(page)
+        winning_iops=min(3,before_victory['troops']['iop'])
+        assert winning_iops>=1
         storage=page.evaluate('window.__e2e.state.cap()')
         pt=page.evaluate("() => {const {game}=window.__e2e.main;const world=window.__e2e.iso.xy(3,3);const cam=game.scene.getScene('BattleScene').cameras.main;const p=cam.matrix.transformPoint(world.x-cam.scrollX,world.y-cam.scrollY);return {x:p.x,y:p.y};}")
-        for _ in range(3):
+        for _ in range(winning_iops):
             page.mouse.click(pt['x'],pt['y'])
         page.locator('#troop-palette .build-card').filter(has_text='Crâ').click()
         for _ in range(3):
             page.mouse.click(pt['x'],pt['y'])
-        page.wait_for_function('() => window.__e2e.main.game.scene.getScene("BattleScene").used.iop===3 && window.__e2e.main.game.scene.getScene("BattleScene").used.cra===3')
+        page.wait_for_function('n => window.__e2e.main.game.scene.getScene("BattleScene").used.iop===n && window.__e2e.main.game.scene.getScene("BattleScene").used.cra===3',arg=winning_iops)
         page.wait_for_function('wins => window.__e2e.state.getState().wins===wins+1',arg=before_victory['wins'],timeout=45000)
         won=state(page)
         for key,reward in [('gold',650),('wood',250),('stone',140)]:
             assert won['resources'][key]==min(storage,before_victory['resources'][key]+reward)
-        assert won['troops']['iop']==before_victory['troops']['iop']-3
+        assert won['troops']['iop']==before_victory['troops']['iop']-winning_iops
         assert won['troops']['cra']==before_victory['troops']['cra']-3
         active(page,'VillageScene')
         expect(page.locator('#goal-count')).to_have_text('3/3')
@@ -324,9 +562,29 @@ def run_viewport(browser, label, width, height):
     expect(page.locator('#help-overlay')).to_be_hidden()
     assert state(page)['troops'] == final['troops']
     assert [(b['id'],b['x'],b['y']) for b in state(page)['buildings']] == [(b['id'],b['x'],b['y']) for b in final['buildings']]
+    # Reset from inside a raid must stop that raid before creating the new save.
+    if sum(state(page)['troops'].values())==0:
+        page.evaluate("() => {const s=window.__e2e.state;const result=s.train('iop');if(!result.ok)throw new Error(result.msg);s.getState().queue.find(q=>q.type==='iop').ends=Date.now()-1;s.getState().lastTick=Date.now()-600;s.tick();}")
+    page.locator('#raid-btn').click()
+    page.locator('#expedition-start').click()
+    active(page,'BattleScene')
+    page.locator('#menu-settings').click()
+    page.locator('#menu-reset').click()
+    expect(page.locator('#reset-overlay')).to_be_visible()
+    assert page.evaluate("window.__e2e.main.game.scene.getScene('BattleScene').input.enabled===false")
+    page.locator('#reset-confirm').click()
+    active(page,'VillageScene')
+    page.wait_for_function("() => !window.__e2e.main.game.scene.isActive('BattleScene')")
+    expect(page.locator('#reset-overlay')).to_be_hidden()
+    expect(page.locator('#goal-count')).to_have_text('0/3')
+    assert state(page)['resources']=={'gold':2050,'wood':830,'stone':500}
+    assert state(page)['troops']=={'iop':3,'cra':3}
+    assert len(state(page)['buildings'])==4
+    page.wait_for_timeout(1200)
+    assert state(page)['wins']==0 and state(page)['resources']=={'gold':2050,'wood':830,'stone':500}
     assert not errors, f'Page errors: {errors}'
     assert not failed, f'Failed requests: {failed}'
-    result = {'viewport': label, 'width':width,'height':height,'checks':'startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload'+(', victory/reward/troop accounting/3 objectives complete' if label=='desktop' else ''),'pageerrors':errors,'failed_requests':failed}
+    result = {'viewport': label, 'width':width,'height':height,'checks':'startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle'+(', training completion reactivates troop card, victory/reward/troop accounting/3 objectives complete' if label=='desktop' else ''),'pageerrors':errors,'failed_requests':failed}
     context.close()
     return result
 

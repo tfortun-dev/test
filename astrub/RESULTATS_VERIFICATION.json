@@ -1,18 +1,22 @@
 {
-  "version": "0.7.0",
+  "version": "0.7.1",
   "unit_tests": {
     "executed": 20,
     "passed": 20,
     "failed": 0
   },
   "build": "passed",
-  "production_smoke": "passed",
+  "production_smoke": {
+    "status": "passed",
+    "page_errors": [],
+    "failed_requests": []
+  },
   "browser": [
     {
       "viewport": "desktop",
       "width": 1440,
       "height": 960,
-      "checks": "startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload, victory/reward/troop accounting/3 objectives complete",
+      "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle, training completion reactivates troop card, victory/reward/troop accounting/3 objectives complete",
       "pageerrors": [],
       "failed_requests": []
     },
@@ -20,7 +24,7 @@
       "viewport": "mobile",
       "width": 390,
       "height": 844,
-      "checks": "startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload",
+      "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle",
       "pageerrors": [],
       "failed_requests": []
     },
@@ -28,10 +32,11 @@
       "viewport": "landscape",
       "width": 844,
       "height": 390,
-      "checks": "startup/fullscreen, help, discovery objectives, build costs/availability, canvas building, training, move, upgrade timer, Enter placement, modal focus/escape/input, combat deploy/return, save/reload",
+      "checks": "startup/fullscreen, decorative layers/hit areas, resource fill/producer shortcuts, settings/help/zoom/reset cancel/Escape/outside, collection/capacity, persistent button graphics/labels/focus, discovery objectives, build costs/availability, valid/invalid placement and confirmation button, canvas building, training, free move, upgrade timer, Enter placement, modal focus/escape/input, troop selection, combat deploy/return, save/reload, confirmed reset stops previous battle",
       "pageerrors": [],
       "failed_requests": []
     }
   ],
+  "slow_boot_modal_input": "passed (desktop, terrain response delayed 1200 ms)",
   "windows_launcher": "provided, not executed natively on Linux"
 }

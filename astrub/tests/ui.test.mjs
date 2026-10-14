@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const css = readFileSync(new URL('../src/style.css', import.meta.url), 'utf8');
 const js = readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
+const progress = readFileSync(new URL('../src/progress.js', import.meta.url), 'utf8');
 
 function hasId(id) { return html.includes(`id="${id}"`); }
 
@@ -27,16 +28,21 @@ test('la sélection est compacte et les détails sont masqués par défaut derri
 
 test('aucune référence JavaScript ne vise un ID disparu', () => {
   const lookups = [...js.matchAll(/\$\('([^']+)'\)/g)].map(x => x[1]);
-  const ids = new Set([...html.matchAll(/id="([^"]+)"/g)].map(x => x[1]));
+  lookups.push(...[...progress.matchAll(/getElementById\('([^']+)'\)/g)].map(x => x[1]));
+  const declarations = [...html.matchAll(/id="([^"]+)"/g)].map(x => x[1]);
+  const ids = new Set(declarations);
+  assert.equal(ids.size, declarations.length, 'Chaque ID doit identifier un seul élément.');
   const absent = [...new Set(lookups)].filter(id => !ids.has(id));
   assert.deepEqual(absent, []);
 });
 
-test('les icônes SVG d’action restent intactes après mise à jour de la sélection', () => {
+test('les calques des actions restent décoratifs et les libellés sont conservés lors des mises à jour', () => {
   for (const id of ['collect-btn', 'move-btn', 'upgrade-btn']) {
-    const start = html.indexOf(`id="${id}"`);
-    assert.ok(start >= 0);
-    assert.ok(html.slice(start, start + 600).includes('<svg'), `${id}: SVG manquant`);
+    const markup = html.match(new RegExp(`<button\\b[^>]*\\bid="${id}"[^>]*>[\\s\\S]*?<\\/button>`))?.[0];
+    assert.ok(markup, `${id}: bouton manquant`);
+    assert.match(markup, /class="[^\"]*\baction-icon\b[^\"]*"[^>]*aria-hidden="true"/, `${id}: icône décorative manquante`);
+    assert.match(markup, /class="[^\"]*\baction-label\b[^\"]*"/, `${id}: libellé séparé manquant`);
   }
-  assert.doesNotMatch(js, /querySelector\('\.action-icon'\)\.textContent/);
+  assert.doesNotMatch(js, /querySelector\('\.action-icon'\)\.(?:textContent|innerHTML)\s*=/);
+  assert.doesNotMatch(js, /\$\('(?:collect-btn|move-btn|upgrade-btn)'\)\.(?:textContent|innerHTML)\s*=/);
 });

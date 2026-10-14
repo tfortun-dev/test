@@ -13,6 +13,7 @@ export function discoveryGoals(state) {
 const toggle=document.getElementById('goals-toggle');
 const content=document.getElementById('goals-content');
 let open=!window.matchMedia('(max-width:760px), (max-height:560px)').matches;
+const setText=(element,text)=>{const value=String(text);if(element&&element.textContent!==value)element.textContent=value;};
 function setOpen(value){
   open=value;
   toggle.setAttribute('aria-expanded',String(open));
@@ -23,14 +24,44 @@ function renderGoals(){
   const goals=discoveryGoals(state);
   const complete=goals.filter(goal=>goal.done).length;
   const next=goals.find(goal=>!goal.done);
-  document.getElementById('village-level').textContent=state.buildings.find(b=>b.type==='townhall')?.level??1;
-  document.getElementById('goal-count').textContent=`${complete}/${goals.length}`;
-  document.getElementById('goal-current').textContent=next?.label??'Votre village prend vie !';
-  document.getElementById('goal-list').innerHTML=goals.map((goal,index)=>`<li class="${goal.done?'complete':goal===next?'current':''}"><span class="goal-step" aria-hidden="true">${goal.done?'✓':index+1}</span><span>${goal.label}${goal.done?'<span class="sr-only"> : accompli</span>':''}</span></li>`).join('');
+  setText(document.getElementById('village-level'),state.buildings.find(b=>b.type==='townhall')?.level??1);
+  setText(document.getElementById('goal-count'),`${complete}/${goals.length}`);
+  setText(document.getElementById('goal-current'),next?.label??'Votre village prend vie !');
+  const list=document.getElementById('goal-list');
+  for(const [index,goal] of goals.entries()){
+    let row=list.querySelector(`[data-goal="${goal.action}"]`);
+    if(!row){
+      row=document.createElement('li');
+      row.dataset.goal=goal.action;
+      row.innerHTML='<span class="goal-step" aria-hidden="true"></span><span class="goal-label"></span><span class="goal-state sr-only"></span>';
+      list.append(row);
+    }
+    const className=goal.done?'complete':goal===next?'current':'';
+    if(row.className!==className)row.className=className;
+    setText(row.querySelector('.goal-step'),goal.done?'✓':index+1);
+    setText(row.querySelector('.goal-label'),goal.label);
+    setText(row.querySelector('.goal-state'),goal.done?' : accompli':'');
+  }
   const action=document.getElementById('goal-action');
-  action.disabled=!next;
-  action.dataset.action=next?.action??'';
-  action.innerHTML=`${next?.cta??'Premières pierres posées'} <span aria-hidden="true">${next?'→':'✓'}</span>`;
+  if(action.disabled!==!next)action.disabled=!next;
+  const disabled=String(!next);
+  if(action.getAttribute('aria-disabled')!==disabled)action.setAttribute('aria-disabled',disabled);
+  const actionName=next?.action??'';
+  if(action.dataset.action!==actionName)action.dataset.action=actionName;
+  let label=action.querySelector('.guide-action-label');
+  let arrow=action.querySelector('.guide-action-arrow');
+  if(!label){
+    // A saved state update must preserve the button's decorative HTML layers.
+    for(const child of [...action.childNodes])if(child.nodeType===Node.TEXT_NODE)child.remove();
+    label=document.createElement('span');label.className='guide-action-label';action.prepend(label);
+  }
+  if(!arrow){
+    arrow=action.querySelector('span[aria-hidden="true"]:not(.ui-icon):not([class])');
+    if(arrow)arrow.className='guide-action-arrow';
+    else{arrow=document.createElement('span');arrow.className='guide-action-arrow';arrow.setAttribute('aria-hidden','true');action.append(arrow);}
+  }
+  setText(label,next?.cta??'Premières pierres posées');
+  setText(arrow,next?'→':'✓');
 }
 if(toggle&&content){
   toggle.addEventListener('click',()=>setOpen(!open));

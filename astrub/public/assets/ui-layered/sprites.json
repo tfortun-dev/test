@@ -1,0 +1,23 @@
+{
+  "source": "ui-atlas.png",
+  "origin": "Image-generation edit of user-selected button reference; transparent layers without embedded text",
+  "export": "Lossless rectangular extraction, no recoloring; editable atlas retained",
+  "button_slice": [
+    28,
+    28,
+    28,
+    28
+  ],
+  "panel_slice": [
+    36,
+    36,
+    36,
+    36
+  ],
+  "meter_slice": [
+    20,
+    32,
+    20,
+    32
+  ]
+}

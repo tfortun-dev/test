@@ -1,4 +1,11 @@
-# Crédits et provenance des visuels — Astrub v0.5.6
+# Crédits et provenance des visuels — Astrub v0.7.1
+
+## Interface illustrée
+
+- Référence : planche de boutons fournie par l'utilisateur pour la direction artistique.
+- `public/assets/ui-layered/ui-atlas.png` : édition de cette référence avec l'outil de génération d'images, sur fond transparent, sans texte intégré.
+- Les 24 PNG de ce dossier sont des découpes sans perte de l'atlas. `tools/export_ui_layers.sh` reproduit leur export.
+- Les textes, chiffres, jauges animées et interactions sont séparés des images dans l'interface HTML/CSS. [UI_ARCHITECTURE.md](UI_ARCHITECTURE.md) décrit leurs calques et cadres extensibles.
 
 ## Terrain
 

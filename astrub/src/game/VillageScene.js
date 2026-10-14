@@ -22,7 +22,7 @@ export class VillageScene extends Phaser.Scene {
     this.drawGround();
     this.drawDecor();
     this.buildingObjects=[];
-    this.buildMode=null;this.moveId=null;this.selectedId=null;
+    this.buildMode=null;this.moveId=null;this.selectedId=null;this.lastPlacement=null;
     this.renderBuildings();
     this.ghost=this.add.graphics();
     this.movePreview=this.add.image(0,0,'b-sawmill').setOrigin(.5,.985).setAlpha(.68).setVisible(false);
@@ -51,11 +51,7 @@ export class VillageScene extends Phaser.Scene {
       if(this.moveId!==null)this.cancelMove();
       if(this.buildMode)this.changeBuildMode(null);
     };
-    this.sceneConfirmPlacement=()=>{
-      const pointer=this.input.activePointer;
-      if(!pointer||(!this.buildMode&&this.moveId===null))return;
-      this.onPointerDown({x:pointer.x,y:pointer.y,leftButtonDown:()=>true,rightButtonDown:()=>false,middleButtonDown:()=>false},[]);
-    };
+    this.sceneConfirmPlacement=()=>this.confirmPlacement();
     this.game.events.on('astrub:cameraCenter',this.sceneCenter);
     this.game.events.on('astrub:zoom',this.sceneZoom);
     this.game.events.on('astrub:build',this.sceneBuild);
@@ -192,6 +188,7 @@ export class VillageScene extends Phaser.Scene {
   cancelMove(){
     if(this.moveId===null)return;
     this.moveId=null;
+    this.lastPlacement=null;this.lastPlacementKey=null;
     this.ghost.clear();
     this.movePreview.setVisible(false);
     this.game.events.emit('astrub:moving',null);
@@ -203,34 +200,48 @@ export class VillageScene extends Phaser.Scene {
     this.buildMode=null;
     this.game.events.emit('astrub:mode',null);
     this.moveId=id;
-    this.lastPlacementKey=null;
+    this.lastPlacement=null;this.lastPlacementKey=null;
     this.selectBuilding(id);
     this.game.events.emit('astrub:moving',id);
-    this.drawGhost(this.input.activePointer);
+    this.ghost.clear();this.movePreview.setVisible(false);
   }
   changeBuildMode(type){
     this.cancelMove();
     this.buildMode=(type===this.buildMode?null:type);
-    this.lastPlacementKey=null;
+    this.lastPlacement=null;this.lastPlacementKey=null;
     this.selectBuilding(null);
     this.ghost.clear();
     this.game.events.emit('astrub:mode',this.buildMode);
-    if(this.buildMode && this.input.activePointer) this.drawGhost(this.input.activePointer);
+    this.movePreview.setVisible(false);
   }
   drawGhost(pointer){
-    this.ghost.clear();
-    this.movePreview.setVisible(false);
     const moving=this.moveId!==null?getState().buildings.find(b=>b.id===this.moveId):null;
     const type=moving?.type||this.buildMode;
-    if(!type||!pointer)return;
+    if(!type||!pointer){this.ghost.clear();this.movePreview.setVisible(false);return;}
+    // HTML controls sit above the canvas. Moving onto "Valider" must keep the
+    // aimed tile instead of replacing it with a tile underneath that button.
+    if(!this.pointerIsOnMap(pointer))return;
     const world=this.cameras.main.getWorldPoint(pointer.x,pointer.y);
     const at=ij(world.x,world.y);const [w,h]=BUILDINGS[type].size;
     const x=at.i-Math.floor(w/2),y=at.j-Math.floor(h/2);
     const valid=moving?canMove(moving.id,x,y):canBuild(type,x,y);
-    const placementKey=`${type}:${x}:${y}:${valid}:${moving?.id??''}`;
+    this.drawPlacementPreview({type,x,y,valid,moving:Boolean(moving),movingId:moving?.id??null});
+  }
+  pointerIsOnMap(pointer){
+    const canvas=this.game.canvas,rect=canvas.getBoundingClientRect();
+    const clientX=rect.left+pointer.x*rect.width/this.scale.gameSize.width;
+    const clientY=rect.top+pointer.y*rect.height/this.scale.gameSize.height;
+    return document.elementFromPoint(clientX,clientY)===canvas;
+  }
+  drawPlacementPreview(placement){
+    const {type,x,y,valid,moving,movingId}=placement;
+    const [w,h]=BUILDINGS[type].size;
+    this.ghost.clear();this.movePreview.setVisible(false);
+    this.lastPlacement=placement;
+    const placementKey=`${type}:${x}:${y}:${valid}:${movingId??''}`;
     if(placementKey!==this.lastPlacementKey){
       this.lastPlacementKey=placementKey;
-      this.game.events.emit('astrub:placement',{type,x,y,valid,moving:Boolean(moving)});
+      this.game.events.emit('astrub:placement',{type,x,y,valid,moving});
     }
     for(let i=x;i<x+w;i++)for(let j=y;j<y+h;j++) tilePoly(this.ghost,i,j,valid?0xe6ed99:0xe96d5a,.57);
     {
@@ -240,21 +251,25 @@ export class VillageScene extends Phaser.Scene {
       this.movePreview.setTint(valid?0xffffff:0xffb3a5).setVisible(true);
     }
   }
-  onPointerDown(pointer,over){
-    if(pointer.rightButtonDown()||pointer.middleButtonDown()){
-      this.dragging=true;
-      this.panCandidate=null;
-      this.lastPointer={x:pointer.x,y:pointer.y};
+  confirmPlacement(){
+    const preview=this.lastPlacement;
+    if(!preview||(!this.buildMode&&this.moveId===null))return;
+    const moving=this.moveId!==null?getState().buildings.find(b=>b.id===this.moveId):null;
+    const type=moving?.type||this.buildMode;
+    if(preview.type!==type||preview.moving!==Boolean(moving)||preview.movingId!==(moving?.id??null))return;
+    const valid=moving?canMove(moving.id,preview.x,preview.y):canBuild(type,preview.x,preview.y);
+    if(!valid){
+      this.drawPlacementPreview({...preview,valid:false});
+      this.game.events.emit('astrub:toast','Cet emplacement n’est plus disponible. Choisissez une case libre et vérifiez vos ressources.');
       return;
     }
-    if(!pointer.leftButtonDown())return;
-    const world=this.cameras.main.getWorldPoint(pointer.x,pointer.y);
-    const at=ij(world.x,world.y);
+    this.commitPlacement(preview.x,preview.y);
+  }
+  commitPlacement(x,y){
     if(this.moveId!==null){
       const selected=getState().buildings.find(b=>b.id===this.moveId);
       if(!selected){this.cancelMove();return;}
-      const [w,h]=BUILDINGS[selected.type].size;
-      const result=moveBuilding(selected.id,at.i-Math.floor(w/2),at.j-Math.floor(h/2));
+      const result=moveBuilding(selected.id,x,y);
       if(result.ok){
         this.cancelMove();
         this.renderBuildings();
@@ -264,13 +279,31 @@ export class VillageScene extends Phaser.Scene {
       return;
     }
     if(this.buildMode){
-      const [w,h]=BUILDINGS[this.buildMode].size;
-      const result=place(this.buildMode,at.i-Math.floor(w/2),at.j-Math.floor(h/2));
+      const type=this.buildMode;
+      const result=place(type,x,y);
       if(result.ok){
         this.renderBuildings();
-        this.game.events.emit('astrub:toast',`${BUILDINGS[this.buildMode].label} construit !`);
+        this.game.events.emit('astrub:toast',`${BUILDINGS[type].label} construit !`);
         this.changeBuildMode(null);
       }else this.game.events.emit('astrub:toast',result.msg);
+    }
+  }
+  onPointerDown(pointer,over){
+    if(!this.pointerIsOnMap(pointer))return;
+    if(pointer.rightButtonDown()||pointer.middleButtonDown()){
+      this.dragging=true;
+      this.panCandidate=null;
+      this.lastPointer={x:pointer.x,y:pointer.y};
+      return;
+    }
+    if(!pointer.leftButtonDown())return;
+    const world=this.cameras.main.getWorldPoint(pointer.x,pointer.y);
+    const at=ij(world.x,world.y);
+    if(this.moveId!==null||this.buildMode){
+      const moving=this.moveId!==null?getState().buildings.find(b=>b.id===this.moveId):null;
+      if(this.moveId!==null&&!moving){this.cancelMove();return;}
+      const [w,h]=BUILDINGS[moving?.type||this.buildMode].size;
+      this.commitPlacement(at.i-Math.floor(w/2),at.j-Math.floor(h/2));
       return;
     }
     const hit=over?.find(obj=>obj.getData?.('buildingId'));

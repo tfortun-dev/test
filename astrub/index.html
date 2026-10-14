@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#27483a" />
+  <meta name="theme-color" content="#25303b" />
   <meta name="description" content="Bâtissez votre village, préparez vos Iops et vos Crâs, et partez en expédition. Prototype local Astrub." />
-  <title>Astrub — Les premières pierres · v0.7.0</title>
+  <title>Astrub — Les premières pierres · v0.7.1</title>
 </head>
 <body>
   <main id="app">
@@ -16,88 +16,95 @@
       <div><strong class="brand-title">ASTRUB</strong><span class="brand-subtitle">Votre village · niveau <b id="village-level">1</b></span></div>
     </div>
     <aside class="village-guide" aria-label="Objectifs de découverte">
-      <button id="goals-toggle" class="goals-toggle" type="button" aria-expanded="true" aria-controls="goals-content">
+      <button id="goals-toggle" class="goals-toggle" type="button" aria-expanded="true" aria-controls="goals-content"><span class="ui-art" aria-hidden="true"></span>
         <span class="goal-heading"><small>LES PREMIÈRES PIERRES</small><strong id="goal-current">Bâtir une caserne</strong></span>
         <span class="goal-count" id="goal-count">0/3</span><span class="goal-chevron" aria-hidden="true">⌄</span>
       </button>
       <div id="goals-content" class="goals-content">
         <p>Un village, une escouade, une première aventure.</p>
         <ol id="goal-list" class="goal-list"></ol>
-        <button id="goal-action" class="guide-action" type="button">Construire ma caserne <span aria-hidden="true">→</span></button>
+        <button id="goal-action" class="guide-action" type="button"><span class="ui-art" aria-hidden="true"></span>Construire ma caserne <span aria-hidden="true">→</span></button>
       </div>
     </aside>
     <aside class="resource-stack" aria-label="Ressources du village">
-      <div class="resource gold-bar"><span class="resource-icon coin" aria-hidden="true">●</span><div class="resource-copy"><small id="gold-label">KAMAS</small><span class="resource-amount"><strong class="resource-number" id="gold-value">0</strong><span class="resource-capacity" id="gold-capacity">/ 5 000</span></span><span class="resource-meter" aria-hidden="true"><i></i></span></div></div>
-      <div class="resource wood-bar"><span class="resource-icon wood" aria-hidden="true">🥖</span><div class="resource-copy"><small id="wood-label">VIVRES</small><span class="resource-amount"><strong class="resource-number" id="wood-value">0</strong><span class="resource-capacity" id="wood-capacity">/ 5 000</span></span><span class="resource-meter" aria-hidden="true"><i></i></span></div></div>
-      <div class="resource stone-bar"><span class="resource-icon stone" aria-hidden="true">🧪</span><div class="resource-copy"><small id="stone-label">ÉLIXIRS</small><span class="resource-amount"><strong class="resource-number" id="stone-value">0</strong><span class="resource-capacity" id="stone-capacity">/ 5 000</span></span><span class="resource-meter" aria-hidden="true"><i></i></span></div></div>
+      <div class="resource gold-bar"><span class="resource-icon coin ui-icon icon-kamas" aria-hidden="true">●</span><div class="resource-copy"><small id="gold-label">KAMAS</small><span class="resource-amount"><strong class="resource-number" id="gold-value">0</strong><span class="resource-capacity" id="gold-capacity">/ 5 000</span></span><span class="resource-meter" aria-hidden="true"><i></i></span></div><button id="resource-plus-gold" type="button" class="resource-plus" aria-label="Construire un producteur de kamas" title="Construire un producteur de kamas"><span class="ui-art" aria-hidden="true"></span><span class="resource-plus-label" aria-hidden="true">+</span></button></div>
+      <div class="resource wood-bar"><span class="resource-icon wood ui-icon icon-vivres" aria-hidden="true">🥖</span><div class="resource-copy"><small id="wood-label">VIVRES</small><span class="resource-amount"><strong class="resource-number" id="wood-value">0</strong><span class="resource-capacity" id="wood-capacity">/ 5 000</span></span><span class="resource-meter" aria-hidden="true"><i></i></span></div><button id="resource-plus-wood" type="button" class="resource-plus" aria-label="Construire un producteur de vivres" title="Construire un producteur de vivres"><span class="ui-art" aria-hidden="true"></span><span class="resource-plus-label" aria-hidden="true">+</span></button></div>
+      <div class="resource stone-bar"><span class="resource-icon stone ui-icon icon-elixirs" aria-hidden="true">🧪</span><div class="resource-copy"><small id="stone-label">ÉLIXIRS</small><span class="resource-amount"><strong class="resource-number" id="stone-value">0</strong><span class="resource-capacity" id="stone-capacity">/ 5 000</span></span><span class="resource-meter" aria-hidden="true"><i></i></span></div><button id="resource-plus-stone" type="button" class="resource-plus" aria-label="Construire un producteur de élixirs" title="Construire un producteur de élixirs"><span class="ui-art" aria-hidden="true"></span><span class="resource-plus-label" aria-hidden="true">+</span></button></div>
     </aside>
     <section id="selection-panel" class="building-dock hidden" aria-label="Actions du bâtiment sélectionné">
       <div class="building-dock-main">
         <div class="building-identity"><small class="panel-eyebrow">VOTRE BÂTIMENT</small><strong id="selection-title" class="building-name">Maison de guilde</strong><span class="building-level">Niveau <strong id="selection-level">1</strong><span class="level-max"> / 5</span></span></div>
         <div class="action-toolbar">
-          <button id="collect-btn" class="icon-action collect-action hidden" type="button" title="Récolter" aria-label="Récolter"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11h15l-2 9h-11l-2-9Z"/><path d="m8 11 4-7 4 7M9 14v3m3-3v3m3-3v3"/></svg></span><span class="action-label">Récolter</span></button>
-          <button id="move-btn" class="icon-action move-action" type="button" title="Déplacer" aria-label="Déplacer"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg></span><span class="action-label">Déplacer</span></button>
-          <button id="upgrade-btn" class="icon-action upgrade-action" type="button" title="Améliorer" aria-label="Améliorer"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-8 9h5v8h6v-8h5l-8-9Z"/></svg></span><span class="action-label">Améliorer</span></button>
+          <button id="collect-btn" class="icon-action collect-action hidden" type="button" title="Récolter" aria-label="Récolter"><span class="ui-art" aria-hidden="true"></span><span class="action-icon ui-icon icon-collect" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11h15l-2 9h-11l-2-9Z"/><path d="m8 11 4-7 4 7M9 14v3m3-3v3m3-3v3"/></svg></span><span class="action-label">Récolter</span></button>
+          <button id="move-btn" class="icon-action move-action" type="button" title="Déplacer" aria-label="Déplacer"><span class="ui-art" aria-hidden="true"></span><span class="action-icon ui-icon icon-move" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg></span><span class="action-label">Déplacer</span></button>
+          <button id="upgrade-btn" class="icon-action upgrade-action" type="button" title="Améliorer" aria-label="Améliorer"><span class="ui-art" aria-hidden="true"></span><span class="action-icon ui-icon icon-upgrade" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-8 9h5v8h6v-8h5l-8-9Z"/></svg></span><span class="action-label">Améliorer</span></button>
         </div>
-        <button id="selection-info-toggle" class="info-button" type="button" title="Informations du bâtiment" aria-label="Afficher les informations" aria-controls="building-details" aria-expanded="false">i</button>
-        <button id="close-selection" class="building-close" type="button" title="Fermer la sélection" aria-label="Fermer la sélection">×</button>
+        <button id="selection-info-toggle" class="info-button" type="button" title="Informations du bâtiment" aria-label="Afficher les informations" aria-controls="building-details" aria-expanded="false"><span class="ui-art" aria-hidden="true"></span><span class="ui-icon icon-info" aria-hidden="true"></span><span class="sr-only">Infos</span></button>
+        <button id="close-selection" class="building-close" type="button" title="Fermer la sélection" aria-label="Fermer la sélection"><span class="ui-art" aria-hidden="true"></span>×</button>
       </div>
       <small id="selection-feedback" class="selection-feedback" aria-live="polite"></small>
       <div id="building-details" class="building-details hidden" role="region" aria-label="Informations du bâtiment">
-        <div class="detail-header"><span id="selection-eyebrow" class="panel-eyebrow">BÂTIMENT DU VILLAGE</span><button id="detail-close" type="button" class="detail-close" aria-label="Refermer les informations">×</button></div>
+        <div class="detail-header"><span id="selection-eyebrow" class="panel-eyebrow">BÂTIMENT DU VILLAGE</span><button id="detail-close" type="button" class="detail-close" aria-label="Refermer les informations"><span class="ui-art" aria-hidden="true"></span>×</button></div>
         <p id="selection-description" class="detail-description"></p>
         <div class="selection-line"><span>Statut</span><strong id="selection-state">Disponible</strong></div>
         <p id="move-instruction" class="move-instruction hidden">Choisissez un nouvel emplacement. <b>Vert</b> = libre · <b>Rouge</b> = occupé. Échap pour annuler.</p>
         <div id="collect-panel" class="collect-panel hidden"><div class="collect-head"><span id="collect-resource-name">RÉSERVE</span><strong id="collect-amount">0 / 400</strong></div><div class="collect-track"><div id="collect-fill" class="collect-fill"></div></div><small id="collect-tip">Cliquez sur le bâtiment pour récolter.</small></div>
         <div id="selection-timer" class="upgrade-timer hidden"><div class="timer-heading"><span>TEMPS RESTANT</span><strong id="selection-live-timer" aria-live="off">00:25.0</strong></div><div class="timer-track"><div class="timer-fill" id="selection-progress"></div></div></div>
         <div id="selection-upgrade-cost" class="upgrade-cost"></div>
-        <div id="train-controls" class="train-controls hidden"><div class="panel-eyebrow">PRÉPARER VOTRE ESCOUADE</div><button type="button" class="train-btn" data-unit="iop">⚔ Former un Iop</button><button type="button" class="train-btn" data-unit="cra">🏹 Former un Crâ</button><small id="training-info"></small></div>
+        <div id="train-controls" class="train-controls hidden"><div class="panel-eyebrow">PRÉPARER VOTRE ESCOUADE</div><button type="button" class="train-btn" data-unit="iop"><span class="ui-art" aria-hidden="true"></span>⚔ Former un Iop</button><button type="button" class="train-btn" data-unit="cra"><span class="ui-art" aria-hidden="true"></span>🏹 Former un Crâ</button><small id="training-info"></small></div>
       </div>
     </section>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <section id="placement-status" class="placement-status hidden" aria-live="polite">
-      <span class="placement-mark" aria-hidden="true">◇</span><div><strong id="placement-title">Placer votre bâtiment</strong><p id="placement-copy">Choisissez une case libre dans le village.</p></div><button id="placement-cancel" type="button" class="subtle-button">Annuler</button>
+      <span class="placement-mark" aria-hidden="true">◇</span><div><strong id="placement-title">Placer votre bâtiment</strong><p id="placement-copy">Choisissez une case libre dans le village.</p></div><div class="placement-controls"><button id="placement-confirm" type="button" class="subtle-button" disabled aria-disabled="true"><span class="ui-art" aria-hidden="true"></span>Valider</button><button id="placement-cancel" type="button" class="subtle-button"><span class="ui-art" aria-hidden="true"></span>Annuler</button></div>
     </section>
     <section id="village-controls" class="build-widget compact-build closed" aria-label="Construction du village">
-      <button id="build-toggle" class="build-toggle" type="button" aria-expanded="false" aria-controls="construction-popout" title="Construire" aria-label="Construire">
-        <span class="build-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 3 7 7-3 3-2-2-9 9-3-3 9-9-2-2 3-3Z"/></svg></span><span class="build-toggle-copy"><strong class="build-toggle-label">Construire</strong><small class="build-toggle-sub">Développer le village</small></span><span class="cta-arrow" aria-hidden="true">+</span>
+      <button id="build-toggle" class="build-toggle" type="button" aria-expanded="false" aria-controls="construction-popout" title="Construire" aria-label="Construire"><span class="ui-art" aria-hidden="true"></span>
+        <span class="build-toggle-icon ui-icon icon-build" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 3 7 7-3 3-2-2-9 9-3-3 9-9-2-2 3-3Z"/></svg></span><span class="build-toggle-copy"><strong class="build-toggle-label">Construire</strong><small class="build-toggle-sub">Développer le village</small></span><span class="cta-arrow" aria-hidden="true">+</span>
       </button>
       <div id="construction-popout" class="build-popout" aria-label="Constructions">
-        <div class="build-panel-heading"><div><span class="panel-eyebrow">UNE PIERRE APRÈS L’AUTRE</span><h2 id="build-heading">Développer Astrub</h2></div><button id="build-close" type="button" class="detail-close" aria-label="Fermer le menu de construction">×</button></div>
+        <div class="build-panel-heading"><div><span class="panel-eyebrow">UNE PIERRE APRÈS L’AUTRE</span><h2 id="build-heading">Développer Astrub</h2></div><button id="build-close" type="button" class="detail-close" aria-label="Fermer le menu de construction"><span class="ui-art" aria-hidden="true"></span>×</button></div>
         <p id="build-description" class="build-description">Choisissez un bâtiment, puis son emplacement.</p>
         <div id="build-filters" class="build-filters" role="tablist" aria-label="Catégories de construction"></div>
         <div id="build-palette" class="build-palette"></div>
         <div class="build-panel-footer"><span aria-hidden="true">◇</span> Le déplacement de vos bâtiments reste gratuit.</div>
       </div>
     </section>
-    <button id="raid-btn" class="raid-fab" type="button" aria-label="Préparer une expédition" title="Préparer une expédition"><span class="fab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 3 3 1 12 12M20 3l-3 1L5 16M3 14l7 7M14 21l7-7M4 20l2-2M20 20l-2-2"/></svg></span><span class="fab-copy"><strong>Expédition</strong><small>Préparer mon escouade</small></span><span class="cta-arrow" aria-hidden="true">→</span></button>
+    <button id="raid-btn" class="raid-fab" type="button" aria-label="Préparer une expédition" title="Préparer une expédition"><span class="ui-art" aria-hidden="true"></span><span class="fab-icon ui-icon icon-army" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 3 3 1 12 12M20 3l-3 1L5 16M3 14l7 7M14 21l7-7M4 20l2-2M20 20l-2-2"/></svg></span><span class="fab-copy"><strong>Attaquer</strong><small>Préparer mon escouade</small></span><span class="cta-arrow" aria-hidden="true">→</span></button>
     <section id="battle-controls" class="bottom-dock battle-dock hidden" aria-label="Déploiement des troupes">
       <div class="dock-intro"><span class="panel-eyebrow">CAMP DES BANDITS</span><strong>Déployez vos troupes</strong><span>Cliquez dans la zone claire.</span></div>
       <div id="troop-palette" class="build-palette"></div>
-      <button id="leave-battle" type="button" class="raid-btn leave-btn">← Rentrer <small>AU VILLAGE</small></button>
+      <button id="leave-battle" type="button" class="raid-btn leave-btn"><span class="ui-art" aria-hidden="true"></span>← Rentrer <small>AU VILLAGE</small></button>
     </section>
     <section class="corner-menu utility-stack" aria-label="Menu rapide">
-      <button id="menu-home" type="button" class="utility-btn utility-home" title="Recentrer la caméra (H)" aria-label="Recentrer la caméra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9v11h14V9M10 20v-6h4v6"/></svg></button>
-      <div class="settings-menu"><button id="menu-settings" type="button" class="utility-btn utility-settings" title="Réglages et aide" aria-label="Ouvrir les réglages et l'aide" aria-expanded="false" aria-controls="settings-popover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-1 3-3 1-2 4 2 2v4l4 2 3-1 3 1 4-2v-4l2-2-2-4-3-1-1-3H9Z"/><circle cx="12" cy="11" r="3"/></svg></button>
-        <div id="settings-popover" class="settings-popover hidden" role="menu" aria-label="Réglages rapides"><button id="menu-help" class="settings-action" type="button" role="menuitem"><span class="settings-symbol">?</span><span>Comment jouer</span></button><button id="menu-reset" class="settings-action settings-reset" type="button" role="menuitem"><span class="settings-symbol">↺</span><span>Nouvelle partie</span></button></div>
+      <button id="menu-home" type="button" class="utility-btn utility-home" title="Recentrer la caméra (H)" aria-label="Recentrer la caméra"><span class="ui-art" aria-hidden="true"></span><span class="ui-icon icon-home" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9v11h14V9M10 20v-6h4v6"/></svg></span></button>
+      <div class="settings-menu"><button id="menu-settings" type="button" class="utility-btn utility-settings" title="Réglages et aide" aria-label="Ouvrir les réglages et l'aide" aria-expanded="false" aria-controls="settings-popover"><span class="ui-art" aria-hidden="true"></span><span class="ui-icon icon-settings" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-1 3-3 1-2 4 2 2v4l4 2 3-1 3 1 4-2v-4l2-2-2-4-3-1-1-3H9Z"/><circle cx="12" cy="11" r="3"/></svg></span></button>
+        <div id="settings-popover" class="settings-popover hidden" role="menu" aria-label="Réglages rapides"><button id="menu-help" class="settings-action" type="button" role="menuitem"><span class="ui-art" aria-hidden="true"></span><span class="settings-symbol">?</span><span>Comment jouer</span></button><button id="menu-reset" class="settings-action settings-reset" type="button" role="menuitem"><span class="ui-art" aria-hidden="true"></span><span class="settings-symbol">↺</span><span>Nouvelle partie</span></button></div>
       </div>
     </section>
     <div class="save-indicator"><span aria-hidden="true"></span> Sauvegarde sur cet appareil</div>
     <div class="camera-hint" aria-hidden="true"><kbd>Glisser</kbd> déplacer la carte <i>·</i> <kbd>Molette</kbd> zoomer</div>
     <div class="modal-overlay hidden" id="expedition-overlay" role="dialog" aria-modal="true" aria-labelledby="expedition-title">
-      <section class="expedition-modal"><button id="expedition-close" type="button" class="panel-close" aria-label="Fermer la préparation d'expédition">×</button>
-        <div class="expedition-heading"><span class="expedition-emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 3 3 1 12 12M20 3l-3 1L5 16M3 14l7 7M14 21l7-7M4 20l2-2M20 20l-2-2"/></svg></span><span class="panel-eyebrow">VOTRE PREMIÈRE AVENTURE</span><h2 id="expedition-title">Le camp des bandits</h2><p>Rassemblez vos troupes. La route vous attend.</p></div>
+      <section class="expedition-modal"><button id="expedition-close" type="button" class="panel-close" aria-label="Fermer la préparation d'expédition"><span class="ui-art" aria-hidden="true"></span>×</button>
+        <div class="expedition-heading"><span class="expedition-emblem ui-icon icon-army" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 3 3 1 12 12M20 3l-3 1L5 16M3 14l7 7M14 21l7-7M4 20l2-2M20 20l-2-2"/></svg></span><span class="panel-eyebrow">VOTRE PREMIÈRE AVENTURE</span><h2 id="expedition-title">Le camp des bandits</h2><p>Rassemblez vos troupes. La route vous attend.</p></div>
         <div class="expedition-scroll"><div class="expedition-section-heading"><h3>Votre escouade</h3><span id="expedition-summary"></span></div><div id="expedition-army" class="expedition-army"></div><div class="expedition-section-heading"><h3>Butin de victoire</h3><span>Selon votre stockage</span></div><div id="expedition-rewards" class="expedition-rewards"></div><p id="expedition-note" class="expedition-note"></p><p class="expedition-disclaimer">Camp d’entraînement : les ennemis ne ripostent pas encore.</p></div>
-        <div class="expedition-actions"><button id="expedition-cancel" type="button" class="secondary-btn">Pas maintenant</button><button id="expedition-start" type="button" class="primary-btn">Partir en expédition <span aria-hidden="true">→</span></button></div>
+        <div class="expedition-actions"><button id="expedition-cancel" type="button" class="secondary-btn"><span class="ui-art" aria-hidden="true"></span>Pas maintenant</button><button id="expedition-start" type="button" class="primary-btn"><span class="ui-art" aria-hidden="true"></span>Partir en expédition <span aria-hidden="true">→</span></button></div>
+      </section>
+    </div>
+    <div class="modal-overlay hidden" id="reset-overlay" role="dialog" aria-modal="true" aria-labelledby="reset-title" aria-describedby="reset-description">
+      <section class="reset-modal"><button id="reset-close" type="button" class="panel-close" aria-label="Annuler la nouvelle partie"><span class="ui-art" aria-hidden="true"></span>×</button>
+        <span class="reset-emblem ui-icon icon-home" aria-hidden="true"></span><span class="panel-eyebrow">NOUVELLE PARTIE</span><h2 id="reset-title">Recommencer à Astrub ?</h2>
+        <p id="reset-description">Vos bâtiments, ressources, troupes et victoires sur cet appareil seront remplacés par un nouveau village.</p><p class="reset-warning">Votre progression actuelle sera effacée. Cette action ne peut pas être annulée.</p>
+        <div class="reset-actions"><button id="reset-cancel" type="button" class="secondary-btn"><span class="ui-art" aria-hidden="true"></span>Garder mon village</button><button id="reset-confirm" type="button" class="primary-btn"><span class="ui-art" aria-hidden="true"></span>Recommencer</button></div>
       </section>
     </div>
     <div class="modal-overlay hidden" id="help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title">
-      <section class="help-modal"><button id="help-close" type="button" class="panel-close" aria-label="Fermer l'aide">×</button>
-        <div class="help-scroll"><span class="welcome-emblem" aria-hidden="true">✦</span><span class="panel-eyebrow">LES PREMIÈRES PIERRES</span><h2 id="help-title">Votre aventure commence à Astrub.</h2><p>Un village à faire grandir. Une escouade à préparer.<br>Et quelques bandits à déloger.</p>
+      <section class="help-modal"><button id="help-close" type="button" class="panel-close" aria-label="Fermer l'aide"><span class="ui-art" aria-hidden="true"></span>×</button>
+        <div class="help-scroll"><span class="welcome-emblem ui-icon icon-map" aria-hidden="true">✦</span><span class="panel-eyebrow">LES PREMIÈRES PIERRES</span><h2 id="help-title">Votre aventure commence à Astrub.</h2><p>Un village à faire grandir. Une escouade à préparer.<br>Et quelques bandits à déloger.</p>
           <div class="help-rows"><div><b>01</b><span><strong>Faites vivre votre village.</strong> Cliquez sur la ferme, l’atelier ou la banque pour ramasser leur production.</span></div><div><b>02</b><span><strong>Préparez votre escouade.</strong> Construisez une caserne, puis ouvrez sa fiche pour former des Iops et des Crâs.</span></div><div><b>03</b><span><strong>Prenez la route.</strong> Préparez une expédition, déployez vos troupes et rapportez le butin.</span></div></div>
-          <section class="help-controls" aria-label="Commandes de navigation"><div class="panel-eyebrow">LA CARTE EST À VOUS</div><div class="help-control-buttons"><button id="camera-home" type="button" class="map-action map-home" title="Centrer la caméra">⌂ Recentrer</button><button id="zoom-out" type="button" class="map-action" aria-label="Dézoomer">−</button><button id="zoom-in" type="button" class="map-action" aria-label="Zoomer">+</button></div><p><b>Glisser</b> pour déplacer la carte · <b>Molette</b> pour zoomer · <b>ZQSD / WASD</b> pour se déplacer · <b>H</b> pour recentrer · <b>Échap</b> pour annuler.</p></section>
+          <section class="help-controls" aria-label="Commandes de navigation"><div class="panel-eyebrow">LA CARTE EST À VOUS</div><div class="help-control-buttons"><button id="camera-home" type="button" class="map-action map-home" title="Centrer la caméra"><span class="ui-art" aria-hidden="true"></span>⌂ Recentrer</button><button id="zoom-out" type="button" class="map-action" aria-label="Dézoomer"><span class="ui-art" aria-hidden="true"></span>−</button><button id="zoom-in" type="button" class="map-action" aria-label="Zoomer"><span class="ui-art" aria-hidden="true"></span>+</button></div><p><b>Glisser</b> pour déplacer la carte · <b>Molette</b> pour zoomer · <b>ZQSD / WASD</b> pour se déplacer · <b>H</b> pour recentrer · <b>Échap</b> pour annuler.</p></section>
           <p class="help-note">Votre progression reste dans ce navigateur. Gardez la même adresse locale pour retrouver votre village ; les réserves continuent à se remplir pendant votre absence.</p>
-        </div><div class="help-actions"><button type="button" class="primary-btn" id="help-play">Découvrir mon village <span aria-hidden="true">→</span></button><button type="button" class="reset-btn" id="reset-progress">Recommencer une partie</button></div>
+        </div><div class="help-actions"><button type="button" class="primary-btn" id="help-play"><span class="ui-art" aria-hidden="true"></span>Découvrir mon village <span aria-hidden="true">→</span></button><button type="button" class="reset-btn" id="reset-progress"><span class="ui-art" aria-hidden="true"></span>Recommencer une partie</button></div>
       </section>
     </div>
   </main>
@@ -107,8 +114,8 @@
       <p id="astrub-startup-info">Préparation de la carte et des bâtiments.</p>
       <pre id="astrub-startup-details" hidden></pre>
       <div class="startup-actions">
-        <button type="button" id="astrub-retry" onclick="location.reload()">Réessayer</button>
-        <button type="button" id="astrub-copy-error">Copier l'erreur</button>
+        <button type="button" id="astrub-retry" onclick="location.reload()"><span class="ui-art" aria-hidden="true"></span>Réessayer</button>
+        <button type="button" id="astrub-copy-error"><span class="ui-art" aria-hidden="true"></span>Copier l'erreur</button>
       </div>
     </section>
     <script>
